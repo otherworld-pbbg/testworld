@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("class_time.inc.php");
 
 class Scene {

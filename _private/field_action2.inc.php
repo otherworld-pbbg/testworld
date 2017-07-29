@@ -1,4 +1,4 @@
-<?
+<?php
 include_once "class_player.inc.php";
 include_once "class_character.inc.php";
 include_once("class_field_area.inc.php");

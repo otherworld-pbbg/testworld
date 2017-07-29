@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("class_character.inc.php");
 
 class Time {

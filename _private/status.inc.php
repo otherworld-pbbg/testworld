@@ -1,4 +1,4 @@
-<?
+<?php
 include_once "header.inc.php";
 echo "<div class='bar'>";
 ptag("h1", "Update history and future plans");
@@ -89,14 +89,14 @@ ptag("h2", "Implemented so far");
 <li> event log: background functionality, travel logging</li>
 <li> fixed bug that prevented animals from attacking back</li>
 </ol>
-<?
+<?php
 ptag("img", "", "src='". getGameRoot() . "/graphics/resource_presets.png' alt='mind map of new way to handle resources'");
 ptag("h2", "Things I'm currently working on:");
 ?>
 <ul>
 
 </ul>
-<?
+<?php
 ptag("h2", "Things that are on hold:");
 ?>
 <ul>
@@ -104,7 +104,7 @@ ptag("h2", "Things that are on hold:");
 <li> groups system: new hunting system where damage and kills are actually recorded</li>
 <li> event log continues</li>
 </ul>
-<?
+<?php
 
 
 ptag("h2", "Things that need to be worked on in the future approximately in this order:");

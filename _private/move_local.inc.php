@@ -1,4 +1,4 @@
-<?
+<?php
 //this needs the following post variables: direction, charid, userid
 
 include_once "class_player.inc.php";

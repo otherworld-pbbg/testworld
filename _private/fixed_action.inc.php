@@ -1,4 +1,4 @@
-<?
+<?php
 //this needs the following post variables: charid, userid, sel3, sel_action3
 
 include_once "class_player.inc.php";

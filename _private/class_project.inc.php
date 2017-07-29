@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("class_project_type.inc.php");
 include_once("class_character.inc.php");
 include_once("class_obj.inc.php");

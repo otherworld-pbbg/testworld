@@ -1,4 +1,4 @@
-<?
+<?php
 //this needs the following post variables: pid, charid, userid, slot, res
 
 include_once "class_player.inc.php";

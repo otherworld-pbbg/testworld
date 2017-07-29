@@ -1,4 +1,4 @@
-<?
+<?php
 
 Class Preset {
 	private $mysqli;//db connection

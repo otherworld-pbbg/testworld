@@ -1,4 +1,4 @@
-<?
+<?php
 function receiveHit($enemy_id, $weapon) {
 		$enemy = new Obj($this->mysqli, $enemy_id);
 		$enemy->getBasicData();

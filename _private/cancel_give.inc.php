@@ -1,4 +1,4 @@
-<?//OBSOLETE
+<?php//OBSOLETE
 include_once "class_player.inc.php";
 include_once "class_character.inc.php";
 

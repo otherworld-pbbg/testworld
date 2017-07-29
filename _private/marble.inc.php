@@ -1,4 +1,4 @@
-<?
+<?php
 include_once "class_player.inc.php";
 include_once "class_character.inc.php";
 include_once "class_time.inc.php";
@@ -1146,7 +1146,7 @@ else {
 
 	});
 	</script>
-<?
+<?php
 		echo "<div id='displayInfo' class='infobox'>";
 		para("Select something");
 		echo "</div>\n</div>\n";

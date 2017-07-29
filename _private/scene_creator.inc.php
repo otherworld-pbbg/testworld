@@ -1,4 +1,4 @@
-<?
+<?php
 include_once $privateRoot . "/class_player.inc.php";
 include_once $privateRoot . "/class_character.inc.php";
 include_once $privateRoot . "/class_time.inc.php";

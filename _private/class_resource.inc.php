@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("generic.inc.php");
 
 class Resource {
