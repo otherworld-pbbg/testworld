@@ -46,7 +46,7 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["submit_b
 if ($displayForm)
 {
 	include_once "header.inc.php";
-	para("Make sure to read the main page and plans from time to time in case changes are announced.");
+	para("Notice to all users: Since I accidentally posted our hashing safeword on Github, we had to change it, which means that nobody's passwords work anymore. You will have to contact the developer for a new password. Also this way we will see which ones of the testers are still active.");
 	echo "<form action='index.php?page=login' method='post'>";
 	echo "<p>";
 	ptag("label", "Username: ", "for='username'");
