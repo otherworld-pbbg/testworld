@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>Character randomizer</title>
+<style>
+	label {
+	  width: 160px;
+	  display: inline-block;
+	}
+	div.text {
+		width: 270px;
+		background-color: #DDEEFF;
+		display: inline-block;
+  	}
+</style>
+</head>
+<body>
+<form>
+  <div>
+    <label for="result-0">Sex:</label>
+    <div id='result-0' class="text"> </div>
+    <input type="checkbox" id="lock-0"> Lock
+    <input type="button" id="randomize-0" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-1">Height:</label>
+    <div id='result-1' class="text"> </div>
+    <input type="checkbox" id="lock-1"> Lock
+    <input type="button" id="randomize-1" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-2">Weight:</label>
+    <div id='result-2' class="text"> </div>
+    <input type="checkbox" id="lock-2"> Lock
+    <input type="button" id="randomize-2" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-3">Ethnicity:</label>
+    <div id='result-3' class="text"> </div>
+    <input type="checkbox" id="lock-3"> Lock
+    <input type="button" id="randomize-3" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-4">Skin color:</label>
+    <div id='result-4' class="text"> </div>
+    <input type="checkbox" id="lock-4"> Lock
+    <input type="button" id="randomize-4" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-5">Eye color:</label>
+    <div id='result-5' class="text"> </div>
+    <input type="checkbox" id="lock-5"> Lock
+    <input type="button" id="randomize-5" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-6">Hair color:</label>
+    <div id='result-6' class="text"> </div>
+    <input type="checkbox" id="lock-6"> Lock
+    <input type="button" id="randomize-6" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-7">Hair texture:</label>
+    <div id='result-7' class="text"> </div>
+    <input type="checkbox" id="lock-7"> Lock
+    <input type="button" id="randomize-7" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-8">Best feature:</label>
+    <div id='result-8' class="text"> </div>
+    <input type="checkbox" id="lock-8"> Lock
+    <input type="button" id="randomize-8" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-9">Biggest visual flaw:</label>
+    <div id='result-9' class="text"> </div>
+    <input type="checkbox" id="lock-9"> Lock
+    <input type="button" id="randomize-9" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-10">Dressing preference:</label>
+    <div id='result-10' class="text"> </div>
+    <input type="checkbox" id="lock-10"> Lock
+    <input type="button" id="randomize-10" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-11">Sexual orientation:</label>
+    <div id='result-11' class="text"> </div>
+    <input type="checkbox" id="lock-11"> Lock
+    <input type="button" id="randomize-11" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-12">Dietary restriction:</label>
+    <div id='result-12' class="text"> </div>
+    <input type="checkbox" id="lock-12"> Lock
+    <input type="button" id="randomize-12" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-13">Allergy/Intolerance:</label>
+    <div id='result-13' class="text"> </div>
+    <input type="checkbox" id="lock-13"> Lock
+    <input type="button" id="randomize-13" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <div>
+    <label for="result-14">Biggest fear:</label>
+    <div id='result-14' class="text"> </div>
+    <input type="checkbox" id="lock-14"> Lock
+    <input type="button" id="randomize-14" value="Randomize" onclick=getRandom(this.id)>
+  </div>
+  <input type="button" id="randomize-all" value="Randomize all (except locked)" onclick=randomAll()>
+</form>
+
+
+
+<script>
+
+function getRandom(e) {
+  var lengthArr = [3, 5, 6, 7, 6, 6, 5, 6, 8, 23, 10, 6, 8, 10, 14];
+
+  var results = [
+    ["Male", "Female", "Ambiguous"],
+    ["Very short", "Shorter than average", "Average", "Taller than average", "Very tall"],
+    ["Very skinny", "Slim", "Average", "Sturdy", "Plump", "Massive"],
+    ["White/Caucasian", "Black/African", "East Asian", "South-Asian", "Middle-Eastern or Mediterranean", "Polynesian", "Indigenous"],
+    ["Unusually pale", "Light", "Average", "Tanned/slightly darker than average", "Darker than average", "Much darker than average"],
+    ["Black or brown", "Brown or hazel", "Green or blue", "Blue or gray", "Golden or topaz", "Very unusual"],
+    ["Racial stereotype", "Lighter than expected", "Darker than expected", "More red than expected", "Very unusual"],
+    ["Racial stereotype", "Smoother than expected", "Coarser than expected", "Straighter than expected", "Curlier than expected", "Very unusual"],
+    ["Eyes", "Lips", "Teeth", "Chin", "Cheeks", "Hair", "Symmetry", "Sexual characteristics"],
+    ["Lopsided mouth",
+      "Eyes too close together",
+      "Eyes too wide apart",
+      "Eyes at separate levels",
+      "Droopy eyelids",
+      "Bags under the eyes",
+      "Bad skin or acne",
+      "Thin hair or baldness",
+      "Nose that looks like a snout",
+      "Nose that is more fit for the opposite sex",
+      "No cupid's bow",
+      "Deformed ears",
+      "Physical handicap",
+      "Major deformity",
+      "Mouth too big",
+      "Mouth too small",
+      "Nose too big",
+      "Nose too small",
+      "Eyes too small",
+      "Birthmarks/moles",
+      "Facial hair unfit for sex",
+      "Bad teeth",
+      "Wonky teeth"
+    ],
+    ["Plain", "Down to earth", "Comfortable", "Casual", "Stylish", "Modern", "Old-fashioned", "Fantasy", "Dramatic", "Sexy/Revealing"],
+    ["Straight", "Bi", "Gay", "Pansexual", "Asexual", "Unsure/questioning"],
+    ["None", "Picky eater", "Pesco-vegetarian", "Lacto-ovo-vegetarian", "Lacto-vegetarian", "Vegan", "Junk food diet", "Sugarholic"],
+    ["None", "Pollen", "Animal dust", "Wheat protein", "Fish", "Nuts", "Tomato", "Citrus", "Milk", "Gluten"],
+    ["The dark", "Commitment", "Responsibility", "Death", "Heights", "The sea", "Open spaces", "Embarrassment", "Closed spaces", "Crowds", "Loneliness", "Silence", "Noise", "Aging"]
+  ];
+
+  var split_str = e.split("-");
+
+  var prefix = "result-";
+  var idnumber = split_str[1];
+  var affected = prefix.concat(idnumber);
+
+  var randNum = Math.floor(Math.random() * lengthArr[idnumber]);
+
+  document.getElementById(affected).innerHTML = results[idnumber][randNum];
+}
+
+function randomAll() {
+  for (i = 0; i < 15; i++) {
+    var prefix = "result-";
+    var affected = prefix.concat(i);
+    var prefix2 = "lock-";
+    var affected2 = prefix2.concat(i);
+    if (document.getElementById(affected2).checked == false) {
+      getRandom(affected);
+    }
+
+  }
+}
+
+
+
+</script>
+</body>
+</html>

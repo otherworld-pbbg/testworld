@@ -1,0 +1,52 @@
+id;name;above;below;link_right;link_left;subpart_of;inside;behind;sever;pierce;crush;bone
+1;head;2;0;;;;;;100;60;200;-5
+2;neck;3;1;;;;;;50;35;180;-30
+3;torso;0;2;;;;;;200;55;500;-100
+4;right shoulder;;;0;3;;;;40;30;200;-10
+5;left shoulder;;;3;0;;;;40;30;200;-10
+6;right rump;;3;;;;;;50;45;200;-25
+7;left rump;;3;;;;;;50;45;200;-25
+8;right upper front limb;9;4;;;;;;40;30;180;-20
+9;right fore leg joint;10;8;;;;;;50;200;200;-10
+10;right lower front limb;11;9;;;;;;35;30;150;-15
+11;right lower front leg joint;12;10;;;;;;30;25;120;-10
+12;right front paw;0;11;;;;;;30;15;100;-10
+13;left upper front limb;14;5;;;;;;40;30;180;-20
+14;left fore leg joint;15;13;;;;;;50;200;200;-10
+15;left lower front limb;16;14;;;;;;35;30;150;-15
+16;left lower front leg joint;17;15;;;;;;30;25;120;-10
+17;left front paw;0;16;;;;;;30;15;100;-10
+18;right thigh;19;6;;;;;;50;55;300;-15
+19;right knee;20;18;;;;;;50;200;250;-10
+20;right shin;21;19;;;;;;45;45;230;-10
+21;right ankle;22;20;;;;;;40;200;250;-5
+22;right hind paw;0;21;;;;;;35;20;130;-5
+23;left thigh;24;7;;;;;;50;55;300;-30
+24;left knee;25;23;;;;;;50;200;250;-10
+25;left shin;26;24;;;;;;45;45;230;-10
+26;left ankle;27;25;;;;;;40;200;250;-5
+27;left hind paw;0;26;;;;;;35;20;130;-5
+28;right carotid artery;;;;;;2;;5;2;0;0
+29;left carotid artery;;;;;;2;;5;2;0;0
+30;right femoral artery;;;;;;18;;5;2;0;0
+31;left femoral artery;;;;;;23;;5;2;0;0
+32;right eye;;;;;1;;;0;3;5;-10
+33;left eye;;;;;1;;;0;3;5;-10
+34;nose;;;;;1;;;10;4;10;-5
+35;right hamstring;;;;;;18;;8;8;0;0
+36;left hamstring;;;;;;23;;8;8;0;0
+37;right achilles tendon;;;;;;20;;8;8;0;0
+38;left achilles tendon;;;;;;25;;8;8;0;0
+39;ribcage;;;;;;3;;200;100;280;0
+40;right femur;;;;;;18;;45;200;300;0
+41;left femur;;;;;;23;;45;200;300;0
+42;skull;;;;;;1;;95;90;200;0
+43;heart;;;;;;3;39;0;10;20;0
+44;right lung;;;;;;3;39;0;10;20;0
+45;left lung;;;;;;3;39;0;10;20;0
+46;brain;;;;;;42;;50;20;100;0
+47;windpipe;;;;;;2;;25;20;35;0
+48;right front leg ligament;;;;;;10;;8;8;0;0
+49;left front leg ligament;;;;;;15;;8;8;0;0
+50;right side;;;;;3;;;0;45;200;-10
+51;left side;;;;;3;;;0;45;200;-10

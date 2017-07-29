@@ -1,0 +1,442 @@
+<?
+//this needs the following post variables: charid, userid
+
+include_once "class_player.inc.php";
+include_once "class_character.inc.php";
+include_once "class_time.inc.php";
+include_once "class_global_map.inc.php";
+include_once "local_map.inc.php";
+include_once("class_preset.inc.php");
+
+//the part that checks if you're logged in
+if (!isset($_SESSION['user_id'])) {
+		header('Location: index.php?page=login');
+}
+else
+{
+	$currentUser = $_SESSION['user_id'];
+}
+//end logged in check
+//Next check if character selected
+if (!isset($_POST["charid"])) {
+		header('Location: index.php?page=direwolf&userid=' . $currentUser);
+}
+else {
+	//check if the player is allowed to view this character
+	$charcheck = $mysqli->real_escape_string($_POST['charid']);
+	$curChar = new Character($mysqli, $charcheck);
+	$watcherRole = $curChar->checkPermission($currentUser);
+	$pos = $curChar->getPosition();
+	
+	if ($watcherRole<1) header('Location: index.php?page=direwolf&userid=' . $currentUser);
+	else {
+		//user is authorized to view this character
+		$bodyId = $curChar->getBasicData();
+		if ($bodyId == -1) {
+			include_once "header2.inc.php";
+			echo "This character doesn't have a body so it cannot be played.";
+		}
+		else {			
+			if ($watcherRole>1) {
+				include_once "header2.inc.php";
+				para("You cannot commit ground actions on someone else's behalf when you're a watcher.");
+			}
+			else if (!isset($_POST["sel_action2"])||!isset($_POST["sel2"])) {
+				include_once "header2.inc.php";
+				para("Error: Nothing was selected.");
+			}
+			else if (!is_numeric($_POST["sel_action2"])||!is_numeric($_POST["sel2"])) {
+				include_once "header2.inc.php";
+				para("Error: Value is not numeric.");
+			}
+			else if ($_POST["sel_action2"]<1||$_POST["sel_action2"]>6) {
+				include_once "header2.inc.php";
+				para("Error: Invalid action.");
+			}
+			else {
+				$targetObject = new Obj($mysqli, $_POST["sel2"]);
+				$oname = $targetObject->getName(false);
+				if ($targetObject->x!=$pos->x||$targetObject->y!=$pos->y) para("Error: You're trying to interact with an object that's in another location.");
+				else {
+					$is_countable = $targetObject->getAttribute(44, $charcheck);
+					$is_container_l = $targetObject->getAttribute(2, $charcheck);
+					$is_container_s = $targetObject->getAttribute(7, $charcheck);
+					$weight = $targetObject->approximateWeight();
+					if ($_POST["sel_action2"]==1) {
+						if (($is_countable&&$targetObject->pieces==1)||($targetObject->type!=5&&$targetObject->pieces==1)) {
+							//redirect directly to processing with 1
+							header('Location: index.php?page=take&charid=' . $charcheck . '&userid=' . $currentUser . '&sel=3&targetid=' . $_POST["sel2"]);
+						}
+						else {
+							include_once "header2.inc.php";
+							echo "<div class='bar'>\n";
+							ptag("h1", "Pick up $oname");
+							echo "<form action='index.php' method='get' id='takeform' name='takeform' class='narrow'>";
+							if ($is_countable) para("There are $targetObject->pieces of these.");
+							else para("What there is weighs $weight.");
+							if (!$is_countable) {
+								echo "<p>";
+								ptag("input", "", "name='sel' type='radio' value='1' checked='checked'");
+								echo "Grams to take* ";
+								ptag("input", "", "name='grams' type='text'");
+								echo "</p>";
+							}
+							if ($is_countable) {
+								echo "<p>";
+								ptag("input", "", "name='sel' type='radio' value='2'");
+								echo "Or pieces to take ";
+								ptag("input", "", "name='pieces' type='text'");
+								echo "</p>";
+							}
+							echo "<p>";
+							ptag("input", "", "name='sel' type='radio' value='3'");
+							echo "Or take all</p>";
+							ptag("input" , "", "type='hidden' name='charid' value='$charcheck'");
+							ptag("input" , "", "type='hidden' name='userid' value='$currentUser'");
+							ptag("input" , "", "type='hidden' name='page' value='take'");
+							ptag("input" , "", "type='hidden' name='targetid' value='" . $_POST["sel2"] . "'");
+							echo "<p class='right'>";
+							ptag("input", "", "type='submit' value='Take selected'");
+							echo "</p>";
+							echo "</form>";
+							para("*) Do bear in mind that without a scale, you cannot know the exact weight of what there is or how much you're taking.");
+							para("If you choose to take more than what there is, it will take the whole thing.");
+							para("If a resource is counted in pieces and you try to take a weight smaller than one piece, it will round it to the smallest possible part.");
+						}
+					}
+					else if ($_POST["sel_action2"]==2) {
+						include_once "header2.inc.php";
+							echo "<div class='bar'>\n";
+						$uses = $targetObject->getUses();
+						if (empty($uses)) para("This item has no default use.");
+						else {
+							$handle = $targetObject->getName(false);
+							ptag("h2", "Uses for $handle");
+							echo "<ul class='tool'>";
+							foreach ($uses as $use) {
+								if ($use["type"]=="manu") {
+									if ($use["preset"]==20) {
+										$resource = new Resource($mysqli, $use["secondary"]);
+										$resource->loadData();
+										ptag("li", "Producing " . $resource->name . " <a href='index.php?page=manufacture&sel=" . $use["uid"]. "&userid=$currentUser&charid=$charcheck' class='clist'>[view details]</a>");
+									}
+									else {
+										$preset = new Preset($mysqli, $use["preset"]);
+										$preset->loadData();
+										ptag("li", "Manufacturing " . $preset->name . " <a href='index.php?page=manufacture&sel=" . $use["uid"]. "&userid=$currentUser&charid=$charcheck' class='clist'>[view details]</a>");
+									}
+								}
+								if ($use["type"]=="fire") {
+									ptag("li", "Lighting a fire (" .$use["ap"]. " AP) - afterglow " . $use["reserve"] . " minutes per hour of burning <a href='index.php?page=startFire&charid=$charcheck&userid=$currentUser&container=$targetObject->uid&ptype=" . $use["uid"]. "' class='clist'>[start]</a>");
+								}
+							}
+							echo "</ul>";
+						}
+					}
+					else if ($_POST["sel_action2"]==3) {
+						include_once "header2.inc.php";
+						echo "<div class='bar'>\n";
+						para("In which direction and how far?");
+					}
+					else if ($_POST["sel_action2"]==4) {
+						include_once "header2.inc.php";
+						echo "<div class='bar'>\n";
+						ptag("h1", "Store $oname");
+						$localMap = new LocalMap($mysqli, $pos->x, $pos->y);
+						$containers = $localMap->getContainers($charcheck);
+						if ($containers) {
+							echo "<form action='index.php?page=store2' method='post' id='storeform' name='storeform' class='narrow'>";
+							if ($is_countable) para("There are $targetObject->pieces of these.");
+							para("What there is weighs $weight.");
+							echo "<p>";
+							ptag("input", "", "name='sel2' type='radio' value='1' checked='checked'");
+							echo "Grams to store* ";
+							ptag("input", "", "name='grams' type='text'");
+							echo "</p>";
+							if ($is_countable) {
+								echo "<p>";
+								ptag("input", "", "name='sel2' type='radio' value='2'");
+								echo "Or pieces to store ";
+								ptag("input", "", "name='pieces' type='text'");
+								echo "</p>";
+							}
+							echo "<p>";
+							ptag("input", "", "name='sel2' type='radio' value='3'");
+							echo "Or store all</p>";
+							para("Containers in this spot:");
+							for ($i=0; $i<count($containers); $i++) {
+								$selected = "";
+								if ($i == 0) $selected = "checked='checked'";
+								$obj = new Obj($mysqli, $containers[$i]["uid"]);
+								$obj->getBasicData();
+								$co_name = $obj->getName();
+								echo "<p>";
+								ptag("input", "", "name='sel3' type='radio' value='". $containers[$i]["uid"] ."' $selected");
+								echo " " . $co_name . "</p>";
+								echo "<p>Max capacity: ";
+								$capacity = "";
+								if ($containers[$i]["large"]) $capacity .= $containers[$i]["large"] . " large units";
+								if ($containers[$i]["small"]) {
+									if ($capacity) $capacity .= " and ";
+									$capacity .= $containers[$i]["small"] . " small units";
+								}
+								echo $capacity;
+								echo "</p>";
+							}
+							ptag("input" , "", "type='hidden' name='charid' value='$charcheck'");
+							ptag("input" , "", "type='hidden' name='userid' value='$currentUser'");
+							ptag("input" , "", "type='hidden' name='targetid' value='" . $_POST["sel2"] . "'");
+							echo "<p class='right'>";
+							ptag("input", "", "type='submit' value='Store selected'");
+							echo "</p>";
+							echo "</form>";
+						}
+						else para("There are no containers nearby.");
+					}
+					else if ($_POST["sel_action2"]==5) {
+						include_once "header2.inc.php";
+						echo "<div class='bar'>\n";
+						if ($targetObject->type==9) {
+							ptag("h1", "Dismember $oname");
+							$blood = $targetObject->getAttribute(52, $charcheck);
+							$skin = $targetObject->getAttribute(64, $charcheck);
+							$brain = $targetObject->getAttribute(65, $charcheck);
+							$intestine = $targetObject->getAttribute(66, $charcheck);
+							$offal = $targetObject->getAttribute(67, $charcheck);
+							$sinew = $targetObject->getAttribute(68, $charcheck);
+							$head = $targetObject->getAttribute(69, $charcheck);
+							$horns = $targetObject->getAttribute(71, $charcheck);
+							$scapula = $targetObject->getAttribute(72, $charcheck);
+							$feet = $targetObject->getAttribute(73, $charcheck);
+							
+							$tools = $curChar->getPoolToolsInventory(1);//any knife
+							
+							$multiplier = round(pow($targetObject->weight+400, 0.3));
+							
+							echo "<form action='index.php?page=dismember' method='post' id='butcherform' name='butcherform' class='medium'>";
+							
+							para("Base AP cost: 10");
+							para("Removing certain parts costs extra");
+							$nocontinue = false;
+							
+							$original_wt = $targetObject->getAttribute(74, $charcheck);
+							if (!$original_wt) {
+								$original_wt = $targetObject->weight;
+								$targetObject->setAttribute(74, $original_wt);
+							}
+							
+							if (!$tools) {
+								para("You need some sort of a knife to dismember animal carcasses.");
+							}
+							else {
+								ptag("h2", "Cutting tool");
+								$checked = "checked='checked'";
+								foreach ($tools as $tool) {
+									$tOb = new Obj($mysqli, $tool);
+									$tOb->getBasicData();
+									echo "<p>";
+									ptag("input", "", "name='tool' id='tool-$tool' type='radio' value='$tool' $checked");
+									ptag("label", $tOb->getName(), "for='tool-$tool'");
+									echo "</p>";
+									$checked = "";
+								}
+							}
+							
+							if ($blood&&$blood>round($original_wt*0.04)) {
+								ptag("h3", "Blood");
+								echo "<p>";
+								
+								ptag("input", "", "name='blood' id='blood1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='blood1'");
+								
+								ptag("input", "", "name='blood' id='blood2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='blood2'");
+								echo "</p>";
+							}
+							elseif (!$skin&&!$brain&&!$intestine&&!$offal&&!$sinew&&!$head&&!$horns&&!$scapula&&!$feet) $nocontinue = true;
+							
+							if ($intestine) {
+								ptag("h3", "Intestines");
+								echo "<p>";
+								
+								ptag("input", "", "name='intestine' id='intestine1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='intestine1'");
+								
+								ptag("input", "", "name='intestine' id='intestine2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='intestine2'");
+								echo "</p>";
+							}
+							if ($offal) {
+								ptag("h3", "Offal");
+								echo "<p>";
+								
+								ptag("input", "", "name='offal' id='offal1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='offal1'");
+								
+								ptag("input", "", "name='offal' id='offal2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='offal2'");
+								echo "</p>";
+							}
+							if ($skin) {
+								ptag("h3", "Skin");
+								para("AP cost:" . $multiplier . ", unless left on");
+								echo "<p>";
+								
+								ptag("input", "", "name='skin' id='skin1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='skin1'");
+								
+								ptag("input", "", "name='skin' id='skin2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='skin2'");
+								
+								ptag("input", "", "name='skin' id='skin3' type='radio' value='3'");
+								ptag("label", "Leave attached", "for='skin3'");
+								echo "</p>";
+							}
+							if ($sinew) {
+								ptag("h3", "Sinew");
+								echo "<p>";
+								
+								ptag("input", "", "name='sinew' id='sinew1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='sinew1'");
+								
+								ptag("input", "", "name='sinew' id='sinew2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='sinew2'");
+								
+								ptag("input", "", "name='sinew' id='sinew3' type='radio' value='3'");
+								ptag("label", "Leave attached", "for='sinew3'");
+								echo "</p>";
+							}
+							if ($head) {
+								ptag("h3", "The head");
+								para("AP cost:" . round($multiplier/2) . ", unless left attached");
+								echo "<p>";
+								
+								ptag("input", "", "name='head' id='head1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='head1'");
+								
+								ptag("input", "", "name='head' id='head2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='head2'");
+								
+								ptag("input", "", "name='head' id='head3' type='radio' value='3'");
+								ptag("label", "Leave attached", "for='head3'");
+								echo "</p>";
+							}
+							if ($brain) {
+								ptag("h3", "Brains");
+								echo "<p>";
+								
+								ptag("input", "", "name='brain' id='brain1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='brain1'");
+								
+								ptag("input", "", "name='brain' id='brain2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='brain2'");
+								
+								ptag("input", "", "name='brain' id='brain3' type='radio' value='3'");
+								ptag("label", "Leave attached", "for='brain3'");
+								echo "</p>";
+							}
+							if ($horns) {
+								if ($horns==1) ptag("h3", "Antlers");
+								if ($horns==2) ptag("h3", "Horns");
+								if ($horns==3) ptag("h3", "Tusks");
+								
+								echo "<p>";
+								
+								ptag("input", "", "name='horn' id='horn1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='horn1'");
+								
+								ptag("input", "", "name='horn' id='horn2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='horn2'");
+								
+								ptag("input", "", "name='horn' id='horn3' type='radio' value='3'");
+								ptag("label", "Leave attached", "for='horn3'");
+								echo "</p>";
+							}
+							if ($scapula) {
+								ptag("h3", "Scapula");
+								echo "<p>";
+								
+								ptag("input", "", "name='scapula' id='scapula1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='scapula1'");
+								
+								ptag("input", "", "name='scapula' id='scapula2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='scapula2'");
+								
+								ptag("input", "", "name='scapula' id='scapula3' type='radio' value='3'");
+								ptag("label", "Leave attached", "for='scapula3'");
+								echo "</p>";
+							}
+							if ($feet) {
+								ptag("h3", "Feet");
+								para("AP cost:" . round($multiplier/8*$feet) . ", unless left attached");
+								echo "<p>";
+								
+								ptag("input", "", "name='feet' id='feet1' type='radio' value='1' checked='checked'");
+								ptag("label", "Discard", "for='feet1'");
+								
+								ptag("input", "", "name='feet' id='feet2' type='radio' value='2'");
+								ptag("label", "Pick up", "for='feet2'");
+								
+								ptag("input", "", "name='feet' id='feet3' type='radio' value='3'");
+								ptag("label", "Leave attached", "for='feet3'");
+								echo "</p>";
+							}
+							
+							ptag("input" , "", "type='hidden' name='charid' value='$charcheck'");
+							ptag("input" , "", "type='hidden' name='userid' value='$currentUser'");
+							ptag("input" , "", "type='hidden' name='carcass' value='" . $_POST["sel2"] . "'");
+							
+							if ($nocontinue) {
+								para("This animal carcass has been completely dressed and only has the torso left. Cooking it will become possible later.");
+							}
+							else if ($tools) {
+								echo "<p class='right'>";
+								ptag("input", "", "type='submit' value='Dismember'");
+								echo "</p>";
+							}
+							echo "</form>";
+						}
+						else para("Currently you can only take apart animal carcasses. Try again later.");
+					}
+					else if ($_POST["sel_action2"]==6) {
+						include_once "header2.inc.php";
+						echo "<div class='bar'>\n";
+						if ($is_container_l||$is_container_s) {
+							ptag("h1", "Take from $oname");
+							$contents = $targetObject->getContents();
+							if ($contents) {
+								echo "<form action='index.php?page=emptyContainer' method='post' id='containerform' name='containerform' class='narrow'>";
+								for ($j=0; $j<count($contents); $j++) {
+									$selected = "";
+									if ($j == 0) $selected = "checked='checked'";
+									$inItem = new Obj($mysqli, $contents[$j]);
+									$inItem->getBasicData();
+									$handle = $inItem->getHandle();
+									echo "<p>";
+									ptag("input", "", "name='contentid' type='radio' value='". $inItem->uid ."' $selected");
+									echo $handle;
+									echo "</p>";
+								}
+								ptag("input" , "", "type='hidden' name='charid' value='$charcheck'");
+								ptag("input" , "", "type='hidden' name='userid' value='$currentUser'");
+								ptag("input" , "", "type='hidden' name='containerid' value='" . $_POST["sel2"] . "'");
+								ptag("input" , "", "type='hidden' name='location' value='2'");
+								echo "<p class='right'>";
+								ptag("input", "", "type='submit' value='Take selected'");
+								echo "</p>";
+								echo "</form>";
+							}
+							else para("This container is empty.");
+						}
+						else para("This isn't a container");
+					}
+				}
+				echo "<p class='right'>";
+				ptag("a", "Go back", "href='index.php?page=viewchar&charid=" . $charcheck . "&userid=" . $currentUser . "&tab=4' class='clist'");
+				echo "</p>";
+				echo "</div>\n";
+			}
+		}
+	}
+}
+?>

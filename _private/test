@@ -1,0 +1,50 @@
+<?
+function getlogin($conn) {
+    if (isset($_POST['loginsubmit'])) {
+        $uid = mysqli_real_escape_string($conn, $_POST['uid']);
+        $pwd = mysqli_real_escape_string($conn, $_POST['pwd']);
+
+        $sql = "SELECT * from test where uid='$uid'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $hash_pwd = $row['pwd'];
+        $hash = false;
+
+        if($hash == 0) {
+
+            //header("Location : test.php?error=empty");
+        }
+
+
+
+          else {
+
+        $stmt = $conn->prepare("select * FROM test WHERE uid=? and pwd =?");
+        $stmt->bind_param("ss", $username, $password); 
+
+        $username = $uid;
+        $password = $hash_pwd; 
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $rowNum = $result->num_rows;
+
+
+        if ($rowNum > 0) {
+            if ($row = $result->fetch_assoc()) {
+                 $_SESSION['id']  = $row['id'];
+                 echo "<script> window.location.replace('test.php') 
+   </script>" ;
+                 exit();
+          }
+              }else {
+                  header("Location : test.php");
+                  echo " echo don't work "; 
+                 exit();
+
+
+              }
+         }
+    }
+    }
+    ?>
