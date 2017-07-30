@@ -821,8 +821,8 @@ class Obj
 	
 	//-Combat/health---------------------------------------------------------------------------------------------------------
 	
-	function calculateBlood($observerid) {
-		$curBlood = $this->getAttribute(52, $observerid);
+	function calculateBlood($observerid=0) {
+		$curBlood = $this->getAttribute(52);
 		if (!$curBlood) {
 			$newVal = round($this->weight/10);
 			$this->setAttribute(52, $newVal);
@@ -831,8 +831,8 @@ class Obj
 		return $curBlood;
 	}
 	
-	function bleed($grams, $observer) {
-		$curBlood = $this->calculateBlood($observer);
+	function bleed($grams, $observer=0) {
+		$curBlood = $this->calculateBlood();
 		$new = max($curBlood-$grams, 0);
 		$this->setAttribute(52, $new);
 		return $new;
@@ -854,7 +854,7 @@ class Obj
 				if ($row[2]==3) $ext += round($bleed/3);
 				$sum += $bleed;
 			}
-			$curBlood = $this->calculateBlood($charid);
+			$curBlood = $this->calculateBlood();
 			if ($sum>$curBlood/2) $sum = round($curBlood/2);
 			if ($ext>$curBlood/2) $ext = round($curBlood/2);
 			
@@ -920,9 +920,9 @@ class Obj
 		else return -2;
 	}
 	
-	function getBloodPercentage($observer_id) {
+	function getBloodPercentage($observer_id=0) {
 		$max = round($this->weight/10);
-		$curBlood = $this->calculateBlood($observer_id);
+		$curBlood = $this->calculateBlood();
 		
 		return round($curBlood/$max*100);
 	}

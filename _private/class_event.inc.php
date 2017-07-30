@@ -117,6 +117,9 @@ class Event
 			314 => "As a result, <COUNT_1> of the defenders and <COUNT_2> of the offenders were injured and <COUNT_3> and <COUNT_4> died, respectively.",
 			315 => "<GROUPNAME_1> killed <ANIMAL_1> during a hunt.",
 			316 => "<DCNAME_1> killed <ANIMAL_1> during a hunt with <GROUPNAME_1>.",
+			400 => "<DCNAME_1> made <PRONOUN_1> first significant appearance.",
+			401 => "<DCNAME_1> gave birth to a baby <GENDER_1>.",
+			402 => "<DCNAME_1> is in labor.",
 			);
 		
 		return $eventtypes[$this->eventtype];
