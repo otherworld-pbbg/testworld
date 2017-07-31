@@ -1,4 +1,16 @@
 <?php
+const GEN_ITEM = 1;
+const GEN_PERSON = 2;
+const GEN_BUILDING = 3;
+const GEN_ANIMAL = 4;
+const GEN_RESOURCE = 5;
+const GEN_FIXED = 6;
+const GEN_GROUP = 7;
+const GEN_LUMP = 8;
+const GEN_DEAD_ANIMAL = 9;
+const GEN_DEAD_PERSON = 10;
+const GEN_ANIMAL_PART = 11;
+
 const ATTR_LARGE_MASS = 1;
 const ATTR_LARGE_CONTAINER = 2;
 const ATTR_SMALL_MASS = 6;
