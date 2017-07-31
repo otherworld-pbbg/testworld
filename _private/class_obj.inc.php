@@ -996,7 +996,7 @@ class Obj
 			$newo2 = new Obj($this->mysqli);
 			if ($parts[2]==1) $newo2->create(20, 5, $actor->parent, "Discarded offal", $actor->x, $actor->y, $actor->localx, $actor->localy, 445, 1, $offalwt, $curTime->dateTime, $curTime->minute);
 			if ($parts[2]==2) $newo2->create(20, 5, $actor->bodyId, "Saved offal", "NULL", "NULL", 0, 0, 445, 1, $offalwt, $curTime->dateTime, $curTime->minute);
-			$this->setAttribute(ATTR_HAS_INTESTINE, 0);//removes offal from body
+			$this->setAttribute(ATTR_HAS_OFFAL, 0);//removes offal from body
 			$weightloss += $offalwt;
 		}
 		if ($skin) {
