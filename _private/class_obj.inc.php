@@ -2,6 +2,7 @@
 include_once("class_character.inc.php");
 include_once("class_animal_type.inc.php");
 include_once("class_resource_string.inc.php");
+include_once("constants.php");
 
 class Obj
 {
@@ -154,14 +155,14 @@ class Obj
 		}
 		
 		if ($this->type!=2&&$this->type!=4&&$this->type!=7&&$incl) {
-			$temperature = $this->getAttribute(98);
+			$temperature = $this->getAttribute(ATTR_TEMPERATURE);
 			
 			$exit = $this->getExitCoordinates();
 			$time = new Time($this->mysqli);
 			$weather = $time->getWeather($exit["x"], $exit["y"], true);
 			
 			if (!$temperature) {
-				$this->setAttribute(98, $weather["temp"]);
+				$this->setAttribute(ATTR_TEMPERATURE, $weather["temp"]);
 				$temperature = $weather["temp"];
 			}
 			if ($weather["temp"]>$temperature-2&&$weather["temp"]<$temperature+2) $str = $str;
@@ -185,9 +186,9 @@ class Obj
 		}
 		
 		if ($this->type == 5&&$incl) {
-			$heat_react = $this->getAttribute(99);
+			$heat_react = $this->getAttribute(ATTR_HEAT_REACT);
 			if ($heat_react) {
-				$heat_treated = $this->getAttribute(100);
+				$heat_treated = $this->getAttribute(ATTR_HEAT_TREATED);
 				if ($heat_treated) {
 					if ($heat_react==1) {
 						if ($heat_treated>80) $str = "very dry " . $str . " ";
@@ -220,8 +221,7 @@ class Obj
 		return $str;
 	}
 	
-	function getAttribute($attr, $charid=0) {
-		//charid is unnecessary now and can be eliminated
+	function getAttribute($attr) {
 		
 		if ($this->uid>0) {
 			$sql = "SELECT `value` FROM `o_attrs` WHERE `objectFK`=$this->uid AND `attributeFK`=$attr ORDER BY `o_attrs`.`uid` DESC LIMIT 1";
@@ -359,7 +359,7 @@ class Obj
 	}
 	
 	function checkMethod($method, $pieces, $weight) {
-		$isCountable = $this->getAttribute(44, $charcheck);
+		$isCountable = $this->getAttribute(ATTR_COUNTABLE);
 		if ($method == "pieces") {
 			if ($isCountable) {
 				if ($this->pieces>$pieces) return array(
@@ -416,13 +416,13 @@ class Obj
 		if ($subWeight>=$this->weight) {
 			$subWeight = $this->weight;
 		}
-		$isCountable = $this->getAttribute(44, $charcheck);
+		$isCountable = $this->getAttribute(ATTR_COUNTABLE);
 		if ($isCountable) {
-			$smallUnitMass = $this->getAttribute(6, $charcheck);//checking if this has a set unit mass like most solid things without variance
-			$minLgMass = $this->getAttribute(42, $charcheck);
-			$maxLgMass = $this->getAttribute(43, $charcheck);
-			$minSmallMass = $this->getAttribute(40, $charcheck);
-			$maxSmallMass = $this->getAttribute(41, $charcheck);
+			$smallUnitMass = $this->getAttribute(ATTR_LARGE_MASS);//checking if this has a set unit mass like most solid things without variance
+			$minLgMass = $this->getAttribute(42);
+			$maxLgMass = $this->getAttribute(43);
+			$minSmallMass = $this->getAttribute(40);
+			$maxSmallMass = $this->getAttribute(41);
 			//all countables should have at least one of these
 			if ($smallUnitMass) {
 				$pieces = round($subWeight/$smallUnitMass);
@@ -505,13 +505,13 @@ class Obj
 		$method="part";
 		if ($this->uid>0) $this->getBasicData();
 		if ($pieces>$this->pieces) $pieces = $this->pieces;//trying to drop more than they have
-		$isCountable = $this->getAttribute(44, $charcheck);
+		$isCountable = $this->getAttribute(ATTR_COUNTABLE);
 		if ($isCountable) {
-			$smallUnitMass = $this->getAttribute(6, $charcheck);
-			$minLgMass = $this->getAttribute(42, $charcheck);
-			$maxLgMass = $this->getAttribute(43, $charcheck);
-			$minSmallMass = $this->getAttribute(40, $charcheck);
-			$maxSmallMass = $this->getAttribute(41, $charcheck);
+			$smallUnitMass = $this->getAttribute(ATTR_SMALL_MASS);
+			$minLgMass = $this->getAttribute(42);
+			$maxLgMass = $this->getAttribute(43);
+			$minSmallMass = $this->getAttribute(40);
+			$maxSmallMass = $this->getAttribute(41);
 			
 			if ($smallUnitMass) {
 				$weight = $pieces*$smallUnitMass;
@@ -624,7 +624,7 @@ class Obj
 	}
 	
 	function changeSize($weightChange, $piecesChange, $charcheck=0) {
-		$isCountable = $this->getAttribute(44);
+		$isCountable = $this->getAttribute(ATTR_COUNTABLE);
 		if (!$isCountable) $piecesChange=0;
 		
 		$sql = "UPDATE `objects` SET `weight`=`weight`+$weightChange, `pieces`=`pieces`+$piecesChange WHERE `uid`=$this->uid LIMIT 1";
@@ -708,7 +708,7 @@ class Obj
 	//-------fuel project ------------------------------------------------------------
 	
 	function getStatus($charcheck) {
-		$fire = $this->getAttribute(49, $charcheck);//on fire
+		$fire = $this->getAttribute(ATTR_ON_FIRE);//on fire
 		if (!$fire) return "";
 		else return " (<span class='fire'>on fire</span>)";
 	}
@@ -717,7 +717,7 @@ class Obj
 		$observer = new Character($this->mysqli, $charid);
 		$observer->getBasicData();
 		$curTime = new Time($this->mysqli);
-		$already = $this->getAttribute(49, $charid);
+		$already = $this->getAttribute(ATTR_ON_FIRE);
 		if (!$already) {
 			$sql = "INSERT INTO `o_attrs`(`objectFK`, `attributeFK`, `value`, `startDt`, `startM`) VALUES ($this->uid, 49, 1, " . $curTime->dateTime . ", ". $curTime->minute . ")";
 			$this->mysqli->query($sql);
@@ -822,10 +822,10 @@ class Obj
 	//-Combat/health---------------------------------------------------------------------------------------------------------
 	
 	function calculateBlood($observerid=0) {
-		$curBlood = $this->getAttribute(52);
+		$curBlood = $this->getAttribute(ATTR_BLOOD);
 		if (!$curBlood) {
 			$newVal = round($this->weight/10);
-			$this->setAttribute(52, $newVal);
+			$this->setAttribute(ATTR_BLOOD, $newVal);
 			return $newVal;
 		}
 		return $curBlood;
@@ -834,7 +834,7 @@ class Obj
 	function bleed($grams, $observer=0) {
 		$curBlood = $this->calculateBlood();
 		$new = max($curBlood-$grams, 0);
-		$this->setAttribute(52, $new);
+		$this->setAttribute(ATTR_BLOOD, $new);
 		return $new;
 	}
 	
@@ -936,21 +936,22 @@ class Obj
 		if (!in_array($tool, $possible)) return -1;//Trying to use invalid tool
 		
 		$multiplier = round(pow($this->weight+400, 0.3));
-		$blood = $this->getAttribute(52, $charid);
-		$skin = $this->getAttribute(64, $charid);
-		$brain = $this->getAttribute(65, $charid);
-		$intestine = $this->getAttribute(66, $charid);
-		$offal = $this->getAttribute(67, $charid);
-		$sinew = $this->getAttribute(68, $charid);
-		$head = $this->getAttribute(69, $charid);
-		$horns = $this->getAttribute(71, $charid);
-		$scapula = $this->getAttribute(72, $charid);
-		$feet = $this->getAttribute(73, $charid);
+		$blood = $this->getAttribute(ATTR_BLOOD);
+		$skin = $this->getAttribute(ATTR_SKIN_TYPE);
+		$braincheck = $this->getAttribute(ATTR_HAS_BRAINS);
+		$brain = $this->getAttribute(ATTR_BRAIN_SIZE);
+		$intestine = $this->getAttribute(ATTR_HAS_INTESTINE);
+		$offal = $this->getAttribute(ATTR_HAS_OFFAL);
+		$sinew = $this->getAttribute(ATTR_HAS_SINEW);
+		$head = $this->getAttribute(ATTR_HAS_HEAD);
+		$horns = $this->getAttribute(ATTR_HAS_HORNS);
+		$scapula = $this->getAttribute(ATTR_HAS_SCAPULA);
+		$feet = $this->getAttribute(ATTR_HAS_FEET);
 		
-		$original_wt = $this->getAttribute(74, $charid);
+		$original_wt = $this->getAttribute(ATTR_ORIGINAL_WEIGHT);
 		if (!$original_wt) {
 			$original_wt = $this->weight;
-			$this->setAttribute(74, $original_wt);
+			$this->setAttribute(ATTR_ORIGINAL_WEIGHT, $original_wt);
 		}
 		
 		$ap = 10;
@@ -978,7 +979,7 @@ class Obj
 				$newo = new Obj($this->mysqli);
 				if ($parts[0]==1) $newo->create(20, 5, $actor->parent, "Discarded blood", $actor->x, $actor->y, $actor->localx, $actor->localy, 2, 1, $bloodwt, $curTime->dateTime, $curTime->minute);
 				if ($parts[0]==2) $newo->create(20, 5, $actor->bodyId, "Collected blood", "NULL", "NULL", 0, 0, 2, 1, $bloodwt, $curTime->dateTime, $curTime->minute);
-				$this->setAttribute(52, 0);
+				$this->setAttribute(ATTR_BLOOD, 0);
 				$weightloss += $bloodwt;
 			}
 		}
@@ -987,7 +988,7 @@ class Obj
 			$newo1 = new Obj($this->mysqli);
 			if ($parts[1]==1) $newo1->create(20, 5, $actor->parent, "Discarded intestine", $actor->x, $actor->y, $actor->localx, $actor->localy, 444, 1, $intestinewt, $curTime->dateTime, $curTime->minute);
 			if ($parts[1]==2) $newo1->create(20, 5, $actor->bodyId, "Saved intestine", "NULL", "NULL", 0, 0, 444, 1, $intestinewt, $curTime->dateTime, $curTime->minute);
-			$this->setAttribute(66, 0);//removes intestine from body
+			$this->setAttribute(ATTR_HAS_INTESTINE, 0);//removes intestine from body
 			$weightloss += $intestinewt;
 		}
 		if ($offal) {
@@ -995,7 +996,7 @@ class Obj
 			$newo2 = new Obj($this->mysqli);
 			if ($parts[2]==1) $newo2->create(20, 5, $actor->parent, "Discarded offal", $actor->x, $actor->y, $actor->localx, $actor->localy, 445, 1, $offalwt, $curTime->dateTime, $curTime->minute);
 			if ($parts[2]==2) $newo2->create(20, 5, $actor->bodyId, "Saved offal", "NULL", "NULL", 0, 0, 445, 1, $offalwt, $curTime->dateTime, $curTime->minute);
-			$this->setAttribute(67, 0);//removes offal from body
+			$this->setAttribute(ATTR_HAS_INTESTINE, 0);//removes offal from body
 			$weightloss += $offalwt;
 		}
 		if ($skin) {
@@ -1004,7 +1005,7 @@ class Obj
 			$newo3 = new Obj($this->mysqli);
 			if ($parts[3]==1) $newo3->create($skin, 11, $actor->parent, "Discarded skin", $actor->x, $actor->y, $actor->localx, $actor->localy, $this->secondary, 1, $skinwt, $curTime->dateTime, $curTime->minute);
 			if ($parts[3]==2) $newo3->create($skin, 11, $actor->bodyId, "Saved skin", "NULL", "NULL", 0, 0, $this->secondary, 1, $skinwt, $curTime->dateTime, $curTime->minute);
-			$this->setAttribute(64, 0);
+			$this->setAttribute(ATTR_SKIN_TYPE, 0);
 			$weightloss += $skinwt;
 		}
 		if ($sinew) {
@@ -1012,7 +1013,7 @@ class Obj
 			$newo4 = new Obj($this->mysqli);
 			if ($parts[4]==1) $newo4->create(20, 5, $actor->parent, "Discarded sinew", $actor->x, $actor->y, $actor->localx, $actor->localy, 269, 1, $sinewwt, $curTime->dateTime, $curTime->minute);
 			if ($parts[4]==2) $newo4->create(20, 5, $actor->bodyId, "Saved sinew", "NULL", "NULL", 0, 0, 269, 1, $sinewwt, $curTime->dateTime, $curTime->minute);
-			if ($parts[4]<3) $this->setAttribute(68, 0);//removes sinew from body
+			if ($parts[4]<3) $this->setAttribute(ATTR_HAS_SINEW, 0);//removes sinew from body
 			if ($parts[4]<3) $weightloss += $sinewwt;
 		}
 		if ($head) {
@@ -1023,18 +1024,25 @@ class Obj
 			$newo5 = new Obj($this->mysqli);
 			if ($parts[5]==1) $newo5->create(5, 11, $actor->parent, "Discarded head", $actor->x, $actor->y, $actor->localx, $actor->localy, $this->secondary, 1, $headwt, $curTime->dateTime, $curTime->minute);
 			if ($parts[5]==2) $newo5->create(5, 11, $actor->bodyId, "Saved head", "NULL", "NULL", 0, 0, $this->secondary, 1, $headwt, $curTime->dateTime, $curTime->minute);
-			if ($parts[5]<3) $this->setAttribute(69, 0);//removes head from body
-			if (($parts[6]==3&&$parts[5]<3)&&$brain) $newo5->setAttribute(65, $brain);//adds brain to head
-			if (($parts[7]==3&&$parts[5]<3)&&$horns) $newo5->setAttribute(71, $brain);//adds antlers to head
+			if ($parts[5]<3) $this->setAttribute(ATTR_HAS_HEAD, 0);//removes head from body
+			if (($parts[6]==3&&$parts[5]<3)&&$brain) {
+				$newo5->setAttribute(ATTR_BRAIN_SIZE, $brain);//adds brain type to head
+				$newo5->setAttribute(ATTR_HAS_BRAINS, 1);//adds brain to head
+				$this->setAttribute(ATTR_HAS_BRAINS, 0);//removes brain from body
+			}
+			if (($parts[7]==3&&$parts[5]<3)&&$horns) {
+				$newo5->setAttribute(ATTR_HAS_HORNS, $horns);//adds antlers to head
+				$this->setAttribute(ATTR_HAS_HORNS, 0);//removes antlers from body
+			}
 			$weightloss += $headwt;
 		}
-		if ($brain) {
+		if ($braincheck) {
 			$brainwt = round($original_wt*0.02);
 		
 			$newo6 = new Obj($this->mysqli);
 			if ($parts[6]==1) $newo6->create($brain, 11, $actor->parent, "Discarded brain", $actor->x, $actor->y, $actor->localx, $actor->localy, $this->secondary, 1, $brainwt, $curTime->dateTime, $curTime->minute);
 			if ($parts[6]==2) $newo6->create($brain, 11, $actor->bodyId, "Saved brain", "NULL", "NULL", 0, 0, $this->secondary, 1, $brainwt, $curTime->dateTime, $curTime->minute);
-			if ($parts[6]<3||($parts[6]==3&&$parts[5]<3)) $this->setAttribute(65, 0);//removes brain from body
+			if ($parts[6]<3||($parts[6]==3&&$parts[5]<3)) $this->setAttribute(ATTR_HAS_BRAINS, 0);//removes brain from body
 			if ($parts[6]<3) $weightloss += $brainwt;
 		}
 		if ($horns) {
@@ -1045,7 +1053,7 @@ class Obj
 			$newo7 = new Obj($this->mysqli);
 			if ($parts[7]==1) $newo7->create(20, 5, $actor->parent, "Discarded horns", $actor->x, $actor->y, $actor->localx, $actor->localy, $horntype, 1, $hornswt, $curTime->dateTime, $curTime->minute);
 			if ($parts[7]==2) $newo7->create(20, 5, $actor->bodyId, "Saved horns", "NULL", "NULL", 0, 0, $horntype, 1, $hornswt, $curTime->dateTime, $curTime->minute);
-			if ($parts[7]<3||($parts[7]==3&&$parts[5]<3)) $this->setAttribute(71, 0);//removes horns from body
+			if ($parts[7]<3||($parts[7]==3&&$parts[5]<3)) $this->setAttribute(ATTR_HAS_HORNS, 0);//removes horns from body
 			if ($parts[7]<3) $weightloss += $hornswt;
 		}
 		if ($scapula) {
@@ -1061,7 +1069,7 @@ class Obj
 				$newo8->create($stype, 1, $actor->bodyId, "Saved scapula", "NULL", "NULL", 0, 0, 0, 1, $scapulawt, $curTime->dateTime, $curTime->minute);
 				$newo8->create($stype, 1, $actor->bodyId, "Saved scapula", "NULL", "NULL", 0, 0, 0, 1, $scapulawt, $curTime->dateTime, $curTime->minute);
 			}
-			if ($parts[8]<3) $this->setAttribute(72, 0);
+			if ($parts[8]<3) $this->setAttribute(ATTR_HAS_SCAPULA, 0);//removes scapula
 		}
 		if ($feet) {
 			$feetwt = round($original_wt*0.07);
@@ -1076,7 +1084,7 @@ class Obj
 					$newo9->create(7, 11, $actor->bodyId, "Cut off leg (saved)", "NULL", "NULL", 0, 0, $this->secondary, 1, $feetwt, $curTime->dateTime, $curTime->minute);
 				}
 			}
-			if ($parts[9]<3) $this->setAttribute(73, 0);
+			if ($parts[9]<3) $this->setAttribute(ATTR_HAS_FEET, 0);//removes feet
 			if ($parts[9]<3) $weightloss += $feetwt*$feet;
 		}
 		

@@ -4,6 +4,7 @@
 //include_once("local_map.inc.php");
 //include_once("class_resource.inc.php");
 include_once("class_obj.inc.php");
+include_once("constants.php");
 
 class AnimalType {
 	private $mysqli;
@@ -34,12 +35,12 @@ class AnimalType {
 	}
 	
 	public function createRepresentative($x, $y, $lx, $ly, $datetime, $minute) {
-		$weight = $this->getAttribute(1);
-		if (!$weight) $weight = $this->getAttribute(6);
+		$weight = $this->getAttribute(ATTR_LARGE_MASS);
+		if (!$weight) $weight = $this->getAttribute(ATTR_SMALL_MASS);
 		else $weight = $weight*1000;
 		if (!$weight) $weight=1000;
 		$weight = rand(round($weight*0.8), round($weight*1.2));
-		$class = $this->getAttribute(51);
+		$class = $this->getAttribute(ATTR_ANIMAL_CLASS);
 		if (!$class) $class = 0;
 		$classes = array(
 		0 => 8,
@@ -83,7 +84,7 @@ class AnimalType {
 		$result = $ob->create($classes[$class], 4, 0, "Discovered wild animal", $x, $y, $lx, $ly, $this->uid, 1, $weight, $datetime, $minute);
 		if ($result) {
 			$new_a = new Obj($this->mysqli, $result);
-			$new_a->setAttribute(52, round($weight/10));//blood, basically hit points
+			$new_a->setAttribute(ATTR_BLOOD, round($weight/10));//blood, basically hit points
 			return $result;
 		}
 		else return -1;

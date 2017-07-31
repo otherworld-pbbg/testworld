@@ -7,6 +7,7 @@ include_once "class_time.inc.php";
 include_once "class_global_map.inc.php";
 include_once "local_map.inc.php";
 include_once("class_preset.inc.php");
+include_once("constants.php");
 
 //the part that checks if you're logged in
 if (!isset($_SESSION['user_id'])) {
@@ -58,9 +59,9 @@ else {
 				$oname = $targetObject->getName(false);
 				if ($targetObject->x!=$pos->x||$targetObject->y!=$pos->y) para("Error: You're trying to interact with an object that's in another location.");
 				else {
-					$is_countable = $targetObject->getAttribute(44, $charcheck);
-					$is_container_l = $targetObject->getAttribute(2, $charcheck);
-					$is_container_s = $targetObject->getAttribute(7, $charcheck);
+					$is_countable = $targetObject->getAttribute(ATTR_COUNTABLE);
+					$is_container_l = $targetObject->getAttribute(ATTR_LARGE_CONTAINER);
+					$is_container_s = $targetObject->getAttribute(ATTR_SMALL_CONTAINER);
 					$weight = $targetObject->approximateWeight();
 					if ($_POST["sel_action2"]==1) {
 						if (($is_countable&&$targetObject->pieces==1)||($targetObject->type!=5&&$targetObject->pieces==1)) {
@@ -198,16 +199,16 @@ else {
 						echo "<div class='bar'>\n";
 						if ($targetObject->type==9) {
 							ptag("h1", "Dismember $oname");
-							$blood = $targetObject->getAttribute(52, $charcheck);
-							$skin = $targetObject->getAttribute(64, $charcheck);
-							$brain = $targetObject->getAttribute(65, $charcheck);
-							$intestine = $targetObject->getAttribute(66, $charcheck);
-							$offal = $targetObject->getAttribute(67, $charcheck);
-							$sinew = $targetObject->getAttribute(68, $charcheck);
-							$head = $targetObject->getAttribute(69, $charcheck);
-							$horns = $targetObject->getAttribute(71, $charcheck);
-							$scapula = $targetObject->getAttribute(72, $charcheck);
-							$feet = $targetObject->getAttribute(73, $charcheck);
+							$blood = $targetObject->getAttribute(ATTR_BLOOD);
+							$skin = $targetObject->getAttribute(ATTR_SKIN_TYPE);
+							$brain = $targetObject->getAttribute(ATTR_HAS_BRAINS);
+							$intestine = $targetObject->getAttribute(ATTR_HAS_INTESTINE);
+							$offal = $targetObject->getAttribute(ATTR_HAS_OFFAL);
+							$sinew = $targetObject->getAttribute(ATTR_HAS_SINEW);
+							$head = $targetObject->getAttribute(ATTR_HAS_HEAD);
+							$horns = $targetObject->getAttribute(ATTR_HAS_HORNS);
+							$scapula = $targetObject->getAttribute(ATTR_HAS_SCAPULA);
+							$feet = $targetObject->getAttribute(ATTR_HAS_FEET);
 							
 							$tools = $curChar->getPoolToolsInventory(1);//any knife
 							
@@ -219,10 +220,10 @@ else {
 							para("Removing certain parts costs extra");
 							$nocontinue = false;
 							
-							$original_wt = $targetObject->getAttribute(74, $charcheck);
+							$original_wt = $targetObject->getAttribute(ATTR_ORIGINAL_WEIGHT);
 							if (!$original_wt) {
 								$original_wt = $targetObject->weight;
-								$targetObject->setAttribute(74, $original_wt);
+								$targetObject->setAttribute(ATTR_ORIGINAL_WEIGHT, $original_wt);
 							}
 							
 							if (!$tools) {

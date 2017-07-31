@@ -7,6 +7,7 @@ include_once "class_time.inc.php";
 include_once "class_global_map.inc.php";
 include_once "local_map.inc.php";
 include_once("class_preset.inc.php");
+include_once("constants.php");
 
 //the part that checks if you're logged in
 if (!isset($_SESSION['user_id'])) {
@@ -60,9 +61,9 @@ else {
 				//to do: buildings
 				if ($targetObject->x!=$pos->x||$targetObject->y!=$pos->y||$targetObject->localx!=$pos->lx||$targetObject->localy!=$pos->ly) para("Error: You're trying to interact with an object in a different location.");
 				else {
-					$is_countable = $targetObject->getAttribute(44, $charcheck);
-					$is_container_l = $targetObject->getAttribute(2, $charcheck);
-					$is_container_s = $targetObject->getAttribute(7, $charcheck);
+					$is_countable = $targetObject->getAttribute(ATTR_COUNTABLE);
+					$is_container_l = $targetObject->getAttribute(ATTR_LARGE_CONTAINER);
+					$is_container_s = $targetObject->getAttribute(ATTR_SMALL_CONTAINER);
 					$weight = $targetObject->approximateWeight();
 					$oname = $targetObject->getName(false);
 					if ($_POST["sel_action3"]==1) {

@@ -6,6 +6,7 @@ include_once "class_character.inc.php";
 include_once "class_time.inc.php";
 include_once "class_global_map.inc.php";
 include_once "local_map.inc.php";
+include_once("constants.php");
 
 //the part that checks if you're logged in
 if (!isset($_SESSION['user_id'])) {
@@ -60,7 +61,7 @@ else {
 					para("Error: You're trying to interact with an object that's in another location.");
 				}
 				else {
-					$is_countable = $targetObject->getAttribute(44, $charcheck);
+					$is_countable = $targetObject->getAttribute(ATTR_COUNTABLE);
 					$weight = $targetObject->approximateWeight();
 					
 					if ($is_countable&&$targetObject->pieces==1) {

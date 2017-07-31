@@ -1,5 +1,7 @@
 <?php
 
+include_once("constants.php");
+
 Class Preset {
 	private $mysqli;//db connection
 	var $uid = 0;
@@ -40,13 +42,13 @@ Class Preset {
 	}
 	
 	function getPieces($weight) {
-		$countable = $this->getAttribute(44);
+		$countable = $this->getAttribute(ATTR_COUNTABLE);
 		if (!$countable) return 1;
 		$min_sm_mass = $this->getAttribute(40);
 		$max_sm_mass = $this->getAttribute(41);
 		$min_lg_mass = $this->getAttribute(42);
 		$max_lg_mass = $this->getAttribute(43);
-		$unit_mass = $this->getAttribute(6);
+		$unit_mass = $this->getAttribute(ATTR_SMALL_MASS);
 		
 		if ($min_sm_mass&&$max_sm_mass) {
 			$min_pieces = max(1,round($weight/$max_sm_mass));

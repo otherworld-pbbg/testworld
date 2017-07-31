@@ -10,6 +10,7 @@ include_once("class_group.inc.php");
 include_once("class_resource_string.inc.php");
 include_once("class_position.inc.php");
 include_once("class_event.inc.php");
+include_once("constants.php");
 
 class Character {
 	private $mysqli;
@@ -1630,9 +1631,9 @@ class Character {
 			}
 			else $source = "container";//in the future needs to check that the container is in the inventory or in the same location as the character
 			
-			$edible = $food->getAttribute(45, $this->uid);
+			$edible = $food->getAttribute(ATTR_EDIBLE);
 			if (!$edible) return -3;//not edible
-			$maxEat = $food->getAttribute(46, $this->uid);
+			$maxEat = $food->getAttribute(46);
 			if ($maxEat&&$method=="weight") {
 				if ($amount>$maxEat) $amount=$maxEat;
 				if ($amount>$capacity) $amount=$capacity;
@@ -2606,9 +2607,9 @@ class Character {
 			$crushing = 5;
 		}
 		else {
-			$severing = $wpn->getAttribute(56, $this->uid);
-			$piercing = $wpn->getAttribute(57, $this->uid);
-			$crushing = $wpn->getAttribute(58, $this->uid);
+			$severing = $wpn->getAttribute(56);
+			$piercing = $wpn->getAttribute(57);
+			$crushing = $wpn->getAttribute(58);
 		}
 		$broken = 0;
 		$efficiency = rand(50,125);
@@ -3786,8 +3787,8 @@ else if ($x>=95&&$x<100&&$y>=225&&$y<235) {
 				$test = new Obj($this->mysqli, $possible);
 				$name = $test->getName();
 				if ($test->type==1) {
-					$offense = $test->getAttribute(92);
-					$defense = $test->getAttribute(93);
+					$offense = $test->getAttribute(ATTR_OFFENSE);
+					$defense = $test->getAttribute(ATTR_DEFENSE);
 					if ($offense&&$defense) $retArr[] = array(
 						"uid" => $possible,
 						"offense" => $offense,
@@ -3893,7 +3894,7 @@ else if ($x>=95&&$x<100&&$y>=225&&$y<235) {
 			if (is_array($res)) return $res;
 		}
 		
-		$down = $mybody->getAttribute(61, $this->uid);//sprawled
+		$down = $mybody->getAttribute(61);//sprawled
 		
 		$bleed1 = $enemy_o->sumWounds($this->uid);
 		if ($bleed1>0) $enemy_o->bleed($bleed1, $this->uid);

@@ -5,6 +5,7 @@ include_once("class_global_map.inc.php");
 include_once("class_project_type.inc.php");
 include_once("class_group.inc.php");
 include_once("generic.inc.php");
+include_once("constants.php");
 
 Class LocalMap {
 
@@ -1213,8 +1214,8 @@ Class LocalMap {
 			for ($i=0; $i<count($uids); $i++) {
 				$obj = new Obj($this->mysqli, $uids[$i]);
 				$obj->getBasicData();
-				$isLgContainer = $obj->getAttribute(2, $charid);
-				$isSmContainer = $obj->getAttribute(7, $charid);
+				$isLgContainer = $obj->getAttribute(ATTR_LARGE_CONTAINER);
+				$isSmContainer = $obj->getAttribute(ATTR_SMALL_CONTAINER);
 				
 				if ($isLgContainer||$isSmContainer) {
 					$containers[] = array(

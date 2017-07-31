@@ -1,6 +1,7 @@
 <?php
 
 include_once "class_character.inc.php";
+include_once("constants.php");
 
 class FuelProjectType {
 	private $mysqli;
@@ -68,9 +69,9 @@ class FuelProjectType {
 			foreach ($contents as $possible) {
 				$pos = new Obj($this->mysqli, $possible);
 				$pos->getBasicData();
-				$flammable = $pos->getAttribute(48, $charcheck);
-				$on_fire = $pos->getAttribute(49, $charcheck);
-				$per_hour = $pos->getAttribute(50, $charcheck);
+				$flammable = $pos->getAttribute(48);
+				$on_fire = $pos->getAttribute(ATTR_ON_FIRE);
+				$per_hour = $pos->getAttribute(50);
 				if ($flammable) $arr[] = array(
 					"uid" => $possible,
 					"flammable" => $flammable,

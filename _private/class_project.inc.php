@@ -8,6 +8,7 @@ include_once("class_resource.inc.php");
 include_once("generic.inc.php");
 include_once("class_fuel_project.inc.php");
 include_once("class_time.inc.php");
+include_once("constants.php");
 
 class Project {
 	private $mysqli;
@@ -509,7 +510,7 @@ class Project {
 		}
 		
 		if ($pile->pieces>$result["need_p"]) {
-			$unitWt = $pile->getAttribute(6, $this->charid);//small unit mass
+			$unitWt = $pile->getAttribute(ATTR_SMALL_MASS);//small unit mass
 			if (!$unitWt) $unitWt = $pile->weight/$pile->pieces;
 			$weight = $result["need_p"]*$unitWt;
 			//the pile has more pieces than needed
@@ -913,7 +914,7 @@ class Project {
 			$resource = new Resource($this->mysqli, $pt->secondary);
 			$stackable = $resource->getAttr(44);
 		}
-		else $stackable = $preset->getAttribute(44);
+		else $stackable = $preset->getAttribute(ATTR_COUNTABLE);
 		if ($pt->secondary==-1) {
 			//if secondary is -1, it means the type of the resource in the first slot is copied
 			$sql = "SELECT `res_typeFK` FROM `added_resources` WHERE `projectFK`=$this->uid ORDER BY `slot` LIMIT 1";
@@ -1067,8 +1068,8 @@ class Project {
 		if ($this->mysqli->affected_rows==1) {
 			foreach ($added as $row) {
 				$preset = new Preset($this->mysqli, $row["preset"]);
-				$weight = $preset->getAttribute(6);//small weight
-				$stackable = $preset->getAttribute(44);
+				$weight = $preset->getAttribute(ATTR_SMALL_WEIGHT);//small weight
+				$stackable = $preset->getAttribute(ATTR_COUNTABLE);
 				$pieces = $row["pieces_a"];
 				if ($pieces>1&&$stackable==1) {
 					$multiweight = $pieces*$weight;

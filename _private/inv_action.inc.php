@@ -7,6 +7,7 @@ include_once "class_time.inc.php";
 include_once "class_global_map.inc.php";
 include_once "local_map.inc.php";
 include_once("class_preset.inc.php");
+include_once("constants.php");
 
 //the part that checks if you're logged in
 if (!isset($_SESSION['user_id'])) {
@@ -59,9 +60,9 @@ else {
 				$targetObject->getBasicData();
 				if ($targetObject->parent!=$curChar->bodyId) para("Error: You're trying to process an inventory action on something that's not in your inventory.");
 				else {
-					$is_countable = $targetObject->getAttribute(44, $charcheck);
-					$is_container_l = $targetObject->getAttribute(2, $charcheck);
-					$is_container_s = $targetObject->getAttribute(7, $charcheck);
+					$is_countable = $targetObject->getAttribute(ATTR_COUNTABLE);
+					$is_container_l = $targetObject->getAttribute(ATTR_LARGE_CONTAINER);
+					$is_container_s = $targetObject->getAttribute(ATTR_SMALL_CONTAINER);
 					$weight = $targetObject->approximateWeight();
 					$oname = $targetObject->getName(false);
 					if ($_POST["sel_action"]==1) {
@@ -213,7 +214,7 @@ else {
 						include_once "header2.inc.php";
 						echo "<div class='bar'>\n";
 						ptag("h1", "Eat $oname");
-						$edible = $targetObject->getAttribute(45, $charcheck);//check if edible
+						$edible = $targetObject->getAttribute(ATTR_EDIBLE);//check if edible
 						if (!$edible) para("That's not edible.");
 						else {
 							echo "<form action='index.php' method='get' id='eatform' name='eatform' class='narrow'>";

@@ -3,6 +3,7 @@ include_once("class_obj.inc.php");
 include_once("class_character.inc.php");
 include_once("local_map.inc.php");
 include_once("generic.inc.php");
+include_once("constants.php");
 
 class NPCgroup
 {
@@ -155,17 +156,17 @@ class NPCgroup
 		$newid = $obj->create(27, 7, 0, "group", $gx, $gy, $lx, $ly, 0, 0, 0, $curtime->dateTime, $curtime->minute);
 		$this->uid = $newid;
 		
-		$this->setAttribute(75, $men);
-		$this->setAttribute(76, $women);
-		$this->setAttribute(77, $neuters);
-		$this->setAttribute(84, $children);
-		$this->setAttribute(85, $disabled);
+		$this->setAttribute(ATTR_FUNCTIONAL_ADULT_MALES, $men);
+		$this->setAttribute(ATTR_FUNCTIONAL_ADULT_FEMALES, $women);
+		$this->setAttribute(ATTR_FUNCTIONAL_ADULT_NEUTERS, $neuters);
+		$this->setAttribute(ATTR_CHILDREN, $children);
+		$this->setAttribute(ATTR_PERMANENTLY_DISABLED_ADULTS, $disabled);
 		
-		$this->setAttribute(87, $this->getWeighedRand());
-		$this->setAttribute(88, $this->getWeighedRand());
-		$this->setAttribute(89, $this->getWeighedRand());
-		$this->setAttribute(90, $this->getWeighedRand());
-		$this->setAttribute(91, $this->getWeighedRand());
+		$this->setAttribute(ATTR_MOOD, $this->getWeighedRand());
+		$this->setAttribute(ATTR_MORALE, $this->getWeighedRand());
+		$this->setAttribute(ATTR_SELF_ESTEEM, $this->getWeighedRand());
+		$this->setAttribute(ATTR_COMFORT, $this->getWeighedRand());
+		$this->setAttribute(ATTR_NOURISHMENT, $this->getWeighedRand());
 		
 		$this->loadData();
 		$this->generateName();
@@ -1465,8 +1466,8 @@ class NPCgroup
 				$test = new Obj($this->mysqli, $possible);
 				$name = $test->getName();
 				if ($test->type==1) {
-					$offense = $test->getAttribute(92);
-					$defense = $test->getAttribute(93);
+					$offense = $test->getAttribute(ATTR_OFFENSE);
+					$defense = $test->getAttribute(ATTR_DEFENSE);
 					if ($offense&&$defense) $retArr[] = array(
 						"uid" => $possible,
 						"offense" => $offense,

@@ -3,8 +3,8 @@ chdir(dirname(__FILE__));
 
 include_once "../root.inc.php";
 
-include_once getGamePath() . "/_private/class_time.inc.php";
-include_once getGamePath() . "/_private/abbr.inc.php";//abbreviations: para($str), ptag($tagname, $contents, [$attr])
+include_once getGamePath() . "/../_private/class_time.inc.php";
+include_once getGamePath() . "/../_private/abbr.inc.php";//abbreviations: para($str), ptag($tagname, $contents, [$attr])
 include_once getGamePath() . "/../_private/conn.inc.php";
 
 function getObjects($mysqli, $method) {
@@ -45,7 +45,7 @@ function adjustTemperature($mysqli) {
 			}
 			else {
 				if ($temp<200) {
-					$o->setAttribute(98, 200);
+					$o->setAttribute(98, 200);//Minimum on fire temperature is 200. We might get rid of this later on if we want to simulate slow to ignite
 					$temp = 200;
 				}
 				
@@ -58,16 +58,17 @@ function adjustTemperature($mysqli) {
 				if ($o->preset == 192&&$newt>=600) {
 					$o->changeType(20, 11, $o->type);//Charcoal
 				}
-				else if ($newt>=600&&$o->type==5&&$o->secondary!=11) $newt = $temp;
+				else if ($newt>=600&&$o->type==5&&$o->secondary!=11) $newt = $temp;//Resources other than charcoal (and coal in the future) cannot burn hotter than 600 degrees
 				
-				$res = $o->setAttribute(98, $newt);
+				$res = $o->setAttribute(98, $newt);//100 means success, negative numbers mean error or no change
 				if ($res==100) echo $o->getHandle(false) . " (". $o->uid . ") got hotter and is now " . $newt . " C<br>";
 				if ($temp>$temp2) {
-					echo $po->getHandle(false) . " (". $po->uid . ") got hotter and is now " . min(1100, $temp2+$wtchange/4) . " C<br>";
-					$po->setAttribute(98, min(1100, round($temp2+$wtchange/4)));
+					$res2 = $po->setAttribute(98, min(1100, round($temp2+$wtchange/4)));
+					if ($res2==100) echo $po->getHandle(false) . " (". $po->uid . ") got hotter and is now " . min(1100, $temp2+$wtchange/4) . " C<br>";
+					else echo $po->getHandle(false) . " (". $po->uid . ") failed to get any hotter despite the fire inside it.";
 				}
 				
-				$shared = $po->getContents();
+				$shared = $po->getContents();//Things in the same container
 				if ($shared) {
 					foreach ($shared as $s) {
 						if ($s!=$o->uid&&!in_array($s, $safe)) {
@@ -201,4 +202,5 @@ function adjustTemperature($mysqli) {
 	}
 }
 adjustTemperature($mysqli);
+echo "End of process.";
 ?>
