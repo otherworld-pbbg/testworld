@@ -161,28 +161,26 @@ class Obj
 			$time = new Time($this->mysqli);
 			$weather = $time->getWeather($exit["x"], $exit["y"], true);
 			
-			if (!$temperature) {
-				$this->setAttribute(ATTR_TEMPERATURE, round($weather["temp"]));
-				$temperature = round($weather["temp"]);
+			if ($temperature) {
+				if (between($weather["temp"], $temperature-3, $temperature+3)) $str = $str;
+				else if ($temperature>=1200) $str = "white-hot " . $str . " ";
+				else if ($temperature>=1000) $str = "yellow-hot " . $str . " ";
+				else if ($temperature>=900) $str = "orange-hot " . $str . " ";
+				else if ($temperature>=600) $str = "red-hot " . $str . " ";
+				else if ($temperature>=320) $str = "burning hot " . $str . " ";
+				else if ($temperature>=170) $str = "oven hot " . $str . " ";
+				else if ($temperature>=100) $str = "boiling hot " . $str . " ";
+				else if ($temperature>=70) $str = "steaming hot " . $str . " ";
+				else if ($temperature>=50) $str = "semi-hot " . $str . " ";
+				else if ($temperature>=30) $str = "very warm " . $str . " ";
+				else if ($temperature>=18) $str = "warm " . $str . " ";
+				else if ($temperature>=15) $str = "slightly cool " . $str . " ";
+				else if ($temperature>=8) $str = "cool " . $str . " ";
+				else if ($temperature>=2) $str = "cold " . $str . " ";
+				else if ($temperature>=0) $str = "very cold " . $str . " ";
+				else if ($temperature>=15) $str = "frozen " . $str . " ";
+				else $str = "frozen solid " . $str . " ";
 			}
-			if (between($weather["temp"], $temperature-3, $temperature+3)) $str = $str;
-			else if ($temperature>=1200) $str = "white-hot " . $str . " ";
-			else if ($temperature>=1000) $str = "yellow-hot " . $str . " ";
-			else if ($temperature>=900) $str = "orange-hot " . $str . " ";
-			else if ($temperature>=600) $str = "red-hot " . $str . " ";
-			else if ($temperature>=320) $str = "burning hot " . $str . " ";
-			else if ($temperature>=170) $str = "oven hot " . $str . " ";
-			else if ($temperature>=100) $str = "boiling hot " . $str . " ";
-			else if ($temperature>=70) $str = "steaming hot " . $str . " ";
-			else if ($temperature>=50) $str = "semi-hot " . $str . " ";
-			else if ($temperature>=30) $str = "very warm " . $str . " ";
-			else if ($temperature>=18) $str = "warm " . $str . " ";
-			else if ($temperature>=15) $str = "slightly cool " . $str . " ";
-			else if ($temperature>=8) $str = "cool " . $str . " ";
-			else if ($temperature>=2) $str = "cold " . $str . " ";
-			else if ($temperature>=0) $str = "very cold " . $str . " ";
-			else if ($temperature>=15) $str = "frozen " . $str . " ";
-			else $str = "frozen solid " . $str . " ";
 		}
 		
 		if ($this->type == 5&&$incl) {
@@ -281,6 +279,24 @@ class Obj
 			}
 		}
 		return false;
+	}
+	
+	function purgeAttribute($attr) {
+		if ($this->uid>0) {
+			$sql = "SELECT `value` FROM `o_attrs` WHERE `objectFK`=$this->uid AND `attributeFK`=$attr ORDER BY `o_attrs`.`uid` DESC LIMIT 1";
+			$res = $this->mysqli->query($sql);
+			if (!$res) {
+				para("Query failed: " . $this->mysqli->error);
+				return -3;
+			}
+			if ($res->num_rows==0) return -1;//There is no entry in the first place
+			
+			$sql = "DELETE FROM `o_attrs` WHERE `objectFK`=$this->uid AND `attributeFK`=$attr LIMIT 1";
+			$this->mysqli->query($sql);
+			if ($this->mysqli->affected_rows==0) return -2;
+			return 100;//success
+		}
+		return -4;//Id is 0
 	}
 	
 	function setAttribute($attr, $newVal) {

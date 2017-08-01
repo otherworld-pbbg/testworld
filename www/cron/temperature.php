@@ -28,17 +28,68 @@ function getObjects($mysqli, $method) {
 	else return false;
 }
 
+function heatReact($mysqli, $s, $temp2, $o, $b) {
+	$so = new Obj($mysqli, $s);
+	$already = $so->getAttribute(ATTR_ON_FIRE);
+	$flammable = $so->getAttribute(ATTR_IGNITION);
+	$temperature = $so->getAttribute(ATTR_TEMPERATURE);
+	$heat_react = $so->getAttribute(ATTR_HEAT_REACT);
+	$heat_treated = $so->getAttribute(ATTR_HEAT_TREATED);
+	$ignition = $so->getAttribute(ATTR_IGNITION_TEMPERATURE);
+	
+	if ($heat_react<HEAT_REACT_METAL&&!$already) {
+		if ($temperature) {
+			if ($temp2>$temperature) {
+				$tchange = round($temp2-$temperature/2);
+				$nt = $temperature+$tchange;
+				if ($heat_react==HEAT_REACT_BAKED) $nt = min(100, $nt);
+				$res = $so->setAttribute(ATTR_TEMPERATURE, $nt);
+				if ($res==100) echo $so->getHandle(false) . " (". $so->uid . ") got hotter by " . $tchange . " degrees<br>";
+			}
+		}
+		else {
+			$nt = round($temp2/2);
+			if ($heat_react==HEAT_REACT_BAKED) $nt = min(100, $nt);
+			$so->setAttribute(ATTR_TEMPERATURE, $nt);
+		}
+		
+		if ($temp2>80) {
+			if ($heat_react==HEAT_REACT_DRY) $change = 5;//percent
+			else $change = 20;
+			if ($heat_treated) {
+				$ht = min(100,$heat_treated+$change);
+				$heat_treated = $so->setAttribute(ATTR_HEAT_TREATED, $ht);
+			}
+			else {
+				$heat_treated = $so->setAttribute(ATTR_HEAT_TREATED, $change);
+			}
+		}
+	}
+	//if hot enough to ignite and not already on fire
+	if ($ignition&&$ignition<=$temperature&&!$already) {
+		echo $so->getHandle(false) . " (". $so->uid . ") ignites<br>";
+		$so->setAttribute(ATTR_ON_FIRE, 1);
+		$so->setAttribute(ATTR_TEMPERATURE, $ignition);
+	}
+	if ($flammable==-1) {
+		if ($so->weight>$b["weight"]*7) {
+			$res = $o->setAttribute(ATTR_ON_FIRE, 0);//kills fire
+			if ($res==100) echo $so->getHandle(false) . " (". $so->uid . ") put out the fire of " . $o->uid . "<br>";
+		}
+	}
+}
+
 function adjustTemperature($mysqli) {
 	$burn = getObjects($mysqli, "burn");
 	$known = getObjects($mysqli, "temp");
-	$safe = array();//empty
+	$safe = array();//starts out empty
 	if ($burn) {
 		echo sizeof($burn) . " things are on fire.<br>";
 		foreach ($burn as $b) {
 			$o = new Obj($mysqli, $b["obj"]);
 			$po = new Obj($mysqli, $b["parent"]);
-			$temp = $o->getAttribute(98);
-			$temp2 = $po->getAttribute(98);
+			$temp = $o->getAttribute(ATTR_TEMPERATURE);
+			$temp2 = $po->getAttribute(ATTR_TEMPERATURE);
 			echo $o->getHandle(false) . " (". $o->uid . ") weighs ". $b["weight"] ."<br>";
 			if ($b["weight"]<5) {
 				echo $o->getHandle(false) . " (". $o->uid . ") was was reduced into nothingness<br>";
@@ -46,7 +97,7 @@ function adjustTemperature($mysqli) {
 			}
 			else {
 				if ($temp<200) {
-					$o->setAttribute(98, 200);//Minimum on fire temperature is 200. We might get rid of this later on if we want to simulate slow to ignite
+					$o->setAttribute(ATTR_TEMPERATURE, 200);//Minimum on fire temperature is 200. We might get rid of this later on if we want to simulate slow to ignite
 					$temp = 200;
 				}
 				
@@ -61,10 +112,10 @@ function adjustTemperature($mysqli) {
 				}
 				else if ($newt>=600&&$o->type==5&&$o->secondary!=11) $newt = $temp;//Resources other than charcoal (and coal in the future) cannot burn hotter than 600 degrees
 				
-				$res = $o->setAttribute(98, $newt);//100 means success, negative numbers mean error or no change
+				$res = $o->setAttribute(ATTR_TEMPERATURE, $newt);//100 means success, negative numbers mean error or no change
 				if ($res==100) echo $o->getHandle(false) . " (". $o->uid . ") got hotter and is now " . $newt . " C<br>";
 				if ($temp>$temp2) {
-					$res2 = $po->setAttribute(98, min(1100, round($temp2+$wtchange/4)));
+					$res2 = $po->setAttribute(ATTR_TEMPERATURE, min(1100, round($temp2+$wtchange/4)));
 					if ($res2==100) echo $po->getHandle(false) . " (". $po->uid . ") got hotter and is now " . min(1100, $temp2+$wtchange/4) . " C<br>";
 					else echo $po->getHandle(false) . " (". $po->uid . ") failed to get any hotter despite the fire inside it.";
 				}
@@ -73,59 +124,11 @@ function adjustTemperature($mysqli) {
 				if ($shared) {
 					foreach ($shared as $s) {
 						if ($s!=$o->uid&&!in_array($s, $safe)) {
-							$so = new Obj($mysqli, $s);
-							$already = $so->getAttribute(49);
-							$flammable = $so->getAttribute(48);
-							$temperature = $so->getAttribute(98);
-							$heat_react = $so->getAttribute(99);
-							$heat_treated = $so->getAttribute(100);
-							$ignition = $so->getAttribute(101);
-							
-							if ($heat_react<5&&!$already) {
-								if ($temperature) {
-									if ($temp2>$temperature) {
-										$tchange = round($temp2-$temperature/2);
-										$nt = $temperature+$tchange;
-										if ($heat_react==2) $nt = min(100, $nt);
-										$so->setAttribute(98, $nt);
-										echo $so->getHandle(false) . " (". $so->uid . ") got hotter by " . $tchange . " degrees<br>";
-									}
-								}
-								else {
-									$nt = round($temp2/2);
-									if ($heat_react==2) $nt = min(100, $nt);
-									$so->setAttribute(98, $nt);
-								}
-								
-								if ($temp2>80) {
-									if ($heat_react==1) $change = 5;
-									else $change = 20;
-									if ($heat_treated) {
-										$ht = min(100,$heat_treated+$change);
-										$heat_treated = $so->setAttribute(100, $ht);
-									}
-									else {
-										$heat_treated = $so->setAttribute(100, $change);
-									}
-								}
-							}
-							
-							if ($ignition&&$ignition<=$temperature&&!$already) {
-								echo $so->getHandle(false) . " (". $so->uid . ") ignites<br>";
-								$so->setAttribute(49, 1);
-								$so->setAttribute(98, $ignition);
-							}
-							if ($flammable==-1) {
-								if ($so->weight>$b["weight"]*7) {
-									echo $so->getHandle(false) . " (". $so->uid . ") put out the fire of " . $o->uid . "<br>";
-									$o->setAttribute(49, 0);//kills fire
-								}
-							}
+							heatReact($mysqli, $s, $temp2, $o, $b);
 						}
 					}
 				}
 				$safe[] = $b["obj"];
-				$safe[] = $b["parent"];
 			}
 		}
 	}
@@ -138,9 +141,13 @@ function adjustTemperature($mysqli) {
 		foreach ($known as $k) {
 			if (!in_array($k["obj"], $safe)) {
 				$no = new Obj($mysqli, $k["obj"]);
+				$po = new Obj($mysqli, $k["parent"]);
+				
+				$temp2 = $po->getAttribute(ATTR_TEMPERATURE);//This is false if parent is 0
+				
 				$exit = $no->getExitCoordinates();
 				$search = "w" . $exit["x"] . "_" . $exit["y"];
-				echo $search . "<br>";
+				//echo $search . "<br>";
 				if (array_key_exists($search, $warrays)) $weather = $warrays[$search];//This will reduce database queries
 				else {
 					$weather = $time->getWeather($exit["x"], $exit["y"], true);//dbonly=true
@@ -152,50 +159,23 @@ function adjustTemperature($mysqli) {
 				else if (round($weather["temp"])>$k["value"]) {
 					$newtemp = round(($weather["temp"]-$k["value"])*0.2+$k["value"]);
 				}
-				else $newtemp = -300;
-				echo "Environment: " . $weather["temp"] . " C, item: " . $k["value"] . " C <br>";
-				if ($newtemp>-300&&$k["value"]!=$newtemp) {
-					echo "Temperature of " . $no->getHandle(false) . " (" . $no->uid . ") changed into " . $newtemp . "<br>";
-					$no->setAttribute(98, $newtemp);
+				else $newtemp = $k["value"];
+				//echo "Environment: " . $weather["temp"] . " C, item: " . $k["value"] . " C <br>";
+				if ($k["value"]!=$newtemp) {
+					$res=$no->setAttribute(ATTR_TEMPERATURE, $newtemp);
+					if ($res==100) echo "Temperature of " . $no->getHandle(false) . " (" . $no->uid . ") changed into " . $newtemp . "<br>";
+				}
+				else {
+					echo $no->getHandle(false) . " (" . $no->uid . ") reached the temperature of the environment.<br>";
+					$no->purgeAttribute(ATTR_TEMPERATURE);
 				}
 				
-				$shared = $no->getContents();
-				if ($shared) {
-					foreach ($shared as $s) {
-						if (!in_array($s, $safe)) {
-							$so = new Obj($mysqli, $s);
-							$already = $so->getAttribute(49);
-							$temperature = $so->getAttribute(98);
-							$heat_react = $so->getAttribute(99);
-							$heat_treated = $so->getAttribute(100);
-							
-							if ($heat_react<5&&!$already) {
-								if ($temperature) {
-									if ($newtemp>$temperature) {
-										$tchange = round($newtemp-$temperature/2);
-										$nt = $temperature+$tchange;
-										if ($heat_react==2) $nt = min(100, $nt);
-										$so->setAttribute(98, $nt);
-										echo $so->getHandle(false) . " (". $so->uid . ") is now " . $nt . " degrees<br>";
-									}
-								}
-								else {
-									$nt = round($newtemp/2);
-									if ($heat_react==2) $nt = min(100, $nt);
-									$so->setAttribute(98, $nt);
-								}
-								
-								if ($newtemp>80) {
-									if ($heat_react==1) $change = 5;
-									else $change = 20;
-									if ($heat_treated) {
-										$ht = min(100,$heat_treated+$change);
-										$heat_treated = $so->setAttribute(100, $ht);
-									}
-									else {
-										$heat_treated = $so->setAttribute(100, $change);
-									}
-								}
+				if ($k["parent"]>0&&$temp2) {
+					$shared = $po->getContents();
+					if ($shared) {
+						foreach ($shared as $s) {
+							if (!in_array($s, $safe)&&$s!=$no->uid) {
+								heatReact($mysqli, $s, $temp2, $no, $k);
 							}
 						}
 					}
@@ -203,6 +183,7 @@ function adjustTemperature($mysqli) {
 			}
 		}
 	}
+	else echo "No things differ from the temperature of their environment.<br>";
 }
 adjustTemperature($mysqli);
 echo "End of process.";
