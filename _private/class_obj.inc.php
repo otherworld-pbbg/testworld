@@ -183,7 +183,7 @@ class Obj
 			}
 		}
 		
-		if ($this->type == 5&&$incl) {
+		if ($incl) {
 			$heat_react = $this->getAttribute(ATTR_HEAT_REACT);
 			if ($heat_react) {
 				$heat_treated = $this->getAttribute(ATTR_HEAT_TREATED);
@@ -207,6 +207,13 @@ class Obj
 						if ($heat_treated>80) $str = "shriveled " . $str . " ";
 						else if ($heat_treated>50) $str = "withered " . $str . " ";
 						else if ($heat_treated>25) $str = "slightly withered " . $str . " ";
+					}
+					else if ($heat_react==6) {
+						if ($heat_treated==100) $str = "stoneware " . $str . " ";
+						else if ($heat_treated>=90) $str = "earthenware " . $str . " ";
+						else if ($heat_treated>=80) $str = "bisque fired " . $str . " ";
+						else if ($heat_treated>=30) $str = "brittle half-baked " . $str . " ";
+						else if ($heat_treated>=10) $str = "dry unfired " . $str . " ";
 					}
 				}
 			}

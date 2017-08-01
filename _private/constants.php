@@ -119,5 +119,6 @@ const HEAT_REACT_BAKED = 2;
 const HEAT_REACT_THICKEN = 3;
 const HEAT_REACT_WITHER = 4;
 const HEAT_REACT_METAL = 5;//softens
+const HEAT_REACT_CLAY = 6;
 
 ?>
