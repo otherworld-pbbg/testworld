@@ -33,6 +33,7 @@ function adjustTemperature($mysqli) {
 	$known = getObjects($mysqli, "temp");
 	$safe = array();//empty
 	if ($burn) {
+		echo sizeof($burn) . " things are on fire.<br>";
 		foreach ($burn as $b) {
 			$o = new Obj($mysqli, $b["obj"]);
 			$po = new Obj($mysqli, $b["parent"]);
@@ -128,16 +129,18 @@ function adjustTemperature($mysqli) {
 			}
 		}
 	}
+	else echo "No things are on fire.<br>";
 	
 	if ($known) {
+		echo sizeof($known) . " things have a set temperature.<br>";
 		$warrays = array();
 		$time = new Time($mysqli);
 		foreach ($known as $k) {
 			if (!in_array($k["obj"], $safe)) {
 				$no = new Obj($mysqli, $k["obj"]);
 				$exit = $no->getExitCoordinates();
-				$search = $exit["x"] . "_" . $exit["y"];
-				//echo $search . "<br>";
+				$search = "w" . $exit["x"] . "_" . $exit["y"];
+				echo $search . "<br>";
 				if (array_key_exists($search, $warrays)) $weather = $warrays[$search];//This will reduce database queries
 				else {
 					$weather = $time->getWeather($exit["x"], $exit["y"], true);//dbonly=true
@@ -150,7 +153,7 @@ function adjustTemperature($mysqli) {
 					$newtemp = round(($weather["temp"]-$k["value"])*0.2+$k["value"]);
 				}
 				else $newtemp = -300;
-				
+				echo "Environment: " . $weather["temp"] . " C, item: " . $k["value"] . " C <br>";
 				if ($newtemp>-300&&$k["value"]!=$newtemp) {
 					echo "Temperature of " . $no->getHandle(false) . " (" . $no->uid . ") changed into " . $newtemp . "<br>";
 					$no->setAttribute(98, $newtemp);

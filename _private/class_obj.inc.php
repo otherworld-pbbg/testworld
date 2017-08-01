@@ -162,10 +162,10 @@ class Obj
 			$weather = $time->getWeather($exit["x"], $exit["y"], true);
 			
 			if (!$temperature) {
-				$this->setAttribute(ATTR_TEMPERATURE, $weather["temp"]);
-				$temperature = $weather["temp"];
+				$this->setAttribute(ATTR_TEMPERATURE, round($weather["temp"]));
+				$temperature = round($weather["temp"]);
 			}
-			if ($weather["temp"]>$temperature-2&&$weather["temp"]<$temperature+2) $str = $str;
+			if (between($weather["temp"], $temperature-3, $temperature+3)) $str = $str;
 			else if ($temperature>=1200) $str = "white-hot " . $str . " ";
 			else if ($temperature>=1000) $str = "yellow-hot " . $str . " ";
 			else if ($temperature>=900) $str = "orange-hot " . $str . " ";
