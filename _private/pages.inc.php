@@ -73,6 +73,7 @@ $pages = array(
 "newchar" => "new_character.inc.php",
 "postevent" => "postevent.inc.php",
 "presetEditor" => "preset_editor.inc.php",
+"register" => "register.inc.php",
 "removePart" => "remove_component.inc.php",
 "removeResource" => "remove_resource.inc.php",
 "requestRole" => "request_role.inc.php",

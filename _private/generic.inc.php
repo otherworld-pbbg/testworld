@@ -6156,4 +6156,84 @@ function delimiter($allow=false) {
 	}
 	return "";
 }
+
+function checkFreeUsername($mysqli, $teststring) {
+	$sql = "SELECT `username` FROM `users` WHERE `username` LIKE '$teststring' LIMIT 1";
+	$res = $mysqli->query($sql);
+	if (mysqli_num_rows($res)) {
+		return 1;//In use
+	}
+	
+	$sql = "SELECT `username` FROM `pending_users` WHERE `username` LIKE '$teststring' LIMIT 1";
+	$res = $mysqli->query($sql);
+	if (mysqli_num_rows($res)) {
+		return 2;//In pending
+	}
+	
+	return 0;
+}
+
+function generateActivationCode($mysqli, $username, $email, $passhash) {
+	$activation = getRandomPhrase();
+	$activation = $mysqli->real_escape_string($activation);
+	
+	$sql = "INSERT INTO `pending_users` (`username`, `passhash`, `email`, `joined`, `activation`) VALUES ('$username', '$passhash', '$email', CURRENT_TIMESTAMP(), '$activation')";
+	$mysqli->query($sql);
+	$result = $mysqli->insert_id;
+	if (!$result) return 0;
+	
+	$mailcheck = mailActivation($mysqli, $email);
+	if (!$mailcheck) return -1;
+	return 1;
+}
+
+function mailActivation($mysqli, $email) {
+	$sql = "SELECT `username`, `activation`, `joined` FROM `pending_users` WHERE `email` LIKE '$email' LIMIT 1";
+	$res = $mysqli->query($sql);
+	if (mysqli_num_rows($res)) {
+		$row = mysqli_fetch_object($res);
+		
+		$msg = "Your email address was used to request an account from Otherworld-PBBG.com. Below are your activation details.\n\n";
+		$msg .= "Username: " . $row->username . "\n";
+		$msg .= "Password: (what ever you registered with, withheld for security purposes)\n";
+		$msg .= "Activation code: " . $row->activation . "\n\n";
+		$msg .= "Go to http://www.otherworld-pbbg.com/activate.php and paste your activation code in the box.\n\n";
+		$msg .= "Disclaimer: Forgotten passwords cannot be recovered, but you can reguest for a password reset if you forget your password. Password reset requires access to this email address you registered with. Keep your email address up to date because if you forget your password and don't have a valid email address, you lose access to your account permanently.\n";
+		$msg .= "The request was made on $row->joined server time. If you did not request this message, you can just ignore it and the pending account will be purged in 24 hours.\n\n";
+		$msg .= "(This is an automatically sent message. Don't reply to it because the reply address doesn't actually exist.)";
+		
+		$msg = wordwrap($msg,70);
+		$headers = "From: noreply@otherworld-pbbg.com";
+		
+		$result = mail($email, "Welcome to Otherworld!", $msg, $headers);
+		
+		if ($result) return 1;
+	}
+	return 0;
+}
+
+function activateAccount($mysqli, $username, $activation) {
+	$sql = "SELECT `uid`, `username`, `passhash`, `email` FROM `pending_users` WHERE `username` LIKE '$username' AND `activation` LIKE '$activation' LIMIT 1";
+	$res = $mysqli->query($sql);
+	if (mysqli_num_rows($res)) {
+		$row = mysqli_fetch_object($res);
+		$sql2 = "INSERT INTO `users` (`username`, `passhash`, `email`, `joined`) VALUES ('$row->username', '$row->passhash', '$row->email', CURRENT_TIMESTAMP())";
+		$mysqli->query($sql2);
+		$result = $mysqli->insert_id;
+		if ($result) {
+			$sql3 = "DELETE FROM `pending_users` WHERE `uid`=$row->uid LIMIT 1";
+			$mysqli->query($sql2);
+			if ($mysqli->affected_rows==0) return -2;//user account was generated successfully but pending account was left hanging
+			return 100;//success
+		}
+		return -1;//creating user account failed
+	}
+	
+	return 0;//activation code is wrong or username doesn't exist
+}
+
+function isUsername($element)
+{
+	return !preg_match ("/[^A-z0-9_\-]/", $element);
+}
 ?>

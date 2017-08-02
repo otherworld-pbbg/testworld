@@ -1,12 +1,10 @@
 <?php
+include_once("generic.inc.php");
+
 $displayForm = true;
 
 if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["submit_btn"]))
 {
-	function isUsername($element)
-	{
-		return !preg_match ("/[^A-z0-9_\-]/", $element);
-	}
 	if (isUsername($_POST["username"]))
 	{
 		$uname = $mysqli->real_escape_string($_POST["username"]);//this isn't really necessary now
@@ -47,7 +45,7 @@ if ($displayForm)
 {
 	include_once "header.inc.php";
 	para("Notice to all users: Since I accidentally posted our hashing safeword on Github, we had to change it, which means that nobody's passwords work anymore. You will have to contact the developer for a new password. Also this way we will see which ones of the testers are still active.");
-	echo "<form action='index.php?page=login' method='post'>";
+	echo "<form action='index.php?page=login' method='post' class='narrow'>";
 	echo "<p>";
 	ptag("label", "Username: ", "for='username'");
 	ptag("input", "", "type='text' id='username' name='username' size=20 maxlength=20");
