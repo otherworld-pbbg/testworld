@@ -122,7 +122,9 @@ class Obj
 			if (mysqli_num_rows($res)) {
 				$row = mysqli_fetch_row($res);
 				
-				$str = str_replace(array("#MATERIAL#", "#PLURAL#"), array($str, $plural), $row[0]);//This is for prefixed resources such as chopped, dried, ground etc.
+				$str = str_replace(array("#MATERIAL#", "#VEGETABLES#", "#PLANTS#", '#FRUITS#'), array($str, $plural, $plural, $plural), $row[0]);
+				
+				$str = str_replace(array("berry berries", "fruit fruit", "bean beans", "bead beads", "pea peas"), array("berries", "fruit", "beans", "beads", "peas"), $str);//This takes care of double definitions that moving fruit into #MATERIAL# fruit and berries into #MATERIAL# berries
 			}
 		}
 		

@@ -13,6 +13,10 @@ class ResourceString {
 	public function getMatchingPreset($searchterm) {
 		$presets = array (
 			3 => "sprigs",
+			4 => "plants",
+			6 => "fruits",
+			10 => "peas",
+			12 => "beads",
 			20 => "singular",
 			24 => "seeds",
 			189 => "wood_resinous",
@@ -34,7 +38,8 @@ class ResourceString {
 			524 => "shoots",
 			525 => "greens",
 			526 => "pods",
-			528 => "plural"
+			528 => "vegetables",
+			531 => "beans"
 			);
 		
 		if (!in_array($searchterm, $presets)) return -1;
