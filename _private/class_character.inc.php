@@ -1194,6 +1194,7 @@ class Character {
 	}
 	
 	function dropObject($item, $method, $amount=0) {
+		$pos = $this->getPosition();
 		$sql3 = "SELECT `uid` FROM `objects` WHERE `parent`=$this->bodyId AND `uid`=$item LIMIT 1";
 		$res = $this->mysqli->query($sql3);
 		if (!mysqli_num_rows($res)) return false;//the character isn't carrying the item
@@ -1230,7 +1231,7 @@ class Character {
 						if ($this->mysqli->affected_rows==0) {
 							//There is no pile to merge with, so creating new pile
 							$pile = new Obj($this->mysqli);
-							$result = $pile->create($invItem->preset, $invItem->type, $this->building, 'Generated through dropping', $this->x, $this->y, $this->localx, $this->localy, $invItem->secondary, $res["pieces"], $res["weight"], $curTime->dateTime, $curTime->minute);
+							$result = $pile->create($invItem->preset, $invItem->type, $this->building, 'Generated through dropping', $pos->x, $pos->y, $pos->lx, $pos->ly, $invItem->secondary, $res["pieces"], $res["weight"], $curTime->dateTime, $curTime->minute);
 							//to do: what if in a group?
 							if ($result) return true;
 							else return false;
@@ -1254,7 +1255,7 @@ class Character {
 			$this->mysqli->query($sql);
 			
 			if ($this->mysqli->affected_rows==0) {
-				$sql = "UPDATE `objects` SET `parent`=$this->building, `global_x`=$this->x, `global_y`=$this->y, `local_x`=$this->localx, `local_y`=$this->localy WHERE `parent`=$this->bodyId AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
+				$sql = "UPDATE `objects` SET `parent`=$this->building, `global_x`=$pos->x, `global_y`=$pos->y, `local_x`=$pos->lx, `local_y`=$pos->ly WHERE `parent`=$this->bodyId AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 				$this->mysqli->query($sql);
 				//moving the whole pile
 				if ($this->mysqli->affected_rows==0) return false;
