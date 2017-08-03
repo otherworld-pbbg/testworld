@@ -6173,22 +6173,46 @@ function checkFreeUsername($mysqli, $teststring) {
 	return 0;
 }
 
-function generateActivationCode($mysqli, $username, $email, $passhash) {
+function getExistingAccount($mysqli, $username) {
+	$res = $mysqli->query("SELECT `uid`, `passhash`, `email`, `joined` FROM users WHERE `username` like '$username' LIMIT 1");
+	if (!$res) {
+		 return -2;
+	}		
+	if ($res->num_rows == 0) {
+		 return -1;
+	}
+	else {
+		return $res->fetch_object();
+	}
+}
+
+function generateActivationCode($mysqli, $username, $email, $passhash, $type=1, $userid='NULL') {
 	$activation = getRandomPhrase();
 	$activation = $mysqli->real_escape_string($activation);
 	
-	$sql = "INSERT INTO `pending_users` (`username`, `passhash`, `email`, `joined`, `activation`) VALUES ('$username', '$passhash', '$email', CURRENT_TIMESTAMP(), '$activation')";
+	if ($type==3) {
+		$info = getExistingAccount($mysqli, $username);
+		if ($info->email!=$email) return -2;//The person is trying to send the password change into an email address not associated with the account
+	}
+	if ($type==2) {
+		$info = getExistingAccount($mysqli, $username);
+		if ($info->passhash!=$passhash) return -3;//Wrong password
+	}
+	
+	$sql = "INSERT INTO `pending_users` (`username`, `passhash`, `email`, `joined`, `activation`, `type`, `userid`) VALUES ('$username', '$passhash', '$email', CURRENT_TIMESTAMP(), '$activation', '$type', $userid)";
 	$mysqli->query($sql);
 	$result = $mysqli->insert_id;
 	if (!$result) return 0;
 	
-	$mailcheck = mailActivation($mysqli, $email);
+	if ($type==1) $mailcheck = mailActivation($mysqli, $email);
+	if ($type==2) $mailcheck = mailEmailChange($mysqli, $email);
+	if ($type==3) $mailcheck = mailPasswordReset($mysqli, $email);
 	if (!$mailcheck) return -1;
 	return 1;
 }
 
 function mailActivation($mysqli, $email) {
-	$sql = "SELECT `username`, `activation`, `joined` FROM `pending_users` WHERE `email` LIKE '$email' LIMIT 1";
+	$sql = "SELECT `username`, `activation`, `joined` FROM `pending_users` WHERE `email` LIKE '$email' AND `type`=1 LIMIT 1";
 	$res = $mysqli->query($sql);
 	if (mysqli_num_rows($res)) {
 		$row = mysqli_fetch_object($res);
@@ -6212,8 +6236,56 @@ function mailActivation($mysqli, $email) {
 	return 0;
 }
 
+function mailEmailChange($mysqli, $email) {
+	$sql = "SELECT `username`, `activation`, `joined` FROM `pending_users` WHERE `email` LIKE '$email' AND `type`=2 LIMIT 1";
+	$res = $mysqli->query($sql);
+	if (mysqli_num_rows($res)) {
+		$row = mysqli_fetch_object($res);
+		
+		$msg = "An account in Otherworld-PBBG.com set this as their new email address. Details are below.\n\n";
+		$msg .= "Username: " . $row->username . "\n";
+		$msg .= "Activation code: " . $row->activation . "\n\n";
+		$msg .= "Go to http://www.otherworld-pbbg.com/activate.php and paste your activation code in the box.\n\n";
+		$msg .= "If you request for a password reset before confirming your email change, the activation code will go in the old email address, so if you no longer have access to that or it's blank, make sure to use this activation code first before reseting your password.\n\n";
+		$msg .= "The request was made on $row->joined server time. If you did not request this message, you can just ignore it and the email change request will be purged in 24 hours.\n\n";
+		$msg .= "(This is an automatically sent message. Don't reply to it because the reply address doesn't actually exist.)";
+		
+		$msg = wordwrap($msg,70);
+		$headers = "From: noreply@otherworld-pbbg.com";
+		
+		$result = mail($email, "Otherworld email change request", $msg, $headers);
+		
+		if ($result) return 1;
+	}
+	return 0;
+}
+
+function mailPasswordReset($mysqli, $email) {
+	$sql = "SELECT `email`, `username`, `activation`, `joined` FROM `pending_users` WHERE `email` LIKE '$email' AND `type`=3 LIMIT 1";
+	$res = $mysqli->query($sql);
+	if (mysqli_num_rows($res)) {
+		$row = mysqli_fetch_object($res);
+		
+		$msg = "An account in Otherworld-PBBG.com linked to this email address requested for a password reset. Details are below.\n\n";
+		$msg .= "Username: " . $row->username . "\n";
+		$msg .= "Activation code: " . $row->activation . "\n\n";
+		$msg .= "Go to http://www.otherworld-pbbg.com/activate.php, paste your activation code in the box and provide a new password.\n\n";
+		$msg .= "Until you enter the correct code, the account will continue being accessible with the old password.\n\n";
+		$msg .= "The request was made on $row->joined server time. If you did not request this message, or requested it accidentally, you can just ignore it and the password reset request will be purged in 24 hours.\n\n";
+		$msg .= "(This is an automatically sent message. Don't reply to it because the reply address doesn't actually exist.)";
+		
+		$msg = wordwrap($msg,70);
+		$headers = "From: noreply@otherworld-pbbg.com";
+		
+		$result = mail($row->email, "Otherworld password reset request", $msg, $headers);
+		
+		if ($result) return 1;
+	}
+	return 0;
+}
+
 function activateAccount($mysqli, $username, $activation) {
-	$sql = "SELECT `uid`, `username`, `passhash`, `email` FROM `pending_users` WHERE `username` LIKE '$username' AND `activation` LIKE '$activation' LIMIT 1";
+	$sql = "SELECT `uid`, `username`, `passhash`, `email` FROM `pending_users` WHERE `username` LIKE '$username' AND `activation` LIKE '$activation' AND `type`=1 LIMIT 1";
 	$res = $mysqli->query($sql);
 	if (mysqli_num_rows($res)) {
 		$row = mysqli_fetch_object($res);
@@ -6229,6 +6301,42 @@ function activateAccount($mysqli, $username, $activation) {
 		return -1;//creating user account failed
 	}
 	
+	return 0;//activation code is wrong or username doesn't exist
+}
+
+function activateEmail($mysqli, $username, $activation) {
+	$sql = "SELECT `uid`, `email`, `userid` FROM `pending_users` WHERE `username` LIKE '$username' AND `activation` LIKE '$activation' AND `type`=2 LIMIT 1";
+	$res = $mysqli->query($sql);
+	if (mysqli_num_rows($res)) {
+		$row = mysqli_fetch_object($res);
+		$sql2 = "UPDATE `users` SET `email`='$row->email' WHERE `uid`=$row->userid LIMIT 1";
+		$mysqli->query($sql2);
+		if ($mysqli->affected_rows==1) {
+			$sql3 = "DELETE FROM `pending_users` WHERE `uid`=$row->uid LIMIT 1";
+			$mysqli->query($sql3);
+			if ($mysqli->affected_rows==0) return -2;//email was changed successfully but pending account was left hanging
+			return 100;//success
+		}
+		return -1;//changing email failed
+	}
+	return 0;//activation code is wrong or username doesn't exist
+}
+
+function resetPassword($mysqli, $username, $activation, $passhash) {
+	$sql = "SELECT `uid`, `userid` FROM `pending_users` WHERE `username` LIKE '$username' AND `activation` LIKE '$activation' AND `type`=3 LIMIT 1";
+	$res = $mysqli->query($sql);
+	if (mysqli_num_rows($res)) {
+		$row = mysqli_fetch_object($res);
+		$sql2 = "UPDATE `users` SET `passhash`='$passhash' WHERE `uid`=$row->userid LIMIT 1";
+		$mysqli->query($sql2);
+		if ($mysqli->affected_rows==1) {
+			$sql3 = "DELETE FROM `pending_users` WHERE `uid`=$row->uid LIMIT 1";
+			$mysqli->query($sql3);
+			if ($mysqli->affected_rows==0) return -2;//passwrord was changed successfully but pending account was left hanging
+			return 100;//success
+		}
+		return -1;//changing password failed
+	}
 	return 0;//activation code is wrong or username doesn't exist
 }
 

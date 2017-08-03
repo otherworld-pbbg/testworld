@@ -2,9 +2,14 @@
 include_once("generic.inc.php");
 $displayForm = true;
 
-if (isset($_POST["email"])&&isset($_POST["submit_btn2"])){
+if (isset($_POST["email"])&&isset($_POST["submit_btn2"])&&isset($_POST["type"])){
 	$email = $mysqli->real_escape_string($_POST["email"]);
-	$check = mailActivation($mysqli, $email);
+	$type = $_POST["type"];
+	
+	if ($type==1) $check = mailActivation($mysqli, $email);
+	if ($type==2) $check = mailEmailChange($mysqli, $email);
+	if ($type==3) $check = mailPasswordReset($mysqli, $email);
+	
 	if ($check == 1) {
 		include_once "header.inc.php";
 		para("The email was sent successfully. Check your inbox (and spam folder if it's not in the former) and follow the instructions.");
@@ -12,7 +17,7 @@ if (isset($_POST["email"])&&isset($_POST["submit_btn2"])){
 	}
 	else  {
 		include_once "header.inc.php";
-		para("Resending activation code failed. Make sure the email address is correct and that you even requested for an account in the first place.");
+		para("Resending activation code failed. Make sure the email address is correct and that you even requested for an account or a change in the first place.");
 	}
 }
 
@@ -81,10 +86,21 @@ if ($displayForm)
 	echo "</form>";
 }
 
-include_once "header.inc.php";
+include_once $privateRoot . "/header.inc.php";
 ptag("h2", "Resend activation code");
-para("If you have a pending account and the activation code hasn't come through in a reasonable time, enter your email address below to have it resent.");
+para("If you have a pending account or request and the activation code hasn't come through in a reasonable time, enter your email address below to have it resent.");
 echo "<form action='index.php?page=register' method='post'  class='narrow'>";
+ptag("h1", "Type of activation");
+echo "<p>";
+ptag("input", "", "type='radio' id='type1' name='type' value='1' checked='checked'");
+ptag("label", "New account", "for='type1'");
+echo "</p>\n<p>";
+ptag("input", "", "type='radio' id='type2' name='type' value='2'");
+ptag("label", "New email", "for='type2'");
+echo "</p>\n<p>";
+ptag("input", "", "type='radio' id='type3' name='type' value='3'");
+ptag("label", "New password", "for='type3'");
+echo "</p>\n";
 ptag("label", "Email: ", "for='email'");
 ptag("input", "", "type='text' id='email' name='email' size=30 maxlength=60");
 echo "</p>\n<p>";

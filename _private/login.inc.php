@@ -9,28 +9,27 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["submit_b
 	{
 		$uname = $mysqli->real_escape_string($_POST["username"]);//this isn't really necessary now
 		//because usernames don't allow special characters
-		$res = $mysqli->query("SELECT uid, passhash FROM users WHERE username like '$uname' LIMIT 1");
-		if (!$res) {
-		    para("Query failed: " . $mysql->error());
+		$info = getExistingAccount($mysqli, $uname);
+		if (!is_object($info)&&$info == -2) {
+		    para("There was a problem with the database.");
 		    exit;
 		}		
-		if ($res->num_rows == 0) {
-		    para("Username doesn't exist. Registering new accounts isn't open to public yet. If you want an account, you'll need to know how to contact the developer.");
+		if (!is_object($info)&&$info== -1) {
+		    para("Username doesn't exist. Go to the register page if you want to register a new account.");
 		}
 		else
 		{
 			include_once "hashing.inc.php";
 			include_once "class_player.inc.php";	
 			$pw = myHash($_POST["password"]);
-			$row = $res->fetch_object();
-			if ($row->passhash==$pw)
+			if ($info->passhash==$pw)
 			{
 				$_SESSION['logged_user'] = $_POST['username'];
-				$_SESSION['user_id'] = $row->uid;
-				$player = new Player($mysqli, $row->uid);
+				$_SESSION['user_id'] = $info->uid;
+				$player = new Player($mysqli, $info->uid);
 				$player->logLogin();
 				
-				header('Location: index.php?page=direwolf&userid='. $row->uid);
+				header('Location: index.php?page=direwolf&userid='. $info->uid);
 				$displayForm = false;
 			}
 			else para("Wrong password!");

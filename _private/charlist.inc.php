@@ -35,6 +35,7 @@ else
 	echo "<h2>";
 	ptag ("a", "Start playing a new character", "href='index.php?page=newchar' class='clist'");
 	echo "</h2>";
+	
 	$charArr = $player->getCharacters(1);
 	$charArr2 = $player->getCharacters(2);
 	ptag ("h2", "Played characters");
