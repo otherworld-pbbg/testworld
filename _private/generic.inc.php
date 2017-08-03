@@ -6222,7 +6222,7 @@ function activateAccount($mysqli, $username, $activation) {
 		$result = $mysqli->insert_id;
 		if ($result) {
 			$sql3 = "DELETE FROM `pending_users` WHERE `uid`=$row->uid LIMIT 1";
-			$mysqli->query($sql2);
+			$mysqli->query($sql3);
 			if ($mysqli->affected_rows==0) return -2;//user account was generated successfully but pending account was left hanging
 			return 100;//success
 		}
