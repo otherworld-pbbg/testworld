@@ -92,6 +92,7 @@ ptag("h2", "Implemented so far");
 <li> <h3>End of stage 1: ready to accept more testers</h3></li>
 <li> ability to reset password (requires a functional email address on file)</li>
 <li> ability to change email address associated with your account (requires knowing the password)</li>
+<li> drop multiple</li>
 </ol>
 <?php
 ptag("img", "", "src='". getGameRoot() . "/graphics/resource_presets.png' alt='mind map of new way to handle resources'");
