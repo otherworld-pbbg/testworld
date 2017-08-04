@@ -66,7 +66,7 @@ echo "</form>";
 echo "<p>Your team: ";
 $hits = countHits($s1, $s2, $p1, $p2, $d2, $o);
 echo "</p><p>Enemy team: ";
-$hits2 = countHits($s1, $s2, $p1, $p2, $d, $o2);
+$hits2 = countHits($s2, $s1, $p2, $p1, $d, $o2);
 echo "</p>";
 
 if ($hits>$hits2) echo "<p>Your team wins!</p>";
