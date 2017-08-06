@@ -78,7 +78,7 @@ else {
 						$endT = $endTime->dateTime;
 						$endM = $endTime->minute;
 						
-						$res = $newScene->create($secureNum, $pos->x, $pos->y, $pos->lx, $pos->localy, '0', $startT, $startM, $endT, $endM, $secureTitle, $secureDesc, $charcheck);
+						$res = $newScene->create($secureNum, $pos->x, $pos->y, $pos->lx, $pos->ly, '0', $startT, $startM, $endT, $endM, $secureTitle, $secureDesc, $charcheck);
 						header('Location: index.php?page=viewchar&charid=' . $charcheck . '&userid=' . $currentUser . '&tab=1');
 					}
 				}

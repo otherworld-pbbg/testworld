@@ -18,7 +18,7 @@
 ptag ("a", "Otherworld", "href='index.php' class='light'");
 
 echo "<ul class='right_no_marker'>\n";
-//ptag ("li", "<a href='#notImplementedYet' class='light'>Register</a>", "class='inline_li'");
+ptag ("li", "<a href='index.php?page=register' class='light'>Register</a>", "class='inline_li'");
 ptag ("li", "<a href='index.php?page=login' class='light'>Login</a>", "class='inline_li'");
 echo "</ul>\n<br /></div></div>\n";
 ?>

@@ -13,6 +13,10 @@ class ResourceString {
 	public function getMatchingPreset($searchterm) {
 		$presets = array (
 			3 => "sprigs",
+			4 => "plants",
+			6 => "fruits",
+			10 => "peas",
+			12 => "beads",
 			20 => "singular",
 			24 => "seeds",
 			189 => "wood_resinous",
@@ -34,7 +38,8 @@ class ResourceString {
 			524 => "shoots",
 			525 => "greens",
 			526 => "pods",
-			528 => "plural"
+			528 => "vegetables",
+			531 => "beans"
 			);
 		
 		if (!in_array($searchterm, $presets)) return -1;
@@ -161,6 +166,7 @@ class ResourceString {
 			"flowers" => "has flowers",
 			"fragrant" => "is fragrant",
 			"fruit" => "has fruit",
+			"fruits" => "has fruit that doesn't follow the MATERIAL fruit naming convention",
 			"generic" => "is generic",
 			"grain_coarse" => "has coarse grain",
 			"grain_fine" => "has fine grain",
@@ -189,12 +195,14 @@ class ResourceString {
 			"oily" => "is oily",
 			"padding" => "can be used as padding",
 			"palm_wood" => "is a type of palm wood",
+			"peas" => "has peas",
 			"peelable_hammer" => "shell can be broken by crushing",
 			"peelable_knife" => "can be peeled with a knife",
 			"peelable_manual" => "can be peeled manually",
 			"pits" => "has pits (stones)",
 			"planks" => "is planks",
 			"plant" => "is a type of plant",
+			"plants" => "has gatherable plant material",
 			"pliable" => "is pliable",
 			"poisonous" => "is poisonous",
 			"powder" => "is a powder",

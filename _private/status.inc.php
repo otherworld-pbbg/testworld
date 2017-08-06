@@ -88,14 +88,28 @@ ptag("h2", "Implemented so far");
 <li> manual resting disabled</li>
 <li> event log: background functionality, travel logging</li>
 <li> fixed bug that prevented animals from attacking back</li>
+<li> register new account</li>
+<li> <h3>End of stage 1: ready to accept more testers</h3></li>
+<li> ability to reset password (requires a functional email address on file)</li>
+<li> ability to change email address associated with your account (requires knowing the password)</li>
+<li> drop multiple</li>
 </ol>
 <?php
 ptag("img", "", "src='". getGameRoot() . "/graphics/resource_presets.png' alt='mind map of new way to handle resources'");
 ptag("h2", "Things I'm currently working on:");
 ?>
 <ul>
-
+<li> temperature/fire system adjustments and firing clay</li>
 </ul>
+<?php
+ptag("h2", "Things collaborators are working on:");
+?>
+<ul>
+<li> natural healing (requires cron)</li>
+<li> wounds system rewrite</li>
+<li> first aid, stitching of wounds, bandages</li>
+<li> aging system (switching body preset and increasing weight/blood when certain thresholds are passed)</li>
+</ul>                                                              
 <?php
 ptag("h2", "Things that are on hold:");
 ?>
@@ -103,6 +117,7 @@ ptag("h2", "Things that are on hold:");
 <li> weapons/hunting system rewrite</li>
 <li> groups system: new hunting system where damage and kills are actually recorded</li>
 <li> event log continues</li>
+<li> brain tanning / more generally: change projects that have other requirements than fire</li>
 </ul>
 <?php
 
@@ -112,11 +127,6 @@ ptag("h2", "Things that need to be worked on in the future approximately in this
 <ol>
 <li> groups system: foraging into group stock</li>
 <li> making planted seeds grow into plants (requires cron) (requires growth rates and temperature preferences)</li>
-<li> brain tanning / more generally: change projects that have other requirements than fire</li>
-<li> natural healing and first aid, stitching of wounds, bandages (healing in time requires cron)</li>
-
-<li> <h3>End of stage 1: ready to accept more testers</h3></li>
-
 <li> limiting how much AP can be spent in an hour / character tiredness</li>
 <li> the ability to ford rivers</li>
 <li> crossbreeding system (to create new crops)</li>
@@ -130,14 +140,12 @@ ptag("h2", "Things that need to be worked on in the future approximately in this
 <li> more complex cooking system</li>
 <li> buildings</li>
 <li> locks and lockpicking</li>
-<li> aging system (switching body preset and increasing weight/blood when certain thresholds are passed)</li>
 <li> PvP combat system</li>
 <li> surrender mechanic, movement restrictions for prisoners of war</li>
 <li> sailing system (initially with one ship type)
 </li>
 <li> <h3>End of stage 2: the game will now accept all testers</h3>
 </li>
-<li> register new account</li>
 <li> preventing people from leaving their comfort zones to create safe spaces for people who want to avoid newbies</li>
 <li> animal stats (tropical and temperate regions)</li>
 <li> clothing</li>

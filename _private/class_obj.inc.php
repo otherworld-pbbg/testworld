@@ -122,7 +122,9 @@ class Obj
 			if (mysqli_num_rows($res)) {
 				$row = mysqli_fetch_row($res);
 				
-				$str = str_replace(array("#MATERIAL#", "#PLURAL#"), array($str, $plural), $row[0]);//This is for prefixed resources such as chopped, dried, ground etc.
+				$str = str_replace(array("#MATERIAL#", "#VEGETABLES#", "#PLANTS#", '#FRUITS#'), array($str, $plural, $plural, $plural), $row[0]);
+				
+				$str = str_replace(array("berry berries", "fruit fruit", "bean beans", "bead beads", "pea peas"), array("berries", "fruit", "beans", "beads", "peas"), $str);//This takes care of double definitions that moving fruit into #MATERIAL# fruit and berries into #MATERIAL# berries
 			}
 		}
 		
@@ -161,31 +163,29 @@ class Obj
 			$time = new Time($this->mysqli);
 			$weather = $time->getWeather($exit["x"], $exit["y"], true);
 			
-			if (!$temperature) {
-				$this->setAttribute(ATTR_TEMPERATURE, $weather["temp"]);
-				$temperature = $weather["temp"];
+			if ($temperature) {
+				if (between($weather["temp"], $temperature-3, $temperature+3)) $str = $str;
+				else if ($temperature>=1200) $str = "white-hot " . $str . " ";
+				else if ($temperature>=1000) $str = "yellow-hot " . $str . " ";
+				else if ($temperature>=900) $str = "orange-hot " . $str . " ";
+				else if ($temperature>=600) $str = "red-hot " . $str . " ";
+				else if ($temperature>=320) $str = "burning hot " . $str . " ";
+				else if ($temperature>=170) $str = "oven hot " . $str . " ";
+				else if ($temperature>=100) $str = "boiling hot " . $str . " ";
+				else if ($temperature>=70) $str = "steaming hot " . $str . " ";
+				else if ($temperature>=50) $str = "semi-hot " . $str . " ";
+				else if ($temperature>=30) $str = "very warm " . $str . " ";
+				else if ($temperature>=18) $str = "warm " . $str . " ";
+				else if ($temperature>=15) $str = "slightly cool " . $str . " ";
+				else if ($temperature>=8) $str = "cool " . $str . " ";
+				else if ($temperature>=2) $str = "cold " . $str . " ";
+				else if ($temperature>=0) $str = "very cold " . $str . " ";
+				else if ($temperature>=15) $str = "frozen " . $str . " ";
+				else $str = "frozen solid " . $str . " ";
 			}
-			if ($weather["temp"]>$temperature-2&&$weather["temp"]<$temperature+2) $str = $str;
-			else if ($temperature>=1200) $str = "white-hot " . $str . " ";
-			else if ($temperature>=1000) $str = "yellow-hot " . $str . " ";
-			else if ($temperature>=900) $str = "orange-hot " . $str . " ";
-			else if ($temperature>=600) $str = "red-hot " . $str . " ";
-			else if ($temperature>=320) $str = "burning hot " . $str . " ";
-			else if ($temperature>=170) $str = "oven hot " . $str . " ";
-			else if ($temperature>=100) $str = "boiling hot " . $str . " ";
-			else if ($temperature>=70) $str = "steaming hot " . $str . " ";
-			else if ($temperature>=50) $str = "semi-hot " . $str . " ";
-			else if ($temperature>=30) $str = "very warm " . $str . " ";
-			else if ($temperature>=18) $str = "warm " . $str . " ";
-			else if ($temperature>=15) $str = "slightly cool " . $str . " ";
-			else if ($temperature>=8) $str = "cool " . $str . " ";
-			else if ($temperature>=2) $str = "cold " . $str . " ";
-			else if ($temperature>=0) $str = "very cold " . $str . " ";
-			else if ($temperature>=15) $str = "frozen " . $str . " ";
-			else $str = "frozen solid " . $str . " ";
 		}
 		
-		if ($this->type == 5&&$incl) {
+		if ($incl) {
 			$heat_react = $this->getAttribute(ATTR_HEAT_REACT);
 			if ($heat_react) {
 				$heat_treated = $this->getAttribute(ATTR_HEAT_TREATED);
@@ -209,6 +209,13 @@ class Obj
 						if ($heat_treated>80) $str = "shriveled " . $str . " ";
 						else if ($heat_treated>50) $str = "withered " . $str . " ";
 						else if ($heat_treated>25) $str = "slightly withered " . $str . " ";
+					}
+					else if ($heat_react==6) {
+						if ($heat_treated==100) $str = "stoneware " . $str . " ";
+						else if ($heat_treated>=90) $str = "earthenware " . $str . " ";
+						else if ($heat_treated>=80) $str = "bisque fired " . $str . " ";
+						else if ($heat_treated>=30) $str = "brittle half-baked " . $str . " ";
+						else if ($heat_treated>=10) $str = "dry unfired " . $str . " ";
 					}
 				}
 			}
@@ -281,6 +288,24 @@ class Obj
 			}
 		}
 		return false;
+	}
+	
+	function purgeAttribute($attr) {
+		if ($this->uid>0) {
+			$sql = "SELECT `value` FROM `o_attrs` WHERE `objectFK`=$this->uid AND `attributeFK`=$attr ORDER BY `o_attrs`.`uid` DESC LIMIT 1";
+			$res = $this->mysqli->query($sql);
+			if (!$res) {
+				para("Query failed: " . $this->mysqli->error);
+				return -3;
+			}
+			if ($res->num_rows==0) return -1;//There is no entry in the first place
+			
+			$sql = "DELETE FROM `o_attrs` WHERE `objectFK`=$this->uid AND `attributeFK`=$attr LIMIT 1";
+			$this->mysqli->query($sql);
+			if ($this->mysqli->affected_rows==0) return -2;
+			return 100;//success
+		}
+		return -4;//Id is 0
 	}
 	
 	function setAttribute($attr, $newVal) {
@@ -996,7 +1021,7 @@ class Obj
 			$newo2 = new Obj($this->mysqli);
 			if ($parts[2]==1) $newo2->create(20, 5, $actor->parent, "Discarded offal", $actor->x, $actor->y, $actor->localx, $actor->localy, 445, 1, $offalwt, $curTime->dateTime, $curTime->minute);
 			if ($parts[2]==2) $newo2->create(20, 5, $actor->bodyId, "Saved offal", "NULL", "NULL", 0, 0, 445, 1, $offalwt, $curTime->dateTime, $curTime->minute);
-			$this->setAttribute(ATTR_HAS_INTESTINE, 0);//removes offal from body
+			$this->setAttribute(ATTR_HAS_OFFAL, 0);//removes offal from body
 			$weightloss += $offalwt;
 		}
 		if ($skin) {

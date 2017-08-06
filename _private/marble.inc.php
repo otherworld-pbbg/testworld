@@ -840,10 +840,19 @@ else {
 				else if ($_GET['message']=='3') para("This message isn't currently in use.");
 				else if ($_GET['message']=='4') para("Your project is finished. Where the result lands depends mainly on the size.");
 			}
+			if (isset($_GET['success'])) {
+				if ($_GET['success']>0) para("You successfully multi-dropped " . $_GET['success'] . " items or piles.");
+			}
+			if (isset($_GET['fail'])) {
+				if ($_GET['fail']>0) para("You failed to multi-drop " . $_GET['fail'] . " items or piles.");
+			}
 			ptag("h1", "Items & Resources");
 			ptag("h2", "Carried items");
 			$inventory = $curChar->getInventory();
 			if ($inventory) {
+				echo "<h3>";
+				ptag ("a", "[Drop multiple]", "href='index.php?page=dropMulti&charid=$charcheck' class='clist'");
+				echo "</h3>";
 				echo "<form action='index.php?page=inventoryAction' method='post' id='invform' name='invform' class='narrow'>";
 				for ($i=0; $i<count($inventory); $i++) {
 					$selected = "";

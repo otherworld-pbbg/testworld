@@ -15,7 +15,8 @@ function countHits($yourspeed, $enemyspeed, $yourppl, $enemyppl, $enemydefense, 
 	for ($i=0; $i<$block; $i++) {
 		if (rand(0,99)<$chance2) $hits--;
 	}
-	echo "Chance to hit " . round($chance) . ", Chance to block " . round($chance2) . ": " . $hits . " hits out of ". $hit . " attempts successful";
+	echo "Chance to hit " . round($chance) . ", opponent chance to block " . round($chance2) . ": " . max(0,$hits) . " hits out of ". $hit . " attempts successful";
+	return max(0,$hits);
 }
 
 $s1 = isset($_GET['s1']) ? $_GET['s1'] : 100;
@@ -24,6 +25,8 @@ $p1 = isset($_GET['p1']) ? $_GET['p1'] : 1;
 $p2 = isset($_GET['p2']) ? $_GET['p2'] : 1;
 $o = isset($_GET['o']) ? $_GET['o'] : 100;
 $d = isset($_GET['d']) ? $_GET['d'] : 100;
+$o2 = isset($_GET['o2']) ? $_GET['o2'] : 100;
+$d2 = isset($_GET['d2']) ? $_GET['d2'] : 100;
 
 echo "<form action='testc.php' method='get' class='narrow'>";
 echo "<p>";
@@ -47,11 +50,27 @@ echo "Your offense (was: $o)";
 ptag("input", "", "type='range' min='0' max='300' name='o' value='$o' style='width: 5em'");
 echo "</p>";
 echo "<p>";
-echo "Enemy defense (was: $d)";
+echo "Enemy offense (was: $o2)";
+ptag("input", "", "type='range' min='0' max='300' name='o2' value='$o2' style='width: 5em'");
+echo "</p>";
+echo "<p>";
+echo "Your defense (was: $d)";
 ptag("input", "", "type='range' min='0' max='300' name='d' value='$d' style='width: 5em'");
+echo "</p>";
+echo "<p>";
+echo "Enemy defense (was: $d2)";
+ptag("input", "", "type='range' min='0' max='300' name='d2' value='$d2' style='width: 5em'");
 echo "</p>";
 ptag("input", "", "type='submit' value='submit'");
 echo "</form>";
-countHits($s1, $s2, $p1, $p2, $d, $o);
+echo "<p>Your team: ";
+$hits = countHits($s1, $s2, $p1, $p2, $d2, $o);
+echo "</p><p>Enemy team: ";
+$hits2 = countHits($s2, $s1, $p2, $p1, $d, $o2);
+echo "</p>";
+
+if ($hits>$hits2) echo "<p>Your team wins!</p>";
+else if ($hits<$hits2) echo "<p>Enemy team wins!</p>";
+else echo "<p>It's a tie.</p>";
 
 ?>

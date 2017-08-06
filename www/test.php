@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include_once "face.php";
 include_once "../_private/generic.inc.php";
@@ -88,6 +90,7 @@ if (isset($_POST["hair1"])) {
 include_once "../_private/abbr.inc.php";
 
 include_once "../_private/header.inc.php";
+
 drawFace($fv, $bv, $jv, $pv, $hv, $sv, $bav, $nl, $nv, $n2v, $eye, $skin, $hair, $er1, $er2, $ebr1, $ebr2, $es, $mw+80, $lipv);//mw shows up as 0 to 100 for convenience but it's actually 80 to 200%
 
 ?>

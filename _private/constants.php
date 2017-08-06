@@ -1,10 +1,23 @@
 <?php
+const GEN_ITEM = 1;
+const GEN_PERSON = 2;
+const GEN_BUILDING = 3;
+const GEN_ANIMAL = 4;
+const GEN_RESOURCE = 5;
+const GEN_FIXED = 6;
+const GEN_GROUP = 7;
+const GEN_LUMP = 8;
+const GEN_DEAD_ANIMAL = 9;
+const GEN_DEAD_PERSON = 10;
+const GEN_ANIMAL_PART = 11;
+
 const ATTR_LARGE_MASS = 1;
 const ATTR_LARGE_CONTAINER = 2;
 const ATTR_SMALL_MASS = 6;
 const ATTR_SMALL_CONTAINER = 7;
 const ATTR_COUNTABLE = 44;
 const ATTR_EDIBLE = 45;
+const ATTR_IGNITION = 48;
 const ATTR_ON_FIRE = 49;
 const ATTR_ANIMAL_CLASS = 51;
 const ATTR_BLOOD = 52;
@@ -106,5 +119,6 @@ const HEAT_REACT_BAKED = 2;
 const HEAT_REACT_THICKEN = 3;
 const HEAT_REACT_WITHER = 4;
 const HEAT_REACT_METAL = 5;//softens
+const HEAT_REACT_CLAY = 6;
 
 ?>
