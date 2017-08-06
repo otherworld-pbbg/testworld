@@ -33,17 +33,16 @@ function doLoop($mysqli) {
 	$chars = getLiveCharacters($mysqli);
 	if (!$chars) return 0;
 	$counter = 0;
+	$counter2 = 0;
 	foreach ($chars as $ci) {
-		$bodyArray=$ci->calculateBody();
-		$bodyWeight=$bodyArray->weight;
-		$preset=$bodyArray->preset;
-		$hasChanged=$ci->advanceAge();
-		if($hasChanged) counter++;
 		$c = new Character($mysqli, $ci);
+		$hasChanged=$c->advanceAge();
+		if($hasChanged) $counter2++;
+		
 		$result = $c->rest_auto();
 		if ($result>0) $counter++;
 	}
-	echo counter . " people advanced to a new age/weight category";
+	echo $counter2 . " people advanced to a new age/weight category";
 	return $counter;
 }
 

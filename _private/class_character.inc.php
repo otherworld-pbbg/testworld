@@ -155,7 +155,7 @@ class Character {
 		}
 		$bo->calculateBlood(); //Update blood count to match weight
 		
-		return isChanged;
+		return $isChanged;
 	}
 	
 	public function getLocationDB() {
