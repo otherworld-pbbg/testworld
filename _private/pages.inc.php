@@ -24,6 +24,7 @@ $pages = array(
 "charlist" => "charlist.inc.php",
 "charmemo" => "charmemo.inc.php",
 "combat" => "combat.inc.php",
+"combatSettings" => "combat_settings.inc.php",
 "createField" => "create_field.inc.php",
 "createField2" => "create_field2.inc.php",
 "createchar" => "create_char.inc.php",
