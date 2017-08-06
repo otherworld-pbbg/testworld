@@ -69,31 +69,11 @@ class Character {
 	}
 	
 	public function createBody($ageOffset, $x, $y, $datetime, $minute, $lx=0, $ly=0, $building=0) {
-		//type 19 - baby, 26 - toddler, 28 - child, 25 - preteen, 23 - adolescent, 21-adult
-		if ($ageOffset == 0) {
-			$type = 19;
-			$weight = 3000;
-		}
-		else if ($ageOffset < 4) {
-			$type = 26;
-			$weight = round(($ageOffset-1)*2000+10000);
-		}
-		else if ($ageOffset < 10) {
-			$type = 28;
-			$weight = round(($ageOffset-3)*2200+12800);
-		}
-		else if ($ageOffset < 13){
-			$type = 25;
-			$weight = round(($ageOffset-10)*5000+32000);
-		}
-		else if ($ageOffset < 20) {
-			$type = 23;//13 14 15 16 17 18 19 - 46, 48, 52, 53, 54, 57, 57
-			$weight = round(($ageOffset-12)*1600+44450);
-		}
-		else {
-			$type = 21;
-			$weight = 60000;
-		}
+		//preset 19 - baby, 26 - toddler, 28 - child, 25 - preteen, 23 - adolescent, 21-adult
+		$calcArr = calculateBody($ageOffset);
+		$preset = $calcArr->preset;
+		$weight = $calcArr->weight;
+		
 		$sql1 = "SELECT `objectFK` FROM `chars` WHERE `uid`=$this->uid LIMIT 1";
 		$res = $this->mysqli->query($sql1);//check if it already has a body
 		if (mysqli_num_rows($res)) {
@@ -110,10 +90,9 @@ class Character {
 			}
 		}
 		$body = new Obj($this->mysqli, 0);
-		$result = $body->create($type, 2, $building, "Human body created by function", $x, $y, $lx, $ly, 0, 1, $weight, $datetime, $minute);
+		$result = $body->create($preset, 2, $building, "Human body created by function", $x, $y, $lx, $ly, 0, 1, $weight, $datetime, $minute);
 		if ($result) {
 			$this->bodyId = $result;
-			
 			$this->x=$x;
 			$this->y=$y;
 			$this->localx=$lx;
@@ -130,6 +109,53 @@ class Character {
 			return $result;//success
 		}
 		else return -1;//something went wrong
+	}
+	
+	public function calculateBody($age){
+		if ($age == 0) {
+			$preset = 19;
+			$weight = 3000;
+		}
+		else if ($age < 4) {
+			$preset = 26;
+			$weight = round(($age-1)*2000+10000);
+		}
+		else if ($age < 10) {
+			$preset = 28;
+			$weight = round(($age-3)*2200+12800);
+		}
+		else if ($age < 13){
+			$preset = 25;
+			$weight = round(($age-10)*5000+32000);
+		}
+		else if ($age < 20) {
+			$preset = 23;//13 14 15 16 17 18 19 - 46, 48, 52, 53, 54, 57, 57
+			$weight = round(($age-12)*1600+44450);
+		}
+		else {
+			$preset = 21;
+			$weight = 60000;
+		}
+		$resArr = array ("preset" => $preset, "weight" => $weight);
+		return resArr;
+	}
+	
+	public function advanceAge(){
+		$curAge = getAge();
+		$bo = new Obj($mysqli, $bodyID);
+		$calcArr = calculateBody($curAge);
+		$isChanged=false;
+		if($bo->weight != $calcArr->weight){ 
+			$bo->changeSize($calcArr->weight-$bo->weight,0);
+			$isChanged=true;
+		}
+		if($bo->preset != $calcArr->preset){
+			$bo->changeType($calcArr->preset, $bo->secondary, $bo->type);
+			$isChanged=true;
+		}
+		$bo->calculateBlood(); //Update blood count to match weight
+		
+		return isChanged;
 	}
 	
 	public function getLocationDB() {

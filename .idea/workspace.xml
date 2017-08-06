@@ -1,0 +1,1763 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="764ea6fa-ce7c-4e16-b0dc-9f7e5c838e2d" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="class_character.inc.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_private/class_character.inc.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="145" column="42" lean-forward="true" selection-start-line="145" selection-start-column="42" selection-end-line="145" selection-end-column="42" />
+              <folding>
+                <marker date="1502027320420" expanded="true" signature="1013:1181" ph="INSERT INTO `chars`... " />
+                <marker date="1502027320420" expanded="true" signature="1495:1703" ph="SELECT `obje... chars" />
+                <marker date="1502027320420" expanded="true" signature="2471:2532" ph="SELECT `obje... chars" />
+                <marker date="1502027320420" expanded="true" signature="3212:3268" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="4668:4746" ph="SELECT `glob... objects" />
+                <marker date="1502027320420" expanded="true" signature="4992:5068" ph="SELECT `loca... objects" />
+                <marker date="1502027320420" expanded="true" signature="5397:5531" ph="INSERT INTO `char_players`... " />
+                <marker date="1502027320420" expanded="true" signature="5772:5898" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="6055:6166" ph="SELECT `role... char_players" />
+                <marker date="1502027320420" expanded="true" signature="6568:6783" ph="SELECT `scen... scenes" />
+                <marker date="1502027320420" expanded="true" signature="7044:7249" ph="SELECT `rowI... scene_chars" />
+                <marker date="1502027320420" expanded="true" signature="9086:9181" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="10102:10184" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="10868:11113" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="11134:11379" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="11404:11612" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="11720:12067" ph="INSERT INTO `charloctime`... " />
+                <marker date="1502027320420" expanded="true" signature="12088:12434" ph="INSERT INTO `charloctime`... " />
+                <marker date="1502027320420" expanded="true" signature="12602:12951" ph="INSERT INTO `charloctime`... " />
+                <marker date="1502027320420" expanded="true" signature="12971:13319" ph="INSERT INTO `charloctime`... " />
+                <marker date="1502027320420" expanded="true" signature="14052:14211" ph="SELECT `rowI... charloctime" />
+                <marker date="1502027320420" expanded="true" signature="14589:14966" ph="INSERT INTO `charloctime`... " />
+                <marker date="1502027320420" expanded="true" signature="15327:15538" ph="INSERT INTO `loc_log`... " />
+                <marker date="1502027320420" expanded="true" signature="16034:16116" ph="INSERT INTO `char_ap`... " />
+                <marker date="1502027320420" expanded="true" signature="16187:16255" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="16413:16494" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="19642:19859" ph="SELECT `loca... local_res" />
+                <marker date="1502027320420" expanded="true" signature="21456:21689" ph="SELECT `loca... local_res" />
+                <marker date="1502027320420" expanded="true" signature="24036:24253" ph="SELECT `loca... local_res" />
+                <marker date="1502027320420" expanded="true" signature="27138:27371" ph="SELECT `loca... local_res" />
+                <marker date="1502027320420" expanded="true" signature="30562:30693" ph="SELECT `resF... local_res" />
+                <marker date="1502027320420" expanded="true" signature="31127:31312" ph="INSERT INTO `memorized_deposits`... " />
+                <marker date="1502027320420" expanded="true" signature="31327:31382" ph="UPDATE `loca... " />
+                <marker date="1502027320420" expanded="true" signature="31842:31922" ph="INSERT INTO `sub_deposits`... " />
+                <marker date="1502027320420" expanded="true" signature="32674:32893" ph="SELECT `name... memorized_deposits" />
+                <marker date="1502027320420" expanded="true" signature="33264:33347" ph="SELECT `pres... sub_deposits" />
+                <marker date="1502027320420" expanded="true" signature="33826:33886" ph="SELECT `ap` char_ap" />
+                <marker date="1502027320420" expanded="true" signature="34135:34198" ph="INSERT INTO `char_ap`... " />
+                <marker date="1502027320420" expanded="true" signature="34399:34459" ph="SELECT `ap` char_ap" />
+                <marker date="1502027320420" expanded="true" signature="34608:34671" ph="INSERT INTO `char_ap`... " />
+                <marker date="1502027320420" expanded="true" signature="34919:35143" ph="SELECT `name... memorized_deposits" />
+                <marker date="1502027320420" expanded="true" signature="35419:35650" ph="SELECT `name... memorized_deposits" />
+                <marker date="1502027320420" expanded="true" signature="36025:36129" ph="SELECT `resF... memorized_deposits" />
+                <marker date="1502027320420" expanded="true" signature="36267:36352" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="36512:36609" ph="SELECT `uid`... loc_naming" />
+                <marker date="1502027320420" expanded="true" signature="37076:37173" ph="UPDATE `loc_... " />
+                <marker date="1502027320420" expanded="true" signature="37259:37369" ph="INSERT INTO `loc_naming`... " />
+                <marker date="1502027320420" expanded="true" signature="37542:37603" ph="SELECT count... memorized_deposits" />
+                <marker date="1502027320420" expanded="true" signature="37864:37948" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="38176:38243" ph="SELECT `gath... res_subtypes" />
+                <marker date="1502027320420" expanded="true" signature="38508:38819" ph="SELECT `resF... memorized_deposits" />
+                <marker date="1502027320420" expanded="true" signature="39729:40076" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="40419:40493" ph="UPDATE `sub_... " />
+                <marker date="1502027320420" expanded="true" signature="41222:41386" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="41699:41856" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="42172:42252" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="43078:43330" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="43351:43603" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="43788:44105" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="44128:44445" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="45449:45751" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="45770:46103" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="46334:46662" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="46830:47042" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="47334:47563" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="48415:48678" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="48699:48962" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="49213:49525" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="49548:49860" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="50653:50950" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="50969:51297" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="51512:51820" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="52005:52228" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="52535:52753" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="53504:53738" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="54025:54277" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="54298:54550" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="54741:55044" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="55067:55370" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="56751:57039" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="57058:57377" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="57560:57851" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="57996:58208" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="58472:58701" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="59504:59738" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="60025:60288" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="60309:60572" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="60795:61098" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="61121:61424" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="62805:63093" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="63112:63431" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="63614:63916" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="64108:64331" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="65030:65245" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="65397:65468" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="66319:66568" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="66589:66838" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="67041:67353" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="67376:67688" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="68427:68724" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="68743:69071" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="69286:69580" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="69720:69929" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="70176:70251" ph="SELECT sum(`... stomach" />
+                <marker date="1502027320420" expanded="true" signature="72983:73237" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="73259:73513" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="73716:73913" ph="UPDATE `stom... " />
+                <marker date="1502027320420" expanded="true" signature="73937:74117" ph="UPDATE `stom... " />
+                <marker date="1502027320420" expanded="true" signature="74308:74503" ph="INSERT INTO `stomach`... " />
+                <marker date="1502027320420" expanded="true" signature="74528:74708" ph="INSERT INTO `stomach`... " />
+                <marker date="1502027320420" expanded="true" signature="75033:75247" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="75398:75595" ph="UPDATE `stom... " />
+                <marker date="1502027320420" expanded="true" signature="75615:75795" ph="UPDATE `stom... " />
+                <marker date="1502027320420" expanded="true" signature="76015:76192" ph="INSERT INTO `stomach`... " />
+                <marker date="1502027320420" expanded="true" signature="76213:76394" ph="INSERT INTO `stomach`... " />
+                <marker date="1502027320420" expanded="true" signature="76749:76845" ph="SELECT `nami... naming" />
+                <marker date="1502027320420" expanded="true" signature="77227:77328" ph="SELECT `nami... naming" />
+                <marker date="1502027320420" expanded="true" signature="77622:77715" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="77733:77830" ph="UPDATE `nami... " />
+                <marker date="1502027320420" expanded="true" signature="77916:78028" ph="INSERT INTO `naming`... " />
+                <marker date="1502027320420" expanded="true" signature="78288:78435" ph="SELECT `uid`... loc_log" />
+                <marker date="1502027320420" expanded="true" signature="83711:83879" ph="SELECT `uid`... loc_log" />
+                <marker date="1502027320420" expanded="true" signature="85044:85339" ph="SELECT `uid`... loc_log" />
+                <marker date="1502027320420" expanded="true" signature="85754:86113" ph="SELECT `uid`... loc_log" />
+                <marker date="1502027320420" expanded="true" signature="86645:87032" ph="SELECT `uid`... loc_log" />
+                <marker date="1502027320420" expanded="true" signature="87490:87708" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="88642:88737" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="89007:89259" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="89280:89532" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="89720:90023" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="90046:90349" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="91170:91452" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="91471:91784" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="91967:92252" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="92411:92617" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="92896:93049" ph="SELECT `x`, loc_log" />
+                <marker date="1502027320420" expanded="true" signature="93067:93233" ph="SELECT `x`*9... loc_log" />
+                <marker date="1502027320420" expanded="true" signature="94713:94798" ph="SELECT `pres... objects" />
+                <marker date="1502027320420" expanded="true" signature="118651:118925" ph="INSERT INTO `wounds`... " />
+                <marker date="1502027320420" expanded="true" signature="120073:120273" ph="INSERT INTO `combat_events`... " />
+                <marker date="1502027320420" expanded="true" signature="120548:120767" ph="SELECT `even... combat_events" />
+                <marker date="1502027320420" expanded="true" signature="120785:121071" ph="SELECT `even... combat_events" />
+                <marker date="1502027320420" expanded="true" signature="122728:122880" ph="SELECT `uid`... combat_participants" />
+                <marker date="1502027320420" expanded="true" signature="138090:138261" ph="SELECT `comb... combat" />
+                <marker date="1502027320420" expanded="true" signature="138620:138787" ph="SELECT `comb... combat" />
+                <marker date="1502027320420" expanded="true" signature="138937:139118" ph="INSERT INTO `combat_participants`... " />
+                <marker date="1502027320420" expanded="true" signature="139281:139391" ph="INSERT INTO `combat`... " />
+                <marker date="1502027320420" expanded="true" signature="139494:139753" ph="INSERT INTO `combat_participants`... " />
+                <marker date="1502027320420" expanded="true" signature="149354:149630" ph="INSERT INTO `wounds`... " />
+                <marker date="1502027320420" expanded="true" signature="152675:152890" ph="SELECT `obje... combat_participants" />
+                <marker date="1502027320420" expanded="true" signature="152921:153112" ph="SELECT `obje... combat_participants" />
+                <marker date="1502027320420" expanded="true" signature="153410:153620" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="157589:157718" ph="SELECT `obje... objects" />
+                <marker date="1502027320420" expanded="true" signature="157648:157698" ph="SELECT `tool... pool_tools" />
+                <marker date="1502027320420" expanded="true" signature="157967:158036" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="160558:160621" ph="SELECT `uid`... memo" />
+                <marker date="1502027320420" expanded="true" signature="160900:160977" ph="INSERT INTO `memo`... " />
+                <marker date="1502027320420" expanded="true" signature="161109:161171" ph="UPDATE `memo... " />
+                <marker date="1502027320420" expanded="true" signature="161647:161747" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="161995:162095" ph="SELECT `valu... char_rules" />
+                <marker date="1502027320420" expanded="true" signature="162354:162460" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="162636:162759" ph="INSERT INTO `char_rules`... " />
+                <marker date="1502027320420" expanded="true" signature="163213:163394" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="164266:164397" ph="UPDATE `obje... " />
+                <marker date="1502027320420" expanded="true" signature="164811:164946" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="165328:165430" ph="SELECT `uid`... objects" />
+                <marker date="1502027320420" expanded="true" signature="169735:169817" ph="INSERT INTO `char_ap`... " />
+                <marker date="1502027320420" expanded="true" signature="169884:169952" ph="UPDATE `char... " />
+                <marker date="1502027320420" expanded="true" signature="170123:170266" ph="INSERT INTO `requests`... " />
+                <marker date="1502027320420" expanded="true" signature="170284:170444" ph="INSERT INTO `requests`... " />
+                <marker date="1502027320420" expanded="true" signature="170705:170877" ph="UPDATE `requ... " />
+                <marker date="1502027320420" expanded="true" signature="170895:171083" ph="UPDATE `requ... " />
+                <marker date="1502027320420" expanded="true" signature="171252:171407" ph="SELECT `uid`... requests" />
+                <marker date="1502027320420" expanded="true" signature="171605:171699" ph="DELETE FROM " />
+                <marker date="1502027320420" expanded="true" signature="171861:171947" ph="UPDATE `requ... " />
+                <marker date="1502027320420" expanded="true" signature="173313:173542" ph="SELECT `even... e_witness" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="conn.inc.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_private/conn.inc.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rest.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/cron/rest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="38" column="18" lean-forward="false" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+              <folding>
+                <marker date="1501535039094" expanded="true" signature="520:577" ph="SELECT `uid`... chars" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ischanged</find>
+      <find>calculateBod</find>
+      <find>calculatebody</find>
+      <find>cron</find>
+      <find>getage</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/www/cron/rest.php" />
+        <option value="$PROJECT_DIR$/_private/conn.inc.php" />
+        <option value="$PROJECT_DIR$/_private/class_character.inc.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="280" />
+    <option name="y" value="138" />
+    <option name="width" value="1400" />
+    <option name="height" value="830" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="testworld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="testworld" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="testworld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="testworld" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="testworld" type="b2602c69:ProjectViewProjectNode" />
+              <item name="testworld" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="cron" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="SearchEverywhereHistoryKey" value="getage&#9;null&#9;null" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="764ea6fa-ce7c-4e16-b0dc-9f7e5c838e2d" name="Default" comment="" />
+      <created>1501528233769</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1501528233769</updated>
+      <workItem from="1501528235907" duration="946000" />
+      <workItem from="1501530106043" duration="315000" />
+      <workItem from="1501531815840" duration="1098000" />
+      <workItem from="1501676599054" duration="733000" />
+      <workItem from="1502025949523" duration="48000" />
+      <workItem from="1502026052247" duration="276000" />
+      <workItem from="1502027118675" duration="633000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4049000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="280" y="138" width="1400" height="830" extended-state="1" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19725433" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871014" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/_private/class_character.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2499">
+          <caret line="147" column="35" lean-forward="false" selection-start-line="147" selection-start-column="35" selection-end-line="147" selection-end-column="35" />
+          <folding>
+            <marker date="1502027320420" expanded="true" signature="1013:1181" ph="INSERT INTO `chars`... " />
+            <marker date="1502027320420" expanded="true" signature="1495:1703" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="2471:2532" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="3212:3268" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="4668:4746" ph="SELECT `glob... objects" />
+            <marker date="1502027320420" expanded="true" signature="4992:5068" ph="SELECT `loca... objects" />
+            <marker date="1502027320420" expanded="true" signature="5397:5531" ph="INSERT INTO `char_players`... " />
+            <marker date="1502027320420" expanded="true" signature="5772:5898" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="6055:6166" ph="SELECT `role... char_players" />
+            <marker date="1502027320420" expanded="true" signature="6568:6783" ph="SELECT `scen... scenes" />
+            <marker date="1502027320420" expanded="true" signature="7044:7249" ph="SELECT `rowI... scene_chars" />
+            <marker date="1502027320420" expanded="true" signature="9086:9181" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="10102:10184" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="10868:11113" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11134:11379" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11404:11612" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11720:12067" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12088:12434" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12602:12951" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12971:13319" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="14052:14211" ph="SELECT `rowI... charloctime" />
+            <marker date="1502027320420" expanded="true" signature="14589:14966" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="15327:15538" ph="INSERT INTO `loc_log`... " />
+            <marker date="1502027320420" expanded="true" signature="16034:16116" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="16187:16255" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="16413:16494" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="19642:19859" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="21456:21689" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="24036:24253" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="27138:27371" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="30562:30693" ph="SELECT `resF... local_res" />
+            <marker date="1502027320420" expanded="true" signature="31127:31312" ph="INSERT INTO `memorized_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="31327:31382" ph="UPDATE `loca... " />
+            <marker date="1502027320420" expanded="true" signature="31842:31922" ph="INSERT INTO `sub_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="32674:32893" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33264:33347" ph="SELECT `pres... sub_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33826:33886" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34135:34198" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34399:34459" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34608:34671" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34919:35143" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="35419:35650" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36025:36129" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36267:36352" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="36512:36609" ph="SELECT `uid`... loc_naming" />
+            <marker date="1502027320420" expanded="true" signature="37076:37173" ph="UPDATE `loc_... " />
+            <marker date="1502027320420" expanded="true" signature="37259:37369" ph="INSERT INTO `loc_naming`... " />
+            <marker date="1502027320420" expanded="true" signature="37542:37603" ph="SELECT count... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="37864:37948" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="38176:38243" ph="SELECT `gath... res_subtypes" />
+            <marker date="1502027320420" expanded="true" signature="38508:38819" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="39729:40076" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="40419:40493" ph="UPDATE `sub_... " />
+            <marker date="1502027320420" expanded="true" signature="41222:41386" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="41699:41856" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="42172:42252" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="43078:43330" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43351:43603" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43788:44105" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="44128:44445" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45449:45751" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45770:46103" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46334:46662" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46830:47042" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="47334:47563" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="48415:48678" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="48699:48962" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49213:49525" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49548:49860" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50653:50950" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50969:51297" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="51512:51820" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="52005:52228" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="52535:52753" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="53504:53738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="54025:54277" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54298:54550" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54741:55044" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="55067:55370" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="56751:57039" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57058:57377" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57560:57851" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57996:58208" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="58472:58701" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="59504:59738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="60025:60288" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60309:60572" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60795:61098" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="61121:61424" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="62805:63093" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63112:63431" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63614:63916" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="64108:64331" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="65030:65245" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="65397:65468" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="66319:66568" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="66589:66838" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67041:67353" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67376:67688" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68427:68724" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68743:69071" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69286:69580" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69720:69929" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="70176:70251" ph="SELECT sum(`... stomach" />
+            <marker date="1502027320420" expanded="true" signature="72983:73237" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73259:73513" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73716:73913" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="73937:74117" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="74308:74503" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="74528:74708" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="75033:75247" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="75398:75595" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="75615:75795" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="76015:76192" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76213:76394" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76749:76845" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77227:77328" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77622:77715" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="77733:77830" ph="UPDATE `nami... " />
+            <marker date="1502027320420" expanded="true" signature="77916:78028" ph="INSERT INTO `naming`... " />
+            <marker date="1502027320420" expanded="true" signature="78288:78435" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="83711:83879" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85044:85339" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85754:86113" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="86645:87032" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="87490:87708" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="88642:88737" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="89007:89259" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89280:89532" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89720:90023" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="90046:90349" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91170:91452" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91471:91784" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91967:92252" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="92411:92617" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="92896:93049" ph="SELECT `x`, loc_log" />
+            <marker date="1502027320420" expanded="true" signature="93067:93233" ph="SELECT `x`*9... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="94713:94798" ph="SELECT `pres... objects" />
+            <marker date="1502027320420" expanded="true" signature="118651:118925" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="120073:120273" ph="INSERT INTO `combat_events`... " />
+            <marker date="1502027320420" expanded="true" signature="120548:120767" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="120785:121071" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="122728:122880" ph="SELECT `uid`... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="138090:138261" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138620:138787" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138937:139118" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="139281:139391" ph="INSERT INTO `combat`... " />
+            <marker date="1502027320420" expanded="true" signature="139494:139753" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="149354:149630" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="152675:152890" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="152921:153112" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="153410:153620" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="157589:157718" ph="SELECT `obje... objects" />
+            <marker date="1502027320420" expanded="true" signature="157648:157698" ph="SELECT `tool... pool_tools" />
+            <marker date="1502027320420" expanded="true" signature="157967:158036" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="160558:160621" ph="SELECT `uid`... memo" />
+            <marker date="1502027320420" expanded="true" signature="160900:160977" ph="INSERT INTO `memo`... " />
+            <marker date="1502027320420" expanded="true" signature="161109:161171" ph="UPDATE `memo... " />
+            <marker date="1502027320420" expanded="true" signature="161647:161747" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="161995:162095" ph="SELECT `valu... char_rules" />
+            <marker date="1502027320420" expanded="true" signature="162354:162460" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="162636:162759" ph="INSERT INTO `char_rules`... " />
+            <marker date="1502027320420" expanded="true" signature="163213:163394" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164266:164397" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164811:164946" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="165328:165430" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="169735:169817" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="169884:169952" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="170123:170266" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170284:170444" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170705:170877" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="170895:171083" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="171252:171407" ph="SELECT `uid`... requests" />
+            <marker date="1502027320420" expanded="true" signature="171605:171699" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="171861:171947" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="173313:173542" ph="SELECT `even... e_witness" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/cron/rest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="38" column="18" lean-forward="false" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding>
+            <marker date="1501535039094" expanded="true" signature="520:577" ph="SELECT `uid`... chars" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_private/conn.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="46" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_private/class_character.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1502027320420" expanded="true" signature="1013:1181" ph="INSERT INTO `chars`... " />
+            <marker date="1502027320420" expanded="true" signature="1495:1703" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="2471:2532" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="3212:3268" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="4668:4746" ph="SELECT `glob... objects" />
+            <marker date="1502027320420" expanded="true" signature="4992:5068" ph="SELECT `loca... objects" />
+            <marker date="1502027320420" expanded="true" signature="5397:5531" ph="INSERT INTO `char_players`... " />
+            <marker date="1502027320420" expanded="true" signature="5772:5898" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="6055:6166" ph="SELECT `role... char_players" />
+            <marker date="1502027320420" expanded="true" signature="6568:6783" ph="SELECT `scen... scenes" />
+            <marker date="1502027320420" expanded="true" signature="7044:7249" ph="SELECT `rowI... scene_chars" />
+            <marker date="1502027320420" expanded="true" signature="9086:9181" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="10102:10184" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="10868:11113" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11134:11379" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11404:11612" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11720:12067" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12088:12434" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12602:12951" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12971:13319" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="14052:14211" ph="SELECT `rowI... charloctime" />
+            <marker date="1502027320420" expanded="true" signature="14589:14966" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="15327:15538" ph="INSERT INTO `loc_log`... " />
+            <marker date="1502027320420" expanded="true" signature="16034:16116" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="16187:16255" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="16413:16494" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="19642:19859" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="21456:21689" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="24036:24253" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="27138:27371" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="30562:30693" ph="SELECT `resF... local_res" />
+            <marker date="1502027320420" expanded="true" signature="31127:31312" ph="INSERT INTO `memorized_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="31327:31382" ph="UPDATE `loca... " />
+            <marker date="1502027320420" expanded="true" signature="31842:31922" ph="INSERT INTO `sub_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="32674:32893" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33264:33347" ph="SELECT `pres... sub_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33826:33886" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34135:34198" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34399:34459" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34608:34671" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34919:35143" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="35419:35650" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36025:36129" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36267:36352" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="36512:36609" ph="SELECT `uid`... loc_naming" />
+            <marker date="1502027320420" expanded="true" signature="37076:37173" ph="UPDATE `loc_... " />
+            <marker date="1502027320420" expanded="true" signature="37259:37369" ph="INSERT INTO `loc_naming`... " />
+            <marker date="1502027320420" expanded="true" signature="37542:37603" ph="SELECT count... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="37864:37948" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="38176:38243" ph="SELECT `gath... res_subtypes" />
+            <marker date="1502027320420" expanded="true" signature="38508:38819" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="39729:40076" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="40419:40493" ph="UPDATE `sub_... " />
+            <marker date="1502027320420" expanded="true" signature="41222:41386" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="41699:41856" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="42172:42252" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="43078:43330" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43351:43603" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43788:44105" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="44128:44445" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45449:45751" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45770:46103" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46334:46662" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46830:47042" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="47334:47563" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="48415:48678" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="48699:48962" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49213:49525" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49548:49860" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50653:50950" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50969:51297" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="51512:51820" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="52005:52228" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="52535:52753" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="53504:53738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="54025:54277" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54298:54550" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54741:55044" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="55067:55370" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="56751:57039" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57058:57377" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57560:57851" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57996:58208" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="58472:58701" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="59504:59738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="60025:60288" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60309:60572" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60795:61098" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="61121:61424" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="62805:63093" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63112:63431" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63614:63916" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="64108:64331" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="65030:65245" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="65397:65468" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="66319:66568" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="66589:66838" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67041:67353" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67376:67688" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68427:68724" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68743:69071" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69286:69580" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69720:69929" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="70176:70251" ph="SELECT sum(`... stomach" />
+            <marker date="1502027320420" expanded="true" signature="72983:73237" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73259:73513" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73716:73913" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="73937:74117" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="74308:74503" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="74528:74708" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="75033:75247" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="75398:75595" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="75615:75795" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="76015:76192" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76213:76394" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76749:76845" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77227:77328" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77622:77715" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="77733:77830" ph="UPDATE `nami... " />
+            <marker date="1502027320420" expanded="true" signature="77916:78028" ph="INSERT INTO `naming`... " />
+            <marker date="1502027320420" expanded="true" signature="78288:78435" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="83711:83879" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85044:85339" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85754:86113" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="86645:87032" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="87490:87708" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="88642:88737" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="89007:89259" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89280:89532" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89720:90023" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="90046:90349" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91170:91452" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91471:91784" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91967:92252" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="92411:92617" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="92896:93049" ph="SELECT `x`, loc_log" />
+            <marker date="1502027320420" expanded="true" signature="93067:93233" ph="SELECT `x`*9... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="94713:94798" ph="SELECT `pres... objects" />
+            <marker date="1502027320420" expanded="true" signature="118651:118925" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="120073:120273" ph="INSERT INTO `combat_events`... " />
+            <marker date="1502027320420" expanded="true" signature="120548:120767" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="120785:121071" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="122728:122880" ph="SELECT `uid`... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="138090:138261" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138620:138787" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138937:139118" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="139281:139391" ph="INSERT INTO `combat`... " />
+            <marker date="1502027320420" expanded="true" signature="139494:139753" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="149354:149630" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="152675:152890" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="152921:153112" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="153410:153620" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="157589:157718" ph="SELECT `obje... objects" />
+            <marker date="1502027320420" expanded="true" signature="157648:157698" ph="SELECT `tool... pool_tools" />
+            <marker date="1502027320420" expanded="true" signature="157967:158036" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="160558:160621" ph="SELECT `uid`... memo" />
+            <marker date="1502027320420" expanded="true" signature="160900:160977" ph="INSERT INTO `memo`... " />
+            <marker date="1502027320420" expanded="true" signature="161109:161171" ph="UPDATE `memo... " />
+            <marker date="1502027320420" expanded="true" signature="161647:161747" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="161995:162095" ph="SELECT `valu... char_rules" />
+            <marker date="1502027320420" expanded="true" signature="162354:162460" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="162636:162759" ph="INSERT INTO `char_rules`... " />
+            <marker date="1502027320420" expanded="true" signature="163213:163394" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164266:164397" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164811:164946" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="165328:165430" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="169735:169817" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="169884:169952" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="170123:170266" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170284:170444" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170705:170877" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="170895:171083" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="171252:171407" ph="SELECT `uid`... requests" />
+            <marker date="1502027320420" expanded="true" signature="171605:171699" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="171861:171947" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="173313:173542" ph="SELECT `even... e_witness" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/cron/rest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="38" column="18" lean-forward="false" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding>
+            <marker date="1501535039094" expanded="true" signature="520:577" ph="SELECT `uid`... chars" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_private/class_character.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1502027320420" expanded="true" signature="1013:1181" ph="INSERT INTO `chars`... " />
+            <marker date="1502027320420" expanded="true" signature="1495:1703" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="2471:2532" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="3212:3268" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="4668:4746" ph="SELECT `glob... objects" />
+            <marker date="1502027320420" expanded="true" signature="4992:5068" ph="SELECT `loca... objects" />
+            <marker date="1502027320420" expanded="true" signature="5397:5531" ph="INSERT INTO `char_players`... " />
+            <marker date="1502027320420" expanded="true" signature="5772:5898" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="6055:6166" ph="SELECT `role... char_players" />
+            <marker date="1502027320420" expanded="true" signature="6568:6783" ph="SELECT `scen... scenes" />
+            <marker date="1502027320420" expanded="true" signature="7044:7249" ph="SELECT `rowI... scene_chars" />
+            <marker date="1502027320420" expanded="true" signature="9086:9181" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="10102:10184" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="10868:11113" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11134:11379" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11404:11612" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11720:12067" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12088:12434" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12602:12951" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12971:13319" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="14052:14211" ph="SELECT `rowI... charloctime" />
+            <marker date="1502027320420" expanded="true" signature="14589:14966" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="15327:15538" ph="INSERT INTO `loc_log`... " />
+            <marker date="1502027320420" expanded="true" signature="16034:16116" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="16187:16255" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="16413:16494" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="19642:19859" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="21456:21689" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="24036:24253" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="27138:27371" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="30562:30693" ph="SELECT `resF... local_res" />
+            <marker date="1502027320420" expanded="true" signature="31127:31312" ph="INSERT INTO `memorized_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="31327:31382" ph="UPDATE `loca... " />
+            <marker date="1502027320420" expanded="true" signature="31842:31922" ph="INSERT INTO `sub_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="32674:32893" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33264:33347" ph="SELECT `pres... sub_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33826:33886" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34135:34198" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34399:34459" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34608:34671" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34919:35143" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="35419:35650" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36025:36129" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36267:36352" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="36512:36609" ph="SELECT `uid`... loc_naming" />
+            <marker date="1502027320420" expanded="true" signature="37076:37173" ph="UPDATE `loc_... " />
+            <marker date="1502027320420" expanded="true" signature="37259:37369" ph="INSERT INTO `loc_naming`... " />
+            <marker date="1502027320420" expanded="true" signature="37542:37603" ph="SELECT count... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="37864:37948" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="38176:38243" ph="SELECT `gath... res_subtypes" />
+            <marker date="1502027320420" expanded="true" signature="38508:38819" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="39729:40076" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="40419:40493" ph="UPDATE `sub_... " />
+            <marker date="1502027320420" expanded="true" signature="41222:41386" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="41699:41856" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="42172:42252" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="43078:43330" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43351:43603" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43788:44105" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="44128:44445" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45449:45751" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45770:46103" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46334:46662" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46830:47042" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="47334:47563" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="48415:48678" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="48699:48962" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49213:49525" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49548:49860" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50653:50950" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50969:51297" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="51512:51820" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="52005:52228" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="52535:52753" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="53504:53738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="54025:54277" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54298:54550" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54741:55044" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="55067:55370" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="56751:57039" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57058:57377" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57560:57851" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57996:58208" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="58472:58701" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="59504:59738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="60025:60288" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60309:60572" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60795:61098" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="61121:61424" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="62805:63093" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63112:63431" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63614:63916" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="64108:64331" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="65030:65245" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="65397:65468" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="66319:66568" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="66589:66838" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67041:67353" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67376:67688" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68427:68724" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68743:69071" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69286:69580" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69720:69929" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="70176:70251" ph="SELECT sum(`... stomach" />
+            <marker date="1502027320420" expanded="true" signature="72983:73237" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73259:73513" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73716:73913" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="73937:74117" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="74308:74503" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="74528:74708" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="75033:75247" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="75398:75595" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="75615:75795" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="76015:76192" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76213:76394" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76749:76845" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77227:77328" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77622:77715" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="77733:77830" ph="UPDATE `nami... " />
+            <marker date="1502027320420" expanded="true" signature="77916:78028" ph="INSERT INTO `naming`... " />
+            <marker date="1502027320420" expanded="true" signature="78288:78435" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="83711:83879" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85044:85339" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85754:86113" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="86645:87032" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="87490:87708" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="88642:88737" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="89007:89259" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89280:89532" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89720:90023" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="90046:90349" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91170:91452" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91471:91784" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91967:92252" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="92411:92617" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="92896:93049" ph="SELECT `x`, loc_log" />
+            <marker date="1502027320420" expanded="true" signature="93067:93233" ph="SELECT `x`*9... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="94713:94798" ph="SELECT `pres... objects" />
+            <marker date="1502027320420" expanded="true" signature="118651:118925" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="120073:120273" ph="INSERT INTO `combat_events`... " />
+            <marker date="1502027320420" expanded="true" signature="120548:120767" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="120785:121071" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="122728:122880" ph="SELECT `uid`... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="138090:138261" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138620:138787" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138937:139118" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="139281:139391" ph="INSERT INTO `combat`... " />
+            <marker date="1502027320420" expanded="true" signature="139494:139753" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="149354:149630" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="152675:152890" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="152921:153112" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="153410:153620" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="157589:157718" ph="SELECT `obje... objects" />
+            <marker date="1502027320420" expanded="true" signature="157648:157698" ph="SELECT `tool... pool_tools" />
+            <marker date="1502027320420" expanded="true" signature="157967:158036" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="160558:160621" ph="SELECT `uid`... memo" />
+            <marker date="1502027320420" expanded="true" signature="160900:160977" ph="INSERT INTO `memo`... " />
+            <marker date="1502027320420" expanded="true" signature="161109:161171" ph="UPDATE `memo... " />
+            <marker date="1502027320420" expanded="true" signature="161647:161747" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="161995:162095" ph="SELECT `valu... char_rules" />
+            <marker date="1502027320420" expanded="true" signature="162354:162460" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="162636:162759" ph="INSERT INTO `char_rules`... " />
+            <marker date="1502027320420" expanded="true" signature="163213:163394" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164266:164397" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164811:164946" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="165328:165430" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="169735:169817" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="169884:169952" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="170123:170266" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170284:170444" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170705:170877" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="170895:171083" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="171252:171407" ph="SELECT `uid`... requests" />
+            <marker date="1502027320420" expanded="true" signature="171605:171699" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="171861:171947" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="173313:173542" ph="SELECT `even... e_witness" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/cron/rest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="38" column="18" lean-forward="true" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding>
+            <marker date="1501535039094" expanded="true" signature="520:577" ph="SELECT `uid`... chars" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_private/class_character.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1502027320420" expanded="true" signature="1013:1181" ph="INSERT INTO `chars`... " />
+            <marker date="1502027320420" expanded="true" signature="1495:1703" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="2471:2532" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="3212:3268" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="4668:4746" ph="SELECT `glob... objects" />
+            <marker date="1502027320420" expanded="true" signature="4992:5068" ph="SELECT `loca... objects" />
+            <marker date="1502027320420" expanded="true" signature="5397:5531" ph="INSERT INTO `char_players`... " />
+            <marker date="1502027320420" expanded="true" signature="5772:5898" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="6055:6166" ph="SELECT `role... char_players" />
+            <marker date="1502027320420" expanded="true" signature="6568:6783" ph="SELECT `scen... scenes" />
+            <marker date="1502027320420" expanded="true" signature="7044:7249" ph="SELECT `rowI... scene_chars" />
+            <marker date="1502027320420" expanded="true" signature="9086:9181" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="10102:10184" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="10868:11113" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11134:11379" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11404:11612" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11720:12067" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12088:12434" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12602:12951" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12971:13319" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="14052:14211" ph="SELECT `rowI... charloctime" />
+            <marker date="1502027320420" expanded="true" signature="14589:14966" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="15327:15538" ph="INSERT INTO `loc_log`... " />
+            <marker date="1502027320420" expanded="true" signature="16034:16116" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="16187:16255" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="16413:16494" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="19642:19859" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="21456:21689" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="24036:24253" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="27138:27371" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="30562:30693" ph="SELECT `resF... local_res" />
+            <marker date="1502027320420" expanded="true" signature="31127:31312" ph="INSERT INTO `memorized_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="31327:31382" ph="UPDATE `loca... " />
+            <marker date="1502027320420" expanded="true" signature="31842:31922" ph="INSERT INTO `sub_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="32674:32893" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33264:33347" ph="SELECT `pres... sub_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33826:33886" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34135:34198" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34399:34459" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34608:34671" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34919:35143" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="35419:35650" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36025:36129" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36267:36352" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="36512:36609" ph="SELECT `uid`... loc_naming" />
+            <marker date="1502027320420" expanded="true" signature="37076:37173" ph="UPDATE `loc_... " />
+            <marker date="1502027320420" expanded="true" signature="37259:37369" ph="INSERT INTO `loc_naming`... " />
+            <marker date="1502027320420" expanded="true" signature="37542:37603" ph="SELECT count... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="37864:37948" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="38176:38243" ph="SELECT `gath... res_subtypes" />
+            <marker date="1502027320420" expanded="true" signature="38508:38819" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="39729:40076" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="40419:40493" ph="UPDATE `sub_... " />
+            <marker date="1502027320420" expanded="true" signature="41222:41386" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="41699:41856" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="42172:42252" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="43078:43330" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43351:43603" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43788:44105" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="44128:44445" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45449:45751" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45770:46103" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46334:46662" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46830:47042" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="47334:47563" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="48415:48678" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="48699:48962" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49213:49525" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49548:49860" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50653:50950" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50969:51297" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="51512:51820" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="52005:52228" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="52535:52753" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="53504:53738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="54025:54277" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54298:54550" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54741:55044" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="55067:55370" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="56751:57039" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57058:57377" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57560:57851" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57996:58208" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="58472:58701" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="59504:59738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="60025:60288" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60309:60572" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60795:61098" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="61121:61424" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="62805:63093" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63112:63431" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63614:63916" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="64108:64331" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="65030:65245" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="65397:65468" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="66319:66568" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="66589:66838" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67041:67353" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67376:67688" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68427:68724" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68743:69071" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69286:69580" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69720:69929" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="70176:70251" ph="SELECT sum(`... stomach" />
+            <marker date="1502027320420" expanded="true" signature="72983:73237" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73259:73513" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73716:73913" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="73937:74117" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="74308:74503" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="74528:74708" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="75033:75247" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="75398:75595" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="75615:75795" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="76015:76192" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76213:76394" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76749:76845" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77227:77328" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77622:77715" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="77733:77830" ph="UPDATE `nami... " />
+            <marker date="1502027320420" expanded="true" signature="77916:78028" ph="INSERT INTO `naming`... " />
+            <marker date="1502027320420" expanded="true" signature="78288:78435" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="83711:83879" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85044:85339" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85754:86113" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="86645:87032" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="87490:87708" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="88642:88737" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="89007:89259" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89280:89532" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89720:90023" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="90046:90349" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91170:91452" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91471:91784" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91967:92252" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="92411:92617" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="92896:93049" ph="SELECT `x`, loc_log" />
+            <marker date="1502027320420" expanded="true" signature="93067:93233" ph="SELECT `x`*9... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="94713:94798" ph="SELECT `pres... objects" />
+            <marker date="1502027320420" expanded="true" signature="118651:118925" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="120073:120273" ph="INSERT INTO `combat_events`... " />
+            <marker date="1502027320420" expanded="true" signature="120548:120767" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="120785:121071" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="122728:122880" ph="SELECT `uid`... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="138090:138261" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138620:138787" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138937:139118" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="139281:139391" ph="INSERT INTO `combat`... " />
+            <marker date="1502027320420" expanded="true" signature="139494:139753" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="149354:149630" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="152675:152890" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="152921:153112" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="153410:153620" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="157589:157718" ph="SELECT `obje... objects" />
+            <marker date="1502027320420" expanded="true" signature="157648:157698" ph="SELECT `tool... pool_tools" />
+            <marker date="1502027320420" expanded="true" signature="157967:158036" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="160558:160621" ph="SELECT `uid`... memo" />
+            <marker date="1502027320420" expanded="true" signature="160900:160977" ph="INSERT INTO `memo`... " />
+            <marker date="1502027320420" expanded="true" signature="161109:161171" ph="UPDATE `memo... " />
+            <marker date="1502027320420" expanded="true" signature="161647:161747" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="161995:162095" ph="SELECT `valu... char_rules" />
+            <marker date="1502027320420" expanded="true" signature="162354:162460" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="162636:162759" ph="INSERT INTO `char_rules`... " />
+            <marker date="1502027320420" expanded="true" signature="163213:163394" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164266:164397" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164811:164946" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="165328:165430" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="169735:169817" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="169884:169952" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="170123:170266" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170284:170444" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170705:170877" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="170895:171083" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="171252:171407" ph="SELECT `uid`... requests" />
+            <marker date="1502027320420" expanded="true" signature="171605:171699" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="171861:171947" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="173313:173542" ph="SELECT `even... e_witness" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/cron/rest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="38" column="18" lean-forward="true" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding>
+            <marker date="1501535039094" expanded="true" signature="520:577" ph="SELECT `uid`... chars" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_private/class_character.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1502027320420" expanded="true" signature="1013:1181" ph="INSERT INTO `chars`... " />
+            <marker date="1502027320420" expanded="true" signature="1495:1703" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="2471:2532" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="3212:3268" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="4668:4746" ph="SELECT `glob... objects" />
+            <marker date="1502027320420" expanded="true" signature="4992:5068" ph="SELECT `loca... objects" />
+            <marker date="1502027320420" expanded="true" signature="5397:5531" ph="INSERT INTO `char_players`... " />
+            <marker date="1502027320420" expanded="true" signature="5772:5898" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="6055:6166" ph="SELECT `role... char_players" />
+            <marker date="1502027320420" expanded="true" signature="6568:6783" ph="SELECT `scen... scenes" />
+            <marker date="1502027320420" expanded="true" signature="7044:7249" ph="SELECT `rowI... scene_chars" />
+            <marker date="1502027320420" expanded="true" signature="9086:9181" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="10102:10184" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="10868:11113" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11134:11379" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11404:11612" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11720:12067" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12088:12434" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12602:12951" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12971:13319" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="14052:14211" ph="SELECT `rowI... charloctime" />
+            <marker date="1502027320420" expanded="true" signature="14589:14966" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="15327:15538" ph="INSERT INTO `loc_log`... " />
+            <marker date="1502027320420" expanded="true" signature="16034:16116" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="16187:16255" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="16413:16494" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="19642:19859" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="21456:21689" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="24036:24253" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="27138:27371" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="30562:30693" ph="SELECT `resF... local_res" />
+            <marker date="1502027320420" expanded="true" signature="31127:31312" ph="INSERT INTO `memorized_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="31327:31382" ph="UPDATE `loca... " />
+            <marker date="1502027320420" expanded="true" signature="31842:31922" ph="INSERT INTO `sub_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="32674:32893" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33264:33347" ph="SELECT `pres... sub_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33826:33886" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34135:34198" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34399:34459" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34608:34671" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34919:35143" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="35419:35650" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36025:36129" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36267:36352" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="36512:36609" ph="SELECT `uid`... loc_naming" />
+            <marker date="1502027320420" expanded="true" signature="37076:37173" ph="UPDATE `loc_... " />
+            <marker date="1502027320420" expanded="true" signature="37259:37369" ph="INSERT INTO `loc_naming`... " />
+            <marker date="1502027320420" expanded="true" signature="37542:37603" ph="SELECT count... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="37864:37948" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="38176:38243" ph="SELECT `gath... res_subtypes" />
+            <marker date="1502027320420" expanded="true" signature="38508:38819" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="39729:40076" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="40419:40493" ph="UPDATE `sub_... " />
+            <marker date="1502027320420" expanded="true" signature="41222:41386" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="41699:41856" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="42172:42252" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="43078:43330" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43351:43603" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43788:44105" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="44128:44445" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45449:45751" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45770:46103" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46334:46662" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46830:47042" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="47334:47563" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="48415:48678" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="48699:48962" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49213:49525" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49548:49860" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50653:50950" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50969:51297" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="51512:51820" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="52005:52228" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="52535:52753" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="53504:53738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="54025:54277" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54298:54550" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54741:55044" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="55067:55370" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="56751:57039" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57058:57377" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57560:57851" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57996:58208" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="58472:58701" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="59504:59738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="60025:60288" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60309:60572" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60795:61098" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="61121:61424" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="62805:63093" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63112:63431" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63614:63916" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="64108:64331" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="65030:65245" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="65397:65468" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="66319:66568" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="66589:66838" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67041:67353" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67376:67688" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68427:68724" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68743:69071" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69286:69580" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69720:69929" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="70176:70251" ph="SELECT sum(`... stomach" />
+            <marker date="1502027320420" expanded="true" signature="72983:73237" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73259:73513" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73716:73913" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="73937:74117" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="74308:74503" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="74528:74708" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="75033:75247" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="75398:75595" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="75615:75795" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="76015:76192" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76213:76394" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76749:76845" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77227:77328" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77622:77715" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="77733:77830" ph="UPDATE `nami... " />
+            <marker date="1502027320420" expanded="true" signature="77916:78028" ph="INSERT INTO `naming`... " />
+            <marker date="1502027320420" expanded="true" signature="78288:78435" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="83711:83879" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85044:85339" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85754:86113" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="86645:87032" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="87490:87708" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="88642:88737" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="89007:89259" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89280:89532" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89720:90023" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="90046:90349" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91170:91452" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91471:91784" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91967:92252" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="92411:92617" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="92896:93049" ph="SELECT `x`, loc_log" />
+            <marker date="1502027320420" expanded="true" signature="93067:93233" ph="SELECT `x`*9... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="94713:94798" ph="SELECT `pres... objects" />
+            <marker date="1502027320420" expanded="true" signature="118651:118925" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="120073:120273" ph="INSERT INTO `combat_events`... " />
+            <marker date="1502027320420" expanded="true" signature="120548:120767" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="120785:121071" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="122728:122880" ph="SELECT `uid`... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="138090:138261" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138620:138787" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138937:139118" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="139281:139391" ph="INSERT INTO `combat`... " />
+            <marker date="1502027320420" expanded="true" signature="139494:139753" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="149354:149630" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="152675:152890" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="152921:153112" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="153410:153620" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="157589:157718" ph="SELECT `obje... objects" />
+            <marker date="1502027320420" expanded="true" signature="157648:157698" ph="SELECT `tool... pool_tools" />
+            <marker date="1502027320420" expanded="true" signature="157967:158036" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="160558:160621" ph="SELECT `uid`... memo" />
+            <marker date="1502027320420" expanded="true" signature="160900:160977" ph="INSERT INTO `memo`... " />
+            <marker date="1502027320420" expanded="true" signature="161109:161171" ph="UPDATE `memo... " />
+            <marker date="1502027320420" expanded="true" signature="161647:161747" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="161995:162095" ph="SELECT `valu... char_rules" />
+            <marker date="1502027320420" expanded="true" signature="162354:162460" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="162636:162759" ph="INSERT INTO `char_rules`... " />
+            <marker date="1502027320420" expanded="true" signature="163213:163394" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164266:164397" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164811:164946" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="165328:165430" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="169735:169817" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="169884:169952" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="170123:170266" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170284:170444" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170705:170877" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="170895:171083" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="171252:171407" ph="SELECT `uid`... requests" />
+            <marker date="1502027320420" expanded="true" signature="171605:171699" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="171861:171947" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="173313:173542" ph="SELECT `even... e_witness" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/cron/rest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1501535039094" expanded="true" signature="520:577" ph="SELECT `uid`... chars" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_private/class_character.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1502027320420" expanded="true" signature="1013:1181" ph="INSERT INTO `chars`... " />
+            <marker date="1502027320420" expanded="true" signature="1495:1703" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="2471:2532" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="3212:3268" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="4668:4746" ph="SELECT `glob... objects" />
+            <marker date="1502027320420" expanded="true" signature="4992:5068" ph="SELECT `loca... objects" />
+            <marker date="1502027320420" expanded="true" signature="5397:5531" ph="INSERT INTO `char_players`... " />
+            <marker date="1502027320420" expanded="true" signature="5772:5898" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="6055:6166" ph="SELECT `role... char_players" />
+            <marker date="1502027320420" expanded="true" signature="6568:6783" ph="SELECT `scen... scenes" />
+            <marker date="1502027320420" expanded="true" signature="7044:7249" ph="SELECT `rowI... scene_chars" />
+            <marker date="1502027320420" expanded="true" signature="9086:9181" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="10102:10184" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="10868:11113" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11134:11379" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11404:11612" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11720:12067" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12088:12434" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12602:12951" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12971:13319" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="14052:14211" ph="SELECT `rowI... charloctime" />
+            <marker date="1502027320420" expanded="true" signature="14589:14966" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="15327:15538" ph="INSERT INTO `loc_log`... " />
+            <marker date="1502027320420" expanded="true" signature="16034:16116" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="16187:16255" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="16413:16494" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="19642:19859" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="21456:21689" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="24036:24253" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="27138:27371" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="30562:30693" ph="SELECT `resF... local_res" />
+            <marker date="1502027320420" expanded="true" signature="31127:31312" ph="INSERT INTO `memorized_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="31327:31382" ph="UPDATE `loca... " />
+            <marker date="1502027320420" expanded="true" signature="31842:31922" ph="INSERT INTO `sub_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="32674:32893" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33264:33347" ph="SELECT `pres... sub_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33826:33886" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34135:34198" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34399:34459" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34608:34671" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34919:35143" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="35419:35650" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36025:36129" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36267:36352" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="36512:36609" ph="SELECT `uid`... loc_naming" />
+            <marker date="1502027320420" expanded="true" signature="37076:37173" ph="UPDATE `loc_... " />
+            <marker date="1502027320420" expanded="true" signature="37259:37369" ph="INSERT INTO `loc_naming`... " />
+            <marker date="1502027320420" expanded="true" signature="37542:37603" ph="SELECT count... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="37864:37948" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="38176:38243" ph="SELECT `gath... res_subtypes" />
+            <marker date="1502027320420" expanded="true" signature="38508:38819" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="39729:40076" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="40419:40493" ph="UPDATE `sub_... " />
+            <marker date="1502027320420" expanded="true" signature="41222:41386" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="41699:41856" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="42172:42252" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="43078:43330" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43351:43603" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43788:44105" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="44128:44445" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45449:45751" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45770:46103" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46334:46662" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46830:47042" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="47334:47563" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="48415:48678" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="48699:48962" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49213:49525" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49548:49860" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50653:50950" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50969:51297" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="51512:51820" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="52005:52228" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="52535:52753" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="53504:53738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="54025:54277" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54298:54550" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54741:55044" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="55067:55370" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="56751:57039" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57058:57377" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57560:57851" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57996:58208" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="58472:58701" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="59504:59738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="60025:60288" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60309:60572" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60795:61098" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="61121:61424" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="62805:63093" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63112:63431" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63614:63916" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="64108:64331" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="65030:65245" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="65397:65468" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="66319:66568" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="66589:66838" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67041:67353" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67376:67688" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68427:68724" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68743:69071" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69286:69580" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69720:69929" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="70176:70251" ph="SELECT sum(`... stomach" />
+            <marker date="1502027320420" expanded="true" signature="72983:73237" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73259:73513" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73716:73913" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="73937:74117" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="74308:74503" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="74528:74708" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="75033:75247" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="75398:75595" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="75615:75795" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="76015:76192" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76213:76394" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76749:76845" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77227:77328" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77622:77715" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="77733:77830" ph="UPDATE `nami... " />
+            <marker date="1502027320420" expanded="true" signature="77916:78028" ph="INSERT INTO `naming`... " />
+            <marker date="1502027320420" expanded="true" signature="78288:78435" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="83711:83879" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85044:85339" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85754:86113" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="86645:87032" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="87490:87708" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="88642:88737" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="89007:89259" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89280:89532" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89720:90023" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="90046:90349" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91170:91452" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91471:91784" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91967:92252" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="92411:92617" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="92896:93049" ph="SELECT `x`, loc_log" />
+            <marker date="1502027320420" expanded="true" signature="93067:93233" ph="SELECT `x`*9... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="94713:94798" ph="SELECT `pres... objects" />
+            <marker date="1502027320420" expanded="true" signature="118651:118925" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="120073:120273" ph="INSERT INTO `combat_events`... " />
+            <marker date="1502027320420" expanded="true" signature="120548:120767" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="120785:121071" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="122728:122880" ph="SELECT `uid`... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="138090:138261" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138620:138787" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138937:139118" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="139281:139391" ph="INSERT INTO `combat`... " />
+            <marker date="1502027320420" expanded="true" signature="139494:139753" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="149354:149630" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="152675:152890" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="152921:153112" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="153410:153620" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="157589:157718" ph="SELECT `obje... objects" />
+            <marker date="1502027320420" expanded="true" signature="157648:157698" ph="SELECT `tool... pool_tools" />
+            <marker date="1502027320420" expanded="true" signature="157967:158036" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="160558:160621" ph="SELECT `uid`... memo" />
+            <marker date="1502027320420" expanded="true" signature="160900:160977" ph="INSERT INTO `memo`... " />
+            <marker date="1502027320420" expanded="true" signature="161109:161171" ph="UPDATE `memo... " />
+            <marker date="1502027320420" expanded="true" signature="161647:161747" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="161995:162095" ph="SELECT `valu... char_rules" />
+            <marker date="1502027320420" expanded="true" signature="162354:162460" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="162636:162759" ph="INSERT INTO `char_rules`... " />
+            <marker date="1502027320420" expanded="true" signature="163213:163394" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164266:164397" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164811:164946" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="165328:165430" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="169735:169817" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="169884:169952" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="170123:170266" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170284:170444" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170705:170877" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="170895:171083" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="171252:171407" ph="SELECT `uid`... requests" />
+            <marker date="1502027320420" expanded="true" signature="171605:171699" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="171861:171947" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="173313:173542" ph="SELECT `even... e_witness" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_private/class_combat.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/cron/rest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="38" column="18" lean-forward="false" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding>
+            <marker date="1501535039094" expanded="true" signature="520:577" ph="SELECT `uid`... chars" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_private/conn.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_private/class_character.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="145" column="42" lean-forward="true" selection-start-line="145" selection-start-column="42" selection-end-line="145" selection-end-column="42" />
+          <folding>
+            <marker date="1502027320420" expanded="true" signature="1013:1181" ph="INSERT INTO `chars`... " />
+            <marker date="1502027320420" expanded="true" signature="1495:1703" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="2471:2532" ph="SELECT `obje... chars" />
+            <marker date="1502027320420" expanded="true" signature="3212:3268" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="4668:4746" ph="SELECT `glob... objects" />
+            <marker date="1502027320420" expanded="true" signature="4992:5068" ph="SELECT `loca... objects" />
+            <marker date="1502027320420" expanded="true" signature="5397:5531" ph="INSERT INTO `char_players`... " />
+            <marker date="1502027320420" expanded="true" signature="5772:5898" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="6055:6166" ph="SELECT `role... char_players" />
+            <marker date="1502027320420" expanded="true" signature="6568:6783" ph="SELECT `scen... scenes" />
+            <marker date="1502027320420" expanded="true" signature="7044:7249" ph="SELECT `rowI... scene_chars" />
+            <marker date="1502027320420" expanded="true" signature="9086:9181" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="10102:10184" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="10868:11113" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11134:11379" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11404:11612" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="11720:12067" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12088:12434" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12602:12951" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="12971:13319" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="14052:14211" ph="SELECT `rowI... charloctime" />
+            <marker date="1502027320420" expanded="true" signature="14589:14966" ph="INSERT INTO `charloctime`... " />
+            <marker date="1502027320420" expanded="true" signature="15327:15538" ph="INSERT INTO `loc_log`... " />
+            <marker date="1502027320420" expanded="true" signature="16034:16116" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="16187:16255" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="16413:16494" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="19642:19859" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="21456:21689" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="24036:24253" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="27138:27371" ph="SELECT `loca... local_res" />
+            <marker date="1502027320420" expanded="true" signature="30562:30693" ph="SELECT `resF... local_res" />
+            <marker date="1502027320420" expanded="true" signature="31127:31312" ph="INSERT INTO `memorized_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="31327:31382" ph="UPDATE `loca... " />
+            <marker date="1502027320420" expanded="true" signature="31842:31922" ph="INSERT INTO `sub_deposits`... " />
+            <marker date="1502027320420" expanded="true" signature="32674:32893" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33264:33347" ph="SELECT `pres... sub_deposits" />
+            <marker date="1502027320420" expanded="true" signature="33826:33886" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34135:34198" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34399:34459" ph="SELECT `ap` char_ap" />
+            <marker date="1502027320420" expanded="true" signature="34608:34671" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="34919:35143" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="35419:35650" ph="SELECT `name... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36025:36129" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="36267:36352" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="36512:36609" ph="SELECT `uid`... loc_naming" />
+            <marker date="1502027320420" expanded="true" signature="37076:37173" ph="UPDATE `loc_... " />
+            <marker date="1502027320420" expanded="true" signature="37259:37369" ph="INSERT INTO `loc_naming`... " />
+            <marker date="1502027320420" expanded="true" signature="37542:37603" ph="SELECT count... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="37864:37948" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="38176:38243" ph="SELECT `gath... res_subtypes" />
+            <marker date="1502027320420" expanded="true" signature="38508:38819" ph="SELECT `resF... memorized_deposits" />
+            <marker date="1502027320420" expanded="true" signature="39729:40076" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="40419:40493" ph="UPDATE `sub_... " />
+            <marker date="1502027320420" expanded="true" signature="41222:41386" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="41699:41856" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="42172:42252" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="43078:43330" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43351:43603" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="43788:44105" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="44128:44445" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45449:45751" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="45770:46103" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46334:46662" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="46830:47042" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="47334:47563" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="48415:48678" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="48699:48962" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49213:49525" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="49548:49860" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50653:50950" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="50969:51297" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="51512:51820" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="52005:52228" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="52535:52753" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="53504:53738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="54025:54277" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54298:54550" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="54741:55044" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="55067:55370" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="56751:57039" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57058:57377" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57560:57851" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="57996:58208" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="58472:58701" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="59504:59738" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="60025:60288" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60309:60572" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="60795:61098" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="61121:61424" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="62805:63093" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63112:63431" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="63614:63916" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="64108:64331" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="65030:65245" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="65397:65468" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="66319:66568" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="66589:66838" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67041:67353" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="67376:67688" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68427:68724" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="68743:69071" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69286:69580" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="69720:69929" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="70176:70251" ph="SELECT sum(`... stomach" />
+            <marker date="1502027320420" expanded="true" signature="72983:73237" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73259:73513" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="73716:73913" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="73937:74117" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="74308:74503" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="74528:74708" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="75033:75247" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="75398:75595" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="75615:75795" ph="UPDATE `stom... " />
+            <marker date="1502027320420" expanded="true" signature="76015:76192" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76213:76394" ph="INSERT INTO `stomach`... " />
+            <marker date="1502027320420" expanded="true" signature="76749:76845" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77227:77328" ph="SELECT `nami... naming" />
+            <marker date="1502027320420" expanded="true" signature="77622:77715" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="77733:77830" ph="UPDATE `nami... " />
+            <marker date="1502027320420" expanded="true" signature="77916:78028" ph="INSERT INTO `naming`... " />
+            <marker date="1502027320420" expanded="true" signature="78288:78435" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="83711:83879" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85044:85339" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="85754:86113" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="86645:87032" ph="SELECT `uid`... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="87490:87708" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="88642:88737" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="89007:89259" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89280:89532" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="89720:90023" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="90046:90349" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91170:91452" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91471:91784" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="91967:92252" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="92411:92617" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="92896:93049" ph="SELECT `x`, loc_log" />
+            <marker date="1502027320420" expanded="true" signature="93067:93233" ph="SELECT `x`*9... loc_log" />
+            <marker date="1502027320420" expanded="true" signature="94713:94798" ph="SELECT `pres... objects" />
+            <marker date="1502027320420" expanded="true" signature="118651:118925" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="120073:120273" ph="INSERT INTO `combat_events`... " />
+            <marker date="1502027320420" expanded="true" signature="120548:120767" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="120785:121071" ph="SELECT `even... combat_events" />
+            <marker date="1502027320420" expanded="true" signature="122728:122880" ph="SELECT `uid`... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="138090:138261" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138620:138787" ph="SELECT `comb... combat" />
+            <marker date="1502027320420" expanded="true" signature="138937:139118" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="139281:139391" ph="INSERT INTO `combat`... " />
+            <marker date="1502027320420" expanded="true" signature="139494:139753" ph="INSERT INTO `combat_participants`... " />
+            <marker date="1502027320420" expanded="true" signature="149354:149630" ph="INSERT INTO `wounds`... " />
+            <marker date="1502027320420" expanded="true" signature="152675:152890" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="152921:153112" ph="SELECT `obje... combat_participants" />
+            <marker date="1502027320420" expanded="true" signature="153410:153620" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="157589:157718" ph="SELECT `obje... objects" />
+            <marker date="1502027320420" expanded="true" signature="157648:157698" ph="SELECT `tool... pool_tools" />
+            <marker date="1502027320420" expanded="true" signature="157967:158036" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="160558:160621" ph="SELECT `uid`... memo" />
+            <marker date="1502027320420" expanded="true" signature="160900:160977" ph="INSERT INTO `memo`... " />
+            <marker date="1502027320420" expanded="true" signature="161109:161171" ph="UPDATE `memo... " />
+            <marker date="1502027320420" expanded="true" signature="161647:161747" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="161995:162095" ph="SELECT `valu... char_rules" />
+            <marker date="1502027320420" expanded="true" signature="162354:162460" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="162636:162759" ph="INSERT INTO `char_rules`... " />
+            <marker date="1502027320420" expanded="true" signature="163213:163394" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164266:164397" ph="UPDATE `obje... " />
+            <marker date="1502027320420" expanded="true" signature="164811:164946" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="165328:165430" ph="SELECT `uid`... objects" />
+            <marker date="1502027320420" expanded="true" signature="169735:169817" ph="INSERT INTO `char_ap`... " />
+            <marker date="1502027320420" expanded="true" signature="169884:169952" ph="UPDATE `char... " />
+            <marker date="1502027320420" expanded="true" signature="170123:170266" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170284:170444" ph="INSERT INTO `requests`... " />
+            <marker date="1502027320420" expanded="true" signature="170705:170877" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="170895:171083" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="171252:171407" ph="SELECT `uid`... requests" />
+            <marker date="1502027320420" expanded="true" signature="171605:171699" ph="DELETE FROM " />
+            <marker date="1502027320420" expanded="true" signature="171861:171947" ph="UPDATE `requ... " />
+            <marker date="1502027320420" expanded="true" signature="173313:173542" ph="SELECT `even... e_witness" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
