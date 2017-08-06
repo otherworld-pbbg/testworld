@@ -112,7 +112,7 @@ else {
 		para("Age: ".$ageArr[0]." years, ".$ageArr[1]." months");
 		para ($curChar->getAgeSex());
 		echo "</div>\n<div class='icon_header'>\n";
-		$blood_per = $bodyObj->getBloodPercentage($curChar->uid);
+		$blood_per = $bodyObj->getBloodPercentage();
 		if ($blood_per<80) ptag("img", "", "src='". getGameRoot() . "/graphics/icon_wounded.png' alt='seriously wounded'");
 		else if ($blood_per<95) ptag("img", "", "src='". getGameRoot() . "/graphics/icon_so-so.png' alt='somewhat wounded'");
 		else ptag("img", "", "src='". getGameRoot() . "/graphics/icon_healthy.png' alt='healthy'");

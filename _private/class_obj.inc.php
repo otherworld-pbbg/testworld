@@ -945,7 +945,7 @@ class Obj
 		else return -2;
 	}
 	
-	function getBloodPercentage($observer_id=0) {
+	function getBloodPercentage() {
 		$max = round($this->weight/10);
 		$curBlood = $this->calculateBlood();
 		

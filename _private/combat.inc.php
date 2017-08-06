@@ -58,7 +58,7 @@ else {
 					$bodyObj = new Obj($mysqli, $body_id);
 					$bodyObj->getBasicData();
 					
-					$blood_per = $bodyObj->getBloodPercentage($curChar->uid);
+					$blood_per = $bodyObj->getBloodPercentage();
 					echo "<p>";
 					if ($blood_per<80) ptag("img", "", "src='". getGameRoot() . "/graphics/icon_wounded.png' alt='seriously wounded' class='inline'");
 					else if ($blood_per<95) ptag("img", "", "src='". getGameRoot() . "/graphics/icon_so-so.png' alt='somewhat wounded' class='inline'");

@@ -4302,7 +4302,7 @@ else if ($x>=95&&$x<100&&$y>=225&&$y<235) {
 		$local = new LocalMap($this->mysqli, $pos->x, $pos->y);
 		$weather = $curTime->getWeather($pos->x, $pos->y, $dbonly);
 		$bodyObj = new Obj($this->mysqli, $this->bodyId);
-		$blood_per = $bodyObj->getBloodPercentage($this->uid);
+		$blood_per = $bodyObj->getBloodPercentage();
 		
 		//-10 if you don't have a bed
 		$beds = $local->checkBed($pos->lx, $pos->ly);
