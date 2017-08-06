@@ -846,7 +846,7 @@ class Obj
 	
 	//-Combat/health---------------------------------------------------------------------------------------------------------
 	
-	function calculateBlood($observerid=0) {
+	function calculateBlood() {
 		$curBlood = $this->getAttribute(ATTR_BLOOD);
 		if (!$curBlood) {
 			$newVal = round($this->weight/10);

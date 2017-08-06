@@ -137,7 +137,7 @@ class Character {
 			$weight = 60000;
 		}
 		$resArr = array ("preset" => $preset, "weight" => $weight);
-		return resArr;
+		return $resArr;
 	}
 	
 	public function advanceAge(){
@@ -153,8 +153,10 @@ class Character {
 			$bo->changeType($calcArr->preset, $bo->secondary, $bo->type);
 			$isChanged=true;
 		}
-		$bo->calculateBlood(); //Update blood count to match weight
-		
+
+        $newBlood = ($calcArr->weight*.1) * $bo->getBloodPercentage()/100;
+		$bo->setAttribute(ATTR_BLOOD, $newBlood);
+
 		return $isChanged;
 	}
 	
@@ -3906,7 +3908,7 @@ else if ($x>=95&&$x<100&&$y>=225&&$y<235) {
 		$enemy_o = new Obj($this->mysqli, $enemy);
 		$enemy_o->getName();
 		
-		$blood_left2 = $mybody->calculateBlood($this->uid);
+		$blood_left2 = $mybody->calculateBlood();
 		if ($blood_left2<=$mybody->weight*0.06) {
 			$this->recordCombatEvent($combat, "#VICTIM is unconscious, unable to defend against the attacker.", $enemy_o->uid, $this->bodyId, 2);
 			$mybody->setAttribute(61, 1);
@@ -3926,7 +3928,7 @@ else if ($x>=95&&$x<100&&$y>=225&&$y<235) {
 		$bleed1 = $enemy_o->sumWounds($this->uid);
 		if ($bleed1>0) $enemy_o->bleed($bleed1, $this->uid);
 		
-		$blood_left1 = $enemy_o->calculateBlood($this->uid);
+		$blood_left1 = $enemy_o->calculateBlood();
 		
 		
 		if ($blood_left1<=$enemy_o->weight*0.051) {
@@ -3959,7 +3961,7 @@ else if ($x>=95&&$x<100&&$y>=225&&$y<235) {
 		
 		$bleed2 = $mybody->sumWounds($this->uid);
 		if ($bleed2>0) $mybody->bleed($bleed2, $this->uid);
-		$blood_left2 = $mybody->calculateBlood($this->uid);
+		$blood_left2 = $mybody->calculateBlood();
 		if ($blood_left2<=$mybody->weight*0.051) {
 			$this->recordCombatEvent($combat, "#VICTIM dies from ".$this->getPronoun()." injuries.", $enemy_o->uid, $this->bodyId, 2);
 			$mybody->leaveCombat($this->uid);
