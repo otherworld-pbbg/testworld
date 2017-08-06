@@ -183,9 +183,8 @@ class FieldArea
 				$addStr .= "`uid`='". $square["uid"] . "'";
 				$count++;
 			}
-			$sql = "DELETE FROM `field_contents` WHERE $addStr LIMIT $count";
-			$this->mysqli->query($sql);
-			if ($this->mysqli->affected_rows==0) {
+			$r=queryDelete($this->mysqli, "field_contents", $addStr, "`uid`", $count);
+			if ($r==0) {
 				$count = 0;
 				$success = false;
 			}

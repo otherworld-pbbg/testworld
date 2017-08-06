@@ -1559,10 +1559,8 @@ class NPCgroup
 				else return 1;
 			}
 			else {
-				$sql2 = "DELETE FROM `objects` WHERE `uid`=$item AND `parent`=$this->uid AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
-				
-				$this->mysqli->query($sql2);
-				if ($this->mysqli->affected_rows==0) return -2;//duplication bug
+				$r=queryDelete($this->mysqli, "objects", "`uid`=$item AND `parent`=$this->uid AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "'))", "`uid`", 1);
+				if ($r==0) return -2;//duplication bug
 				else return 1;
 			}
 		}

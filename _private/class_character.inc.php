@@ -5,7 +5,7 @@ include_once("local_map.inc.php");
 include_once("class_resource.inc.php");
 include_once("class_obj.inc.php");
 include_once("class_animal_type.inc.php");
-include_once("generic.inc.php");//abetween function
+include_once("generic.inc.php");//abetween function, queryDelete
 include_once("class_group.inc.php");                                                                                               
 include_once("class_resource_string.inc.php");
 include_once("class_position.inc.php");
@@ -141,20 +141,20 @@ class Character {
 	}
 	
 	public function advanceAge(){
-		$curAge = getAge();
-		$bo = new Obj($mysqli, $bodyID);
-		$calcArr = calculateBody($curAge);
+		$curAge = $this->getAge();
+		$bo = new Obj($this->mysqli, $this->bodyId);
+		$calcArr = $this->calculateBody($curAge);
 		$isChanged=false;
-		if($bo->weight != $calcArr->weight){ 
-			$bo->changeSize($calcArr->weight-$bo->weight,0);
+		if($bo->weight != $calcArr["weight"]){ 
+			$bo->changeSize($calcArr["weight"]-$bo->weight,0);
 			$isChanged=true;
 		}
-		if($bo->preset != $calcArr->preset){
-			$bo->changeType($calcArr->preset, $bo->secondary, $bo->type);
+		if($bo->preset != $calcArr["preset"]){
+			$bo->changeType($calcArr["preset"], $bo->secondary, $bo->type);
 			$isChanged=true;
 		}
 
-        $newBlood = ($calcArr->weight*.1) * $bo->getBloodPercentage()/100;
+        $newBlood = ($calcArr["weight"]*0.1) * $bo->getBloodPercentage()/100;
 		$bo->setAttribute(ATTR_BLOOD, $newBlood);
 
 		return $isChanged;
@@ -1062,12 +1062,9 @@ class Character {
 			$row = mysqli_fetch_row($res);
 		}
 		else return -1;
-		$sql = "DELETE FROM `memorized_deposits` WHERE `uid`='$uid' AND `charFK`='$this->uid' LIMIT 1";
-		$this->mysqli->query($sql);
-		if ($this->mysqli->affected_rows==0) return -1;
-		else {
-			return 1;
-		}
+		$r = queryDelete($this->mysqli, "memorized_deposits", "`uid`='$uid' AND `charFK`='$this->uid'", "`uid`", 1);
+		if ($r==0) return -1;
+		else return 1;
 	}
 	
 	function getLocationName($x, $y) {
@@ -1112,9 +1109,8 @@ class Character {
 		}
 		else return 0;
 		//to do: This should return the resources to the pool
-		$sql2 = "DELETE FROM `memorized_deposits` WHERE `charFK`=$this->uid ORDER BY `uid` ASC LIMIT $limit";
-		$this->mysqli->query($sql2);
-		if ($this->mysqli->affected_rows==0) return -1;
+		$r = queryDelete($this->mysqli, "memorized_deposits", "`charFK`=$this->uid", "`uid`", $limit);
+		if ($r==0) return -1;
 		else return $limit;
 	}
 	
@@ -1261,15 +1257,15 @@ class Character {
 							$pile = new Obj($this->mysqli);
 							$result = $pile->create($invItem->preset, $invItem->type, $this->building, 'Generated through dropping', $pos->x, $pos->y, $pos->lx, $pos->ly, $invItem->secondary, $res["pieces"], $res["weight"], $curTime->dateTime, $curTime->minute);
 							//to do: what if in a group?
-							if ($result) return true;
-							else return false;
+							if ($result) return 1;
+							else return 0;
 						}
-						else return true;
+						else return 1;
 					}
 				}
 				else $method = "whole";
 			}
-			else return false;
+			else return 0;
 		}
 		
 		if ($method=="whole") {
@@ -1287,14 +1283,12 @@ class Character {
 				$this->mysqli->query($sql);
 				//moving the whole pile
 				if ($this->mysqli->affected_rows==0) return false;
-				else return true;
+				else return 1;
 			}
 			else {
-				$sql2 = "DELETE FROM `objects` WHERE `parent`=$this->bodyId AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
-				
-				$this->mysqli->query($sql2);
-				if ($this->mysqli->affected_rows==0) return -2;//duplication bug
-				else return true;
+				$r = queryDelete($this->mysqli, "objects", "`parent`=$this->bodyId AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "'))", "`uid`", 1);
+				if ($r==0) return -2;//duplication bug
+				else return 1;
 			}
 		}
 	}
@@ -1369,10 +1363,9 @@ class Character {
 				else return 1;
 			}
 			else {
-				$sql2 = "DELETE FROM `objects` WHERE `uid`=$item AND " . $this->getCoordsForSQL3() . " AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
-				//this doesn't currently support buildings
-				$this->mysqli->query($sql2);
-				if ($this->mysqli->affected_rows==0) return -2;//duplication bug
+				//This doesn't currently support buildings
+				$r = queryDelete($this->mysqli, "objects", "`uid`=$item AND " . $this->getCoordsForSQL3() . " AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "'))", "`uid`", 1);
+				if ($r==0) return -2;//duplication bug
 				else return 1;
 			}
 		}
@@ -1401,7 +1394,7 @@ class Character {
 		$sql4 = "SELECT `uid` FROM `objects` WHERE " . $this->getCoordsForSQL3() . " AND `uid`=$container AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 		//this doesn't currently support buildings
 		$res2 = $this->mysqli->query($sql4);
-		if (!mysqli_num_rows($res2)) return false;//the container is in another location
+		if (!mysqli_num_rows($res2)) return 0;//the container is in another location
 		
 		if ($method!="whole") {
 			if ($res) {
@@ -1424,10 +1417,10 @@ class Character {
 							//$sql3 = "INSERT INTO `objects` (`uid`, `presetFK`, `general_type`, `parent`, `date_created`, `comments`, `global_x`, `global_y`, `local_x`, `local_y`, `secondaryFK`, `pieces`, `weight`, `datetime`, `minute`) VALUES (NULL, '$invItem->preset', '$invItem->type', '$container', CURRENT_TIMESTAMP, 'Generated through storing', 'NULL', 'NULL', '0', '0', '$invItem->secondary', '" . $res["pieces"] . "', '" . $res["weight"] . "', '" . $curTime[1] . "', '" . $curTime[2] . "')";
 							//$this->mysqli->query($sql3);
 							//$result = $this->mysqli->insert_id;
-							if ($result) return true;
-							else return false;
+							if ($result) return 1;
+							else return 0;
 						}
-						else return true;
+						else return 1;
 					}
 				}
 				else $method = "whole";
@@ -1447,15 +1440,13 @@ class Character {
 				$sql = "UPDATE `objects` SET `parent`=$container, `global_x`=NULL, `global_y`=NULL, `local_x`=0, `local_y`=0 WHERE `parent`=$this->bodyId AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 				$this->mysqli->query($sql);
 				
-				if ($this->mysqli->affected_rows<=0) return false;
-				else return true;
+				if ($this->mysqli->affected_rows<=0) return 0;
+				else return 1;
 			}
 			else {
-				$sql2 = "DELETE FROM `objects` WHERE `parent`=$this->bodyId AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
-				
-				$this->mysqli->query($sql2);
-				if ($this->mysqli->affected_rows<=0) return -2;//duplication bug
-				else return true;
+				$r=queryDelete($this->mysqli, "objects", "`parent`=$this->bodyId AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "'))", "`uid`", 1);
+				if ($r<=0) return -2;//duplication bug
+				else return 1;
 			}
 		}
 	}
@@ -1465,7 +1456,7 @@ class Character {
 		$sql3 = "SELECT `uid` FROM `objects` WHERE " . $this->getCoordsForSQL3() . " AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 		//this doesn't currently support buildings
 		$res = $this->mysqli->query($sql3);
-		if (!mysqli_num_rows($res)) return false;//the character isn't carrying the item
+		if (!mysqli_num_rows($res)) return 0;//the character isn't carrying the item
 		if ($method=="weight") {
 			$randomVariance = (rand(0, 40)-20)/100+1;
 			$droppableAmount = round($randomVariance*$amount);
@@ -1484,7 +1475,7 @@ class Character {
 		$sql4 = "SELECT `uid` FROM `objects` WHERE " . $this->getCoordsForSQL3() . " AND `uid`=$container AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 		//this doesn't currently support buildings
 		$res2 = $this->mysqli->query($sql4);
-		if (!mysqli_num_rows($res2)) return false;//the container is in another location
+		if (!mysqli_num_rows($res2)) return 0;//the container is in another location
 		
 		if ($method!="whole") {
 			if ($res) {
@@ -1493,7 +1484,7 @@ class Character {
 					else $sql = "UPDATE `objects` SET `weight`=`weight`-" . $res["weight"] . " WHERE " . $this->getCoordsForSQL3() . " AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 					//this doesn't currently support buildings
 					$this->mysqli->query($sql);
-					if ($this->mysqli->affected_rows==0) return false;//The item isn't on the ground
+					if ($this->mysqli->affected_rows==0) return 0;//The item isn't on the ground
 					else {
 						if ($res["countable"]==1) $sql2 = "UPDATE `objects` SET `pieces`=`pieces`+" . $res["pieces"] . " WHERE `parent`=$container AND `presetFK`=$invItem->preset AND `secondaryFK`=$invItem->secondary AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 						else $sql2 = "UPDATE `objects` SET `weight`=`weight`+" . $res["weight"] . " WHERE `parent`=$container AND `presetFK`=$invItem->preset AND `secondaryFK`=$invItem->secondary AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
@@ -1504,13 +1495,10 @@ class Character {
 							//There is no pile to merge with, so creating new pile
 							$pile = new Obj($this->mysqli);
 							$result = $pile->create($invItem->preset, $invItem->type, $container, 'Generated through storing', 'NULL', 'NULL', 0, 0, $invItem->secondary, $res["pieces"], $res["weight"], $curTime->dateTime, $curTime->minute);
-							//$sql3 = "INSERT INTO `objects` (`uid`, `presetFK`, `general_type`, `parent`, `date_created`, `comments`, `global_x`, `global_y`, `local_x`, `local_y`, `secondaryFK`, `pieces`, `weight`, `datetime`, `minute`) VALUES (NULL, '$invItem->preset', '$invItem->type', '$container', CURRENT_TIMESTAMP, 'Generated through storing', 'NULL', 'NULL', '0', '0', '$invItem->secondary', '" . $res["pieces"] . "', '" . $res["weight"] . "', '" . $curTime[1] . "', '" . $curTime[2] . "')";
-							//$this->mysqli->query($sql3);
-							//$result = $this->mysqli->insert_id;
-							if ($result) return true;
-							else return false;
+							if ($result) return 1;
+							else return 0;
 						}
-						else return true;
+						else return 1;
 					}
 				}
 				else $method = "whole";
@@ -1531,15 +1519,14 @@ class Character {
 				//this doesn't currently support buildings
 				$this->mysqli->query($sql);
 				
-				if ($this->mysqli->affected_rows==0) return false;
-				else return true;
+				if ($this->mysqli->affected_rows==0) return 0;
+				else return 1;
 			}
 			else {
-				$sql2 = "DELETE FROM `objects` WHERE " . $this->getCoordsForSQL3() . " AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
+				$r = queryDelete($this->mysqli, "objects", $this->getCoordsForSQL3() . " AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "'))", "`uid`", 1);
 				//this doesn't currently support buildings
-				$this->mysqli->query($sql2);
-				if ($this->mysqli->affected_rows==0) return -2;//duplication bug
-				else return true;
+				if ($r==0) return -2;//duplication bug
+				else return 1;
 			}
 		}
 	}
@@ -1576,7 +1563,7 @@ class Character {
 					if ($res["countable"]==1) $sql = "UPDATE `objects` SET `pieces`=`pieces`-" . $res["pieces"] . " WHERE `parent`=$container AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 					else $sql = "UPDATE `objects` SET `weight`=`weight`-" . $res["weight"] . " WHERE `parent`=$container AND `uid`=$item AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 					$this->mysqli->query($sql);
-					if ($this->mysqli->affected_rows==0) return false;//The object isn't here
+					if ($this->mysqli->affected_rows==0) return 0;//The object isn't here
 					else {
 						//increase pile in inventory
 						if ($res["countable"]==1) $sql2 = "UPDATE `objects` SET `pieces`=`pieces`+" . $res["pieces"] . " WHERE `parent`=$this->bodyId AND `presetFK`=$targetItem->preset AND `secondaryFK`=$targetItem->secondary AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
@@ -1586,10 +1573,10 @@ class Character {
 							//There is no pile to merge with, so creating new pile
 							$pile = new Obj($this->mysqli);
 							$result = $pile->create($targetItem->preset, $targetItem->type, $this->bodyId, 'Generated through pickup from container', 'NULL', 'NULL', 0, 0, $targetItem->secondary, $res["pieces"], $res["weight"], $curTime->dateTime, $curTime->minute);
-							if ($result) return true;
-							else return false;
+							if ($result) return 1;
+							else return 0;
 						}
-						else return true;
+						else return 1;
 					}
 				}
 				else $method = "whole";
@@ -1609,15 +1596,13 @@ class Character {
 				//move the whole thing
 				$sql = "UPDATE `objects` SET `parent`=$this->bodyId, `global_x`= NULL, `global_y` = NULL, `local_x`=0, `local_y`=0 WHERE `uid`=$item AND `parent`=$container AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
 				$this->mysqli->query($sql);
-				if ($this->mysqli->affected_rows==0) return false;
-				else return true;
+				if ($this->mysqli->affected_rows==0) return 0;
+				else return 1;
 			}
 			else {
-				$sql2 = "DELETE FROM `objects` WHERE `uid`=$item AND `parent`=$container AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
-				
-				$this->mysqli->query($sql2);
-				if ($this->mysqli->affected_rows==0) return -2;//duplication bug
-				else return true;
+				$r = queryDelete($this->mysqli, "objects", "`uid`=$item AND `parent`=$container AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "'))", "`uid`", 1);
+				if ($r==0) return -2;//duplication bug
+				else return 1;
 			}
 		}
 	}
@@ -1716,9 +1701,8 @@ class Character {
 			}
 			
 			if ($method=="whole") {
-				$sql2 = "DELETE FROM `objects` WHERE `uid`=$object AND `parent`=$food->parent AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "')) LIMIT 1";
-				$this->mysqli->query($sql2);
-				if ($this->mysqli->affected_rows==0) return -6;//food didn't get deleted
+				$r=queryDelete($this->mysqli, "objects", "`uid`=$object AND `parent`=$food->parent AND (`exp_d`=-1 OR `exp_d`>'" . $curTime->dateTime . "' OR (`exp_d`='" . $curTime->dateTime . "' AND `exp_m`>'" . $curTime->minute . "'))", "`uid`", 1);
+				if ($r==0) return -6;//food didn't get deleted
 				if ($res["countable"]==1) $sql = "UPDATE `stomach` SET `amount`=`amount`+(" . $res["weight"]*$res["pieces"] . ") WHERE `charFK`=$this->uid AND `resFK`=$food->secondary AND `status`=1 AND `datetime`=" . $curTime->dateTime. " LIMIT 1";
 				else $sql = "UPDATE `stomach` SET `amount`=`amount`+" . $res["weight"] . " WHERE `charFK`=$this->uid AND `resFK`=$food->secondary AND `status`=1 AND `datetime`=" . $curTime->dateTime. " LIMIT 1";
 				//merge with pile if exists
@@ -2111,10 +2095,8 @@ class Character {
 				else return 1;
 			}
 			else {
-				$sql2 = "DELETE FROM `objects` WHERE `parent`=$this->bodyId AND `uid`=$item AND (`datetime`<'" . $curTime->dateTime . "' OR (`datetime`='" . $curTime->dateTime . "' AND `minute`<='" . $curTime->minute . "')) LIMIT 1";
-				
-				$this->mysqli->query($sql2);
-				if ($this->mysqli->affected_rows<=0) return -5;//duplication bug
+				$r=queryDelete($this->mysqli, "objects", "`parent`=$this->bodyId AND `uid`=$item AND (`datetime`<'" . $curTime->dateTime . "' OR (`datetime`='" . $curTime->dateTime . "' AND `minute`<='" . $curTime->minute . "'))", "`uid`", 1);
+				if ($r<=0) return -5;//duplication bug
 				else return 1;
 			}
 		}
@@ -4386,11 +4368,8 @@ else if ($x>=95&&$x<100&&$y>=225&&$y<235) {
 	}
 	
 	public function deleteRequest($request) {
-		$sql = "DELETE FROM `requests`  WHERE `requester`=$this->uid AND `filler`=0 AND `uid`=$request LIMIT 1";
-		$this->mysqli->query($sql);
-		if ($this->mysqli->affected_rows==1) {
-			return 1;
-		}
+		$r=queryDelete($this->mysqli, "requests", "`requester`=$this->uid AND `filler`=0 AND `uid`=$request", "`uid`", 1);
+		if ($r==1) return 1;
 		else return -1;
 	}
 	

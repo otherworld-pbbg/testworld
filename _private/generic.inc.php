@@ -3,6 +3,13 @@
 include_once "class_player.inc.php";
 include_once "abbr.inc.php";
 
+function queryDelete($mysqli, $table, $where, $order, $limit=0) {
+	if ($limit==0) $sql = "DELETE FROM `$table` WHERE $where ORDER BY $order";
+	else $sql = "DELETE FROM `$table` WHERE $where ORDER BY $order LIMIT $limit";
+	$mysqli->query($sql);
+	return $mysqli->affected_rows;
+}
+
 function csvIntoArray($filename, $delimiter=';') {
 
 	$header = NULL;
@@ -6293,9 +6300,8 @@ function activateAccount($mysqli, $username, $activation) {
 		$mysqli->query($sql2);
 		$result = $mysqli->insert_id;
 		if ($result) {
-			$sql3 = "DELETE FROM `pending_users` WHERE `uid`=$row->uid LIMIT 1";
-			$mysqli->query($sql3);
-			if ($mysqli->affected_rows==0) return -2;//user account was generated successfully but pending account was left hanging
+			$r=queryDelete($mysqli, "pending_users", "`uid`=$row->uid", "`uid`", 1);
+			if ($r==0) return -2;//user account was generated successfully but pending account was left hanging
 			return 100;//success
 		}
 		return -1;//creating user account failed
@@ -6312,9 +6318,8 @@ function activateEmail($mysqli, $username, $activation) {
 		$sql2 = "UPDATE `users` SET `email`='$row->email' WHERE `uid`=$row->userid LIMIT 1";
 		$mysqli->query($sql2);
 		if ($mysqli->affected_rows==1) {
-			$sql3 = "DELETE FROM `pending_users` WHERE `uid`=$row->uid LIMIT 1";
-			$mysqli->query($sql3);
-			if ($mysqli->affected_rows==0) return -2;//email was changed successfully but pending account was left hanging
+			$r=queryDelete($mysqli, "pending_users", "`uid`=$row->uid", "`uid`", 1);
+			if ($r==0) return -2;//email was changed successfully but pending account was left hanging
 			return 100;//success
 		}
 		return -1;//changing email failed
@@ -6330,9 +6335,8 @@ function resetPassword($mysqli, $username, $activation, $passhash) {
 		$sql2 = "UPDATE `users` SET `passhash`='$passhash' WHERE `uid`=$row->userid LIMIT 1";
 		$mysqli->query($sql2);
 		if ($mysqli->affected_rows==1) {
-			$sql3 = "DELETE FROM `pending_users` WHERE `uid`=$row->uid LIMIT 1";
-			$mysqli->query($sql3);
-			if ($mysqli->affected_rows==0) return -2;//passwrord was changed successfully but pending account was left hanging
+			$r=queryDelete($mysqli, "pending_users", "`uid`=$row->uid", "`uid`", 1);
+			if ($r==0) return -2;//passwrord was changed successfully but pending account was left hanging
 			return 100;//success
 		}
 		return -1;//changing password failed

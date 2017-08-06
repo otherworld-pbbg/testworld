@@ -3,6 +3,7 @@ include_once("class_character.inc.php");
 include_once("class_animal_type.inc.php");
 include_once("class_resource_string.inc.php");
 include_once("constants.php");
+include_once("generic.inc.php");
 
 class Obj
 {
@@ -300,9 +301,8 @@ class Obj
 			}
 			if ($res->num_rows==0) return -1;//There is no entry in the first place
 			
-			$sql = "DELETE FROM `o_attrs` WHERE `objectFK`=$this->uid AND `attributeFK`=$attr LIMIT 1";
-			$this->mysqli->query($sql);
-			if ($this->mysqli->affected_rows==0) return -2;
+			$r=queryDelete($this->mysqli, "o_attrs", "`objectFK`=$this->uid AND `attributeFK`=$attr", "`objectFK`", 1);
+			if ($r==0) return -2;
 			return 100;//success
 		}
 		return -4;//Id is 0
@@ -631,11 +631,9 @@ class Obj
 	}
 	
 	function deleteFromDb() {
-		$sql = "DELETE FROM `objects` WHERE `uid`=$this->uid LIMIT 1";
-		$this->mysqli->query($sql);
-		if ($this->mysqli->affected_rows==1) {
-			$sql2 = "DELETE FROM `o_attrs` WHERE `objectFK`=$this->uid";
-			$this->mysqli->query($sql2);
+		$r=queryDelete($this->mysqli, "objects", "`uid`=$this->uid", "`uid`", 1);
+		if ($r==1) {
+			queryDelete($this->mysqli, "o_attrs", "`objectFK`=$this->uid", "`uid`");
 			return true;
 		}
 		else return false;

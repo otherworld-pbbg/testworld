@@ -1042,9 +1042,8 @@ class Project {
 		$amount = $resources[0]["weight_a"];
 		$type = $resources[0]["res_type"];
 		$pr = $resources[0]["preset"];
-		$sql = "DELETE FROM `added_resources` WHERE `slot`=$slot AND `projectFK`=$this->uid LIMIT 1";
-		$this->mysqli->query($sql);
-		if ($this->mysqli->affected_rows==1) {
+		$r=queryDelete($this->mysqli, "added_resources", "`slot`=$slot AND `projectFK`=$this->uid", "`projectFK`", 1);
+		if ($r==1) {
 			//if ($amount==0) return -1;
 			$char = new Character($this->mysqli, $this->charid);
 			$pos = $char->getPosition();
@@ -1063,9 +1062,8 @@ class Project {
 		$added = $this->getAddedComponents($slot);
 		if ($added==-1) return -1;//There are no resources in this slot
 		
-		$sql = "DELETE FROM `added_components` WHERE `slot`=$slot AND `projectFK`=$this->uid LIMIT 1";
-		$this->mysqli->query($sql);
-		if ($this->mysqli->affected_rows==1) {
+		$r=queryDelete($this->mysqli, "added_components", "`slot`=$slot AND `projectFK`=$this->uid", "`projectFK`", 1);
+		if ($r==1) {
 			foreach ($added as $row) {
 				$preset = new Preset($this->mysqli, $row["preset"]);
 				$weight = $preset->getAttribute(ATTR_SMALL_WEIGHT);//small weight
