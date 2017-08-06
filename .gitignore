@@ -163,4 +163,8 @@ www/graphics/local/soil_3234-1750.png
 _private/hashing.inc.php
 _private/hashing.inc.php
 _private/conn.inc.php
+<<<<<<< HEAD
 _private/conn.inc.php
+=======
+_private/charlist.inc.php
+>>>>>>> 1ce6a2d011cd3ce3747ed6ed7baac44ba6022c75
