@@ -309,14 +309,13 @@ class Obj
 	}
 	
 	function setAttribute($attr, $newVal) {
-		$old = $this->getAttribute($attr);
-		
-		if ($old == $newVal) return -3;//It's already the same
-		
 		if ($this->uid>0) {
 			$sql = "UPDATE `o_attrs` SET `value`=" . $newVal . " WHERE `objectFK`=$this->uid AND `attributeFK`=$attr LIMIT 1";
 			$this->mysqli->query($sql);
 			if ($this->mysqli->affected_rows==0) {
+				$old = $this->getAttribute($attr);
+				if ($old == $newVal) return -3;//It's already the same
+		
 				$sql = "INSERT INTO `o_attrs` (`objectFK`, `attributeFK`, `value`) VALUES ($this->uid, $attr, $newVal)";
 				$this->mysqli->query($sql);
 				$result = $this->mysqli->insert_id;
