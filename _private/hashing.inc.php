@@ -2,7 +2,7 @@
 
 function myHash($pw)
 {
-	$pw .= "voiVittuMit4Paskaa1985";
+	$pw .= "nytVittuOikeestiLakatkaaJakamastaSit4Avainta!!!";
 	return md5($pw);
 }
 

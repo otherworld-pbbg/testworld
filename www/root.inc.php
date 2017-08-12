@@ -5,11 +5,11 @@ function getGameRoot() {
 }
 
 function getGamePath() {
-	return "C:/xampp/htdocs/testworld/www";
+	return "C:/xampp/htdocs/testworld/testworld/www";
 }
 
 function getPrivatePath() {
-	return "C:/xampp/htdocs/testworld/_private";
+	return "C:/xampp/htdocs/testworld/testworld/_private";
 }
 
 ?>

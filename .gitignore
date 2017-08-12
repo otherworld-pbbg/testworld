@@ -174,3 +174,5 @@ _private/conn.inc.php
 .idea/workspace.xml
 .idea/php.xml
 .idea/workspace.xml
+_private/hashing.inc.php
+www/root.inc.php
