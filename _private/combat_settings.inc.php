@@ -1,6 +1,7 @@
 <?php
 include_once("class_character.inc.php");
 include_once("class_combat_settings.inc.php");
+include_once("constants.php");
 //the part that checks if you're logged in
 if (!isset($_SESSION['user_id'])) {
 		header('Location: index.php?page=login');
@@ -49,12 +50,16 @@ else {
 			);
 		
 		$exclusions = array (
-		"people with small veinous bleed",
-		"people with small arterial bleed",
-		"people with medium veinous bleed",
-		"people with medium arterial bleed",
-		"people with serious veinous bleed",
-		"people with serious arterial bleed",
+		"people with a level 1 bleed (negligible 1)",
+		"people with a level 2 bleed (negligible 2)",
+		"people with a level 3 bleed (minor 1)",
+		"people with a level 4 bleed (minor 2)",
+		"people with a level 5 bleed (medium 1)",
+		"people who a level 6 bleed (medium 2)",
+		"people who a level 7 bleed (serious)",
+		"people who a level 8 bleed (profuse)",
+		"people who a level 9 bleed (deadly with delay)",
+		"people who a level 10 bleed (deadly)",
 		"unconscious people",
 		"people who have surrendered");
 		
@@ -90,7 +95,7 @@ else {
 		
 		
 		echo "<ul class='left_no_marker'>";
-		for ($i = 0; $i<8; $i++) {
+		for ($i = 0; $i<12; $i++) {
 		echo "<li>";
 			ptag("input", "", "type='checkbox' name='ex$i'");
 			ptag("label", $exclusions[$i]);
@@ -165,7 +170,7 @@ else {
 		echo "</p>";
 		ptag("h4", "Exclude");
 		echo "<ul class='left_no_marker'>";
-		for ($i = 0; $i<8; $i++) {
+		for ($i = 0; $i<12; $i++) {
 		echo "<li>";
 			ptag("input", "", "type='checkbox' name='ex1-$i'");
 			ptag("label", $exclusions[$i]);
@@ -189,22 +194,29 @@ else {
 		
 		para("You will always automatically block hits against yourself. You can't turn this off.");
 		
-		
+		para("1st - 2nd");
 		ptag("input", "", "type='radio' name='block_act' value='1' checked='checked'");
+		ptag("input", "", "type='radio' name='block_act2' value='1'");
 		ptag("label", "2.1. Use unused blocks to defend others");
 		echo "<div name='block2other' id='block2other'>";
 		echo "</div>";
 		
-		
 		ptag("input", "", "type='radio' name='block_act' value='2'");
-		ptag("label", "2.2. Convert unused blocks to defense on next round");
+		ptag("input", "", "type='radio' name='block_act2' value='2' checked='checked'");
+		ptag("label", "2.2. Convert unused blocks to first aid");
+		echo "<div name='block2aid' id='block2aid'>";
+		echo "</div>";
+		
+		ptag("input", "", "type='radio' name='block_act' value='3'");
+		ptag("input", "", "type='radio' name='block_act2' value='3'");
+		ptag("label", "2.3. Convert unused blocks to defense on next round");
 		echo "<div name='block2def' id='block2def'>";
 		echo "</div>";
 		echo "</ol>";
 		ptag("input", "", "type='submit' name='submit' value='Save changes'");
 		echo "</form>";
 		echo "<p>";
-		ptag("a", "[Copy]", "href='index.php?page=copySettings&charid=$charcheck' class='clist'");
+		ptag("a", "[Copy]", "href='index.php?page=copySettings&charid=$charcheck&preset=$preset' class='clist'");
 		ptag("a", "[Delete]", "href='index.php?page=deleteSettings&charid=$charcheck&preset=$preset' class='clist'");
 		echo "</p>";
 		echo "</div>";
