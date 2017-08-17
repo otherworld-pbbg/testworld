@@ -861,7 +861,7 @@ else {
 					$invItem->getBasicData();
 					$handle = $invItem->getHandle();
 					ptag("input", "", "type='radio' id='sel-$invItem->uid' name='sel' value='$invItem->uid' $selected");
-					echo $handle;
+					echo $handle . $invItem->getStatus($charcheck);;
 					echo "</p>";
 					$contents = $invItem->getContents();
 					if ($contents) {
@@ -869,7 +869,7 @@ else {
 						for ($j=0; $j<count($contents); $j++) {
 							$inItem = new Obj($mysqli, $contents[$j]);
 							$inItem->getBasicData();
-							$handle2 = $inItem->getHandle();
+							$handle2 = $inItem->getHandle() . $inItem->getStatus($charcheck);;
 							ptag("li", "$handle2", "class='small_list'");
 						}
 						echo "</ul>";

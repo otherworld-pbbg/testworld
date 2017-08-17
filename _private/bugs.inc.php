@@ -15,7 +15,11 @@ else
 	echo "<p class='right'><a href='index.php?page=direwolf&userid=$currentUser' class='clist'>[Return to character list]</a></p>";
 	ptag("h1", "Known bugs (and shady features)");
 	
-	para("The fire system is in the middle of a transition, so you still need to set the fire under the old system, but the fire will spread and get hotter via a cron script. Firewood will also be consumed if you visit the objects page because of the old system. Afterglow doesn't work in the new system yet.");
+	para("There is a bug in the fire system so that when a fire is first started, the container it is in is initially 0 degrees Celsius instead of the temperature of the environment. However, it quickly heats up, so you might notice for 20 minutes or so that a fire pit looks frozen when it's actually heating up. I'm not sure yet how to address this.");
+	
+	para("It's possible to accidentally set fire to a lot of things in your inventory. This is intended as a feature and not a bug. Basically if you notice that things in your inventory are marked as on fire, quickly put them down or at least inside a container before the fire spreads. It's possible to put out fires with water, but you would need 7 times the weight of the burning material and if a big pile ignites, chance is you don't have that much water handy. Also only the first pile it encounters will be affected, so if there are several, the rest will remain burning.");
+	
+	para("Currently even if water puts out one burning material, if there are other burning materials in the same container (your inventory counts as a container), it's possible that the items will keep passing the fire back and forth because moisture levels aren't yet recorded.");
 	
 	para("When you are in a travel group, it shows that there is nobody else in the location and only shows one person in your map square. This is an oversight and will eventually be fixed. People aren't supposed to turn invisible when they join a travel group.");
 	

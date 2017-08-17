@@ -701,6 +701,14 @@ class Obj
 					);
 			}
 		}
+		
+		$fire_effect = $this->getAttribute(ATTR_IGNITION);
+		if ($fire_effect) $arr[] = array(
+			"uid" => $this->uid,
+			"type" => "fire",
+			"value" => $fire_effect
+			);
+		
 		return $arr;
 	}
 	
@@ -723,18 +731,8 @@ class Obj
 		else return " (<span class='fire'>on fire</span>)";
 	}
 	
-	function ignite($charid) {
-		$observer = new Character($this->mysqli, $charid);
-		$observer->getBasicData();
-		$curTime = new Time($this->mysqli);
-		$already = $this->getAttribute(ATTR_ON_FIRE);
-		if (!$already) {
-			$sql = "INSERT INTO `o_attrs`(`objectFK`, `attributeFK`, `value`, `startDt`, `startM`) VALUES ($this->uid, 49, 1, " . $curTime->dateTime . ", ". $curTime->minute . ")";
-			$this->mysqli->query($sql);
-			if ($this->mysqli->affected_rows==1) return 1;
-			else return -2;
-		}
-		else return -1;
+	function ignite() {
+		return $this->setAttribute(ATTR_ON_FIRE, 1);
 	}
 	
 	//-Combat/health---------------------------------------------------------------------------------------------------------

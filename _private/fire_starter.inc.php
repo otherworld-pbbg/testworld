@@ -37,33 +37,41 @@ else {
 				include_once "header2.inc.php";
 				para("You cannot take things on someone else's behalf when you're a watcher.");
 			}
-			else if (!isset($_GET["container"])) {
+			else if (!isset($_GET["sel"])) {
 				include_once "header2.inc.php";
 				para("Error: Nothing was selected.");
 			}
-			else if (!is_numeric($_GET["container"])) {
+			else if (!is_numeric($_GET["sel"])) {
 				include_once "header2.inc.php";
 				para("Error: Value is not numeric.");
 			}
 			else {
 				include_once "header2.inc.php";
 				echo "<div class='bar'>\n";
-				$fireplace = new Obj($mysqli, $_GET["container"]);
-				$fireplace->getBasicData();
-				if ($fireplace->x==$pos->x&&$fireplace->y==$pos->y&&$fireplace->localx==$pos->lx&&$fireplace->localy==$pos->ly&&$fireplace->parent==0) {
-					//to do: handle buildings
-					echo "<form method='get' action='index.php' class='narrow'>";
-					para("You need a fire bow in order to start a fire. There also needs to be sufficient tinder, kindling and something that burns for a long time.");
-					ptag("input", "", "type='hidden' name='page' value='startFire2'");
-					ptag("input", "", "type='hidden' name='charid' value='$charcheck'");
-					ptag("input", "", "type='hidden' name='userid' value='$currentUser'");
-					ptag("input", "", "type='hidden' name='container' value='".$_GET["container"] ."'");
-					echo "<p class='right'>\n";
-					ptag("input", "", "type='submit' value='Attempt to start a fire'");
-					echo "</p>";
-					echo "</form>";
+				$material = new Obj($mysqli, $_GET["sel"]);
+				if ($material->parent==$curChar->bodyId) {
+					$fire_effect = $material->getAttribute(ATTR_IGNITION);
+					if ($fire_effect==1||$fire_effect==2) {
+						echo "<form method='get' action='index.php' class='narrow'>";
+						para("This material can be used as tinder or kindling.");
+						para("You need a fire bow in order to start a fire.");
+						para("Important disclaimer: Once you ignite this, you need to put it inside a container such as a fire pit fairly swiftly, or otherwise it can and will ignite other things in your inventory. Seriously, don't play with this, your stuff will go up in flames. You have been warned.");
+						ptag("input", "", "type='hidden' name='page' value='startFire2'");
+						ptag("input", "", "type='hidden' name='charid' value='$charcheck'");
+						ptag("input", "", "type='hidden' name='sel' value='".$_GET["sel"] ."'");
+						echo "<p class='right'>\n";
+						ptag("input", "", "type='submit' value='Attempt to start a fire'");
+						echo "</p>";
+						echo "</form>";
+					}
+					else {
+						para("Even though this material is technically flammable, it needs to be exposed to other burning material long enough to heat up sufficiently. It cannot be used as tinder.");
+					}
 				}
-				else para("This fireplace isn't in the same location as your character.");
+				else {
+					include_once "header2.inc.php";
+					para("The material you're trying to ignite isn't in your inventory.");
+				}
 				echo "</div>";
 			}
 		}

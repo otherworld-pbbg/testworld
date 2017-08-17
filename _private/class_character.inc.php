@@ -4442,6 +4442,14 @@ else if ($x>=95&&$x<100&&$y>=225&&$y<235) {
 		}
 		else para("There are no events to show.");
 	}
+	
+	public function checkFirestarter() {
+		//This will eventually need to be rewritten once we get more fire starting tools but for now it can be static
+		$sql = "SELECT `uid` FROM `objects` WHERE `parent`=".$this->bodyId." AND `presetFK`=211";
+		$result = $this->mysqli->query($sql);
+		if (mysqli_num_rows($result)) return 1;
+		else return 0;
+	}
 }
 
 

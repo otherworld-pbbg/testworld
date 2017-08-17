@@ -199,7 +199,11 @@ else {
 									}
 								}
 								if ($use["type"]=="fire") {
-									ptag("li", "Lighting a fire (" .$use["ap"]. " AP) - afterglow " . $use["reserve"] . " minutes per hour of burning <a href='index.php?page=startFire&charid=$charcheck&userid=$currentUser&container=$targetObject->uid&ptype=" . $use["uid"]. "' class='clist'>[start]</a>");
+									if ($use["value"]==1) ptag("li", "This material is tinder <a href='index.php?page=startFire&sel=" . $use["uid"]. "&charid=$charcheck' class='clist'>[attempt to ignite]</a>");
+									else if ($use["value"]==2) ptag("li", "This material is kindling <a href='index.php?page=startFire&sel=" . $use["uid"]. "&charid=$charcheck' class='clist'>[attempt to ignite]</a>");
+									else if ($use["value"]==3) ptag("li", "This material is considered firewood. It will require tinder or kindling to ignite it.");
+									else if ($use["value"]==4) ptag("li", "This material is somewhat flammable but due to its durable nature, it needs to be exposed to fire for longer periods of time before it will ignite.");
+									else ptag("li", "This material is capable of dousing fires. If you add 7 times the weight of the burning material in the same container, the fire will go out.");	
 								}
 							}
 							echo "</ul>";

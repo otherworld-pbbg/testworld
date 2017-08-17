@@ -36,25 +36,38 @@ else {
 				include_once "header2.inc.php";
 				para("You cannot take things on someone else's behalf when you're a watcher.");
 			}
-			else if (!isset($_GET["container"])||!isset($_GET["ptype"])) {
+			else if (!isset($_GET["sel"])) {
 				include_once "header2.inc.php";
 				para("Error: Nothing was selected.");
 			}
-			else if (!is_numeric($_GET["container"])||!is_numeric($_GET["ptype"])) {
+			else if (!is_numeric($_GET["sel"])) {
 				include_once "header2.inc.php";
 				para("Error: Value is not numeric.");
 			}
 			else {
-				$fireplace = new Obj($mysqli, $_GET["container"]);
-				if ($fireplace->x==$pos->x&&$fireplace->y==$pos->y&&$fireplace->localx==$pos->lx&&$fireplace->localy==$pos->ly&&$fireplace->parent==0) {
+				$material = new Obj($mysqli, $_GET["sel"]);
+				if ($material->parent==$curChar->bodyId) {
 					//to do: inside building?
-					//to do: a function that tests if object is in $pos, taking $pos as input data
-					//to do: recognize potential tinder and ignite
-					header('Location: index.php?page=viewchar&charid=' . $charcheck . '&userid=' . $currentUser . '&tab=4');
+					$fire_effect = $material->getAttribute(ATTR_IGNITION);
+					if ($fire_effect==1||$fire_effect==2) {
+						$starter = $curChar->checkFirestarter();
+						if ($starter) {
+							$result = $material->ignite();
+							if ($result==100||$result==-3) header('Location: index.php?page=viewchar&charid=' . $charcheck . '&userid=' . $currentUser . '&tab=4');
+							else {
+								include_once "header2.inc.php";
+								para("There was an error with the ignition.");
+							}
+						}
+						else {
+							include_once "header2.inc.php";
+							para("You don't have a fire bow, so you can't start a fire.");
+						}
+					}
 				}
 				else {
 					include_once "header2.inc.php";
-					para("This fireplace isn't in the same location as your character.");
+					para("The material you're trying to ignite isn't in your inventory.");
 				}
 				
 				echo "<p class='right'>";

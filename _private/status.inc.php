@@ -96,13 +96,13 @@ ptag("h2", "Implemented so far");
 <li> aging system (switching body preset and increasing weight/blood when certain thresholds are passed)</li>
 <li> natural healing (requires cron)</li>
 <li> The old fire system has been deimplemented. As a result, there is currently no way to start a fire. Hopefully I can come up with a new solution soon.</li>
+<li> The new way to start fires was implemented. The thing is currently you have to ignite your tinder or kindling in your hand, then put it in the fire pit or whatever before the temperature cron script is run the next time, or things in your inventory will start igniting. This is actually pretty hilarious, so I think I'm going to keep this.</li>
 </ol>
 <?php
 ptag("img", "", "src='". getGameRoot() . "/graphics/resource_presets.png' alt='mind map of new way to handle resources'");
 ptag("h2", "Things I'm currently working on:");
 ?>
 <ul>
-<li> temperature/fire system adjustments and firing clay</li>
 </ul>
 <?php
 ptag("h2", "Things collaborators are working on:");

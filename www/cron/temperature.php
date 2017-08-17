@@ -1,4 +1,5 @@
-<?
+<?php
+
 chdir(dirname(__FILE__));
 
 include_once "../root.inc.php";

@@ -86,7 +86,6 @@ else {
 										ptag("li", "Manufacturing " . $preset->name . " <a href='index.php?page=manufacture&sel=" . $use["uid"]. "&userid=$currentUser&charid=$charcheck' class='clist'>[view details]</a>");
 									}
 								}
-								//to do: how to tell if this is a suitable fire container?
 							}
 							echo "</ul>";
 						}
