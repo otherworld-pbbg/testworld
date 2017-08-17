@@ -1,7 +1,7 @@
 <?php
 
 function getGameRoot() {
-	return "http://otherworld.loc:1234";
+	return "http://otherworld.loc";
 }
 
 function getGamePath() {

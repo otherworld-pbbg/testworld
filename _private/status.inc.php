@@ -93,6 +93,9 @@ ptag("h2", "Implemented so far");
 <li> ability to reset password (requires a functional email address on file)</li>
 <li> ability to change email address associated with your account (requires knowing the password)</li>
 <li> drop multiple</li>
+<li> aging system (switching body preset and increasing weight/blood when certain thresholds are passed)</li>
+<li> natural healing (requires cron)</li>
+<li> The old fire system has been deimplemented. As a result, there is currently no way to start a fire. Hopefully I can come up with a new solution soon.</li>
 </ol>
 <?php
 ptag("img", "", "src='". getGameRoot() . "/graphics/resource_presets.png' alt='mind map of new way to handle resources'");
@@ -105,10 +108,8 @@ ptag("h2", "Things I'm currently working on:");
 ptag("h2", "Things collaborators are working on:");
 ?>
 <ul>
-<li> natural healing (requires cron)</li>
 <li> wounds system rewrite</li>
 <li> first aid, stitching of wounds, bandages</li>
-<li> aging system (switching body preset and increasing weight/blood when certain thresholds are passed)</li>
 </ul>                                                              
 <?php
 ptag("h2", "Things that are on hold:");

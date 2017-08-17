@@ -701,18 +701,6 @@ class Obj
 					);
 			}
 		}
-		$sql = "SELECT `uid`, `setup_ap`, `reserve` FROM `fuel_project_types` WHERE `machine`=$this->preset";
-		$result = $this->mysqli->query($sql);
-		if (mysqli_num_rows($result)) {
-			while ($row = mysqli_fetch_row($result)) {
-				$arr[] = array(
-					"uid" => $row[0],
-					"ap" => $row[1],
-					"reserve" => $row[2],
-					"type" => "fire"
-					);
-			}
-		}
 		return $arr;
 	}
 	
@@ -747,98 +735,6 @@ class Obj
 			else return -2;
 		}
 		else return -1;
-	}
-	
-	function checkOngoingFuel($charid) {
-		
-		$sql = "SELECT `uid` FROM `fuel_projects` WHERE `machineFK`=$this->uid order by `startDatetime` DESC, `startMinute` DESC LIMIT 1";
-		$result = $this->mysqli->query($sql);
-		if (mysqli_num_rows($result)) {
-			$row = mysqli_fetch_row($result);
-			return $row[0];
-		}
-		else return -1;
-	}
-	
-	//---- Change project ----------------------------------------------------------------------------------------------------
-	
-	function checkChangeable() {
-		$okay = false;
-		$machine = new Obj($this->mysqli, $this->parent);
-		$machine->getBasicData();
-		$sql = "SELECT `uid`, `preset_out`, `secondary_out`, `weight_change`, `duration`, `gen_type`, `limit_str` FROM `change_project_types` WHERE `machine`=$machine->preset AND `preset_in`=$this->preset AND (`secondary_in`=$this->secondary OR `secondary_in`=-1)";
-		$result = $this->mysqli->query($sql);
-		if (mysqli_num_rows($result)) {
-			while ($row = mysqli_fetch_row($result)) {
-			if ($row[2]==-1) $sec_out = $this->secondary;
-			else $sec_out = $row[2];
-			if ($this->type==5&&$row[6]!="") {
-				$search = new ResourceString($this->mysqli, $row[6]);
-				$reslist = $search->getMatchingResTypes();
-				if (is_array($reslist)) {
-					if (in_array($this->secondary, $reslist)) $okay = true;
-				}
-			}
-			else $okay = true;
-			
-			if ($okay) return array (
-				"uid" => $row[0],
-				"preset" => $row[1],
-				"secondary" => $sec_out,
-				"wt_change" => $row[3],
-				"duration" => $row[4],
-				"gen_type" => $row[5]
-				);
-			}
-		}
-		return -1;
-	}
-	
-	function getChangeStatus() {
-		$sql = "SELECT `uid`, `change_type`, `startDatetime`, `startMinute`, `investedMinutes`, `status` FROM `change_projects` WHERE `itemFK`=$this->uid AND `status`<2 LIMIT 1";
-		$result = $this->mysqli->query($sql);
-		if (mysqli_num_rows($result)) {
-			$row = mysqli_fetch_row($result);
-			return array (
-				"uid" => $row[0],
-				"change_type" => $row[1],
-				"startDatetime" => $row[2],
-				"startMinute" => $row[3],
-				"investedMinutes" => $row[4],
-				"status" => $row[5]
-				);
-		}
-		else return -1;
-	}
-	
-	function createChangeProject($type, $charid) {
-		$curTime = new Time($this->mysqli);
-		$sql = "INSERT INTO `change_projects` (`change_type`, `itemFK`, `startDatetime`, `startMinute`, `status`) VALUES ($type, $this->uid, " . $curTime->dateTime . ", " . $curTime->minute . ", 1)";
-		$this->mysqli->query($sql);
-		return $this->mysqli->insert_id;//returns 0 on failure
-	}
-	
-	function updateChangeMinutes($project_id, $invested) {
-		$sql = "UPDATE `change_projects` SET `investedMinutes`=`investedMinutes`+$invested WHERE `uid`=$project_id LIMIT 1";
-		$this->mysqli->query($sql);
-		if ($this->mysqli->affected_rows==1) return true;
-		else return false;
-	}
-	
-	function finishChangeProject($datetime, $minute) {
-		//Before calling this project, check that the minutes match or exceed the duration
-		$info = $this->checkChangeable();
-		if ($info==-1) return -1;//Not changeable
-		$weight = round($this->weight*$info["wt_change"]/100);
-		$sql = "UPDATE `objects` SET `presetFK`=" . $info["preset"] . ", `general_type`=" . $info["gen_type"] . ", `comments`='Changed item', `secondaryFK`=" . $info["secondary"] . ", `weight`=$weight, `datetime`=$datetime, `minute`=$minute WHERE `uid`=$this->uid LIMIT 1";
-		$this->mysqli->query($sql);
-		if ($this->mysqli->affected_rows==1) {
-			$sql2 = "UPDATE `change_projects` SET `status`=2 WHERE `itemFK`=$this->uid LIMIT 1";
-			$this->mysqli->query($sql2);
-			if ($this->mysqli->affected_rows==1) return 100;
-			else return -3;//Updating project failed
-		}
-		else return -2;//changing item failed
 	}
 	
 	//-Combat/health---------------------------------------------------------------------------------------------------------

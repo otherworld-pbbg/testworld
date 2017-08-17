@@ -6,7 +6,6 @@ include_once "class_global_map.inc.php";
 include_once "local_map.inc.php";
 include_once("class_obj.inc.php");
 include_once("class_build_menu2.inc.php");
-include_once("class_fuel_project.inc.php");
 include_once("class_field_area.inc.php");
 include_once("class_group.inc.php");
 include_once("class_event.inc.php");
@@ -942,32 +941,16 @@ else {
 					if ($key == 0) $selected = "checked='checked'";
 					echo "<p>";
 					$groundItem = new Obj($mysqli, $machine);
-					$groundItem->getBasicData();
-					$fire = $groundItem->checkOngoingFuel($charcheck);
-					$status = 0;
-					if ($fire>-1) {
-						$fuel = new FuelProject($mysqli, $fire);
-						$status = $fuel->checkProgress($charcheck);
-					}
+					
 					$handle = $groundItem->getHandle();
 					ptag("input", "", "type='radio' id='sel3-$groundItem->uid' name='sel3' value='$groundItem->uid' $selected");
 					echo $handle;
-					if ($status==-2) echo " (a fire has just been started)";
-					if ($status==-3) echo " (fire can't start without fuel)";
-					if ($status==-4) echo " (glowing embers)";
-					if ($status==-5) echo " (bug, inform developer)";
-					if ($status==-6) echo " (just ashes now)";
-					if ($status==1) echo " (the tinder is burning)";
-					if ($status==2) echo " (the kindling is burning)";
-					if ($status==3) echo " (the firewood is starting to burn)";
-					if ($status==4) echo " (full blaze)";
 					echo "</p>";
 					$contents = $groundItem->getContents("1,5,8,9,10,11");
 					if ($contents) {
 						echo "<ul class='small_list'>";
 						foreach ($contents as $in_obj) {
 							$inItem = new Obj($mysqli, $in_obj);
-							$inItem->getBasicData();
 							$handle2 = $inItem->getHandle() . $inItem->getStatus($charcheck);
 							ptag("li", "$handle2", "class='small_list'");
 						}

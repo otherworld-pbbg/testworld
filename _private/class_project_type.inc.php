@@ -188,7 +188,10 @@ class ProjectType {
 		$result = $this->mysqli->query($sql);
 		if (mysqli_num_rows($result)) {
 			while ($row = mysqli_fetch_row($result)) {
-				if (in_array($row[0], $needsFuel)) $thisNeeds = true;
+				if (is_array($needFuel)) {
+					if (in_array($row[0], $needsFuel)) $thisNeeds = true;
+					else $thisNeeds = false;
+				}
 				else $thisNeeds = false;
 				$retArr[] = array(
 					"uid" => $row[0],
@@ -206,15 +209,8 @@ class ProjectType {
 	}
 	
 	public function getMachinesNeedFuel() {
-		$sql = "SELECT `machine` FROM `fuel_project_types` WHERE 1";
-		$result = $this->mysqli->query($sql);
-		if (mysqli_num_rows($result)) {
-			while ($row = mysqli_fetch_row($result)) {
-				$retArr[] = $row[0];
-			}
-			return $retArr;
-		}
-		else return -1;
+		//To-do: This needs reworked
+		return -1;
 	}
 	
 	public function printResources() {

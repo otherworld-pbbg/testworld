@@ -86,9 +86,7 @@ else {
 										ptag("li", "Manufacturing " . $preset->name . " <a href='index.php?page=manufacture&sel=" . $use["uid"]. "&userid=$currentUser&charid=$charcheck' class='clist'>[view details]</a>");
 									}
 								}
-								if ($use["type"]=="fire") {
-									ptag("li", "Lighting a fire (" .$use["ap"]. " AP) - afterglow " . $use["reserve"] . " minutes per hour of burning <a href='index.php?page=startFire&charid=$charcheck&userid=$currentUser&container=$targetObject->uid&ptype=" . $use["uid"]. "' class='clist'>[start]</a>");
-								}
+								//to do: how to tell if this is a suitable fire container?
 							}
 							echo "</ul>";
 						}

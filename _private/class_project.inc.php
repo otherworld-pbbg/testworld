@@ -6,7 +6,6 @@ include_once("local_map.inc.php");
 include_once("class_preset.inc.php");
 include_once("class_resource.inc.php");
 include_once("generic.inc.php");
-include_once("class_fuel_project.inc.php");
 include_once("class_time.inc.php");
 include_once("constants.php");
 
@@ -832,30 +831,19 @@ class Project {
 			$thisNeedFuel = false;
 			foreach ($tools2 as $t) {
 				$to = new Obj($this->mysqli, $t["uid"]);
-				$to->getBasicData();
-				if (in_array($to->preset, $needFuel)) {
-					$thisNeedFuel = $to->uid;
-					$break;
+				if (is_array($needFuel)) {
+					if (in_array($to->preset, $needFuel)) {
+						$thisNeedFuel = $to->uid;
+						$break;
+					}
 				}
 			}
 			
 			if ($thisNeedFuel) {
-				$sql2 = "SELECT `uid` FROM `fuel_projects` WHERE `machineFK`=$thisNeedFuel ORDER BY `startDatetime` DESC, `startMinute` DESC LIMIT 1";
-				$result = $this->mysqli->query($sql2);
-				if (mysqli_num_rows($result)) {
-					$row = mysqli_fetch_row($result);
-					$ft = new FuelProject($this->mysqli, $row[0]);
-					$ft->getInfo();
-					$fireStatus = $ft->checkProgress($this->charid);
-					//para($fireStatus);
-					if ($fireStatus==1||$fireStatus==2||$fireStatus==-3||$fireStatus==-5) {
-						return -6;
-					}
-					else if ($fireStatus==-6) {
-						return -8;//The fire went out while you were working
-					}//otherwise this can continue
-				}
-				else return -7;
+				//To-do 17.8.2017
+				//Check TEMPERATURE of machine
+				//Working on the project reduces the temperature
+				//waiting increses temperature if there is still fire
 			}
 			
 			$sql = "UPDATE `projects` SET `ap_invested`=`ap_invested`+$actual_ap, `quality`=$newQuality WHERE `uid`=$this->uid LIMIT 1";
