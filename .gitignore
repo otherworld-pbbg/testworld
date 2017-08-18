@@ -133,3 +133,4 @@ _private/hashing.inc.php
 www/root.inc.php
 www/root.inc.php
 .gitignore~
+*.marks

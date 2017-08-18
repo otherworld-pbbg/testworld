@@ -28,10 +28,10 @@ echo "<link rel='icon' type='image/x-icon' href='" . $gameRoot . "/favicon.ico'/
 <div class='container-fluid'>
 <div class="navbar-header">
 <?php
-ptag ("a", "Otherworld", "href='index.php' class='nawbar-brand'");
-echo "</div>";
+ptag ("a", "Otherworld", "href='index.php' class='navbar-brand'");
+
 echo "<ul class='nav navbar-nav navbar-right'>";
 echo "<li><p class='navbar-text'>(Logged in as " . $_SESSION['logged_user'] . ".)</p>";
-echo "</ul></div></nav>\n";
+echo "</ul></div></div></nav>\n";
 ?>
 <div class='container-fluid'>

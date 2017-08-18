@@ -28,7 +28,7 @@ echo "<link rel='icon' type='image/x-icon' href='" . $gameRoot . "/favicon.ico'/
 <div class='container-fluid'>
 <div class="navbar-header">
 <?php
-ptag ("a", "Otherworld", "href='index.php' class='nawbar-brand'");
+ptag ("a", "Otherworld", "href='index.php' class='navbar-brand'");
 echo "</div>";
 echo '<ul class="nav navbar-nav navbar-right">';
 ptag ("li", "<a href='index.php?page=register' class='light'><span class='glyphicon glyphicon-user'></span>Register</a>", "class='inline_li'");
