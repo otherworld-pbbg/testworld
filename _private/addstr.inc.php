@@ -30,7 +30,7 @@ else
 		
 		ptag("h2", "Add strings to resources");
 		
-		echo "<form action='index.php' class='medium' method='get'>";
+		echo "<form action='index.php' method='get'>";
 		
 		ptag("input" , "", "type='hidden' name='page' value='addstr'");
 		
@@ -44,9 +44,12 @@ else
 				ptag("h2", "$cn");
 			}
 			$curStr = $cur->getStrings();
-			echo "<p>";
+			echo "<div class='form-group'>";
+			
 			ptag("input", "", "type='checkbox' value='" .$resource["uid"] . "' id='res-" .$resource["uid"] . "' name='res-" .$resource["uid"] . "' onclick='processClick2(this)'");
-			echo $resource["name"] . " (" . $curStr . ")</p>";
+			
+			ptag("label", $resource["name"] . " (" . $curStr . ")", "for='res-" .$resource["uid"]."'");
+			echo "</div>";
 			$lastCat = $resource["category"];
 		}
 		

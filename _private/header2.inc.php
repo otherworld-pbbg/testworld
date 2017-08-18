@@ -1,8 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>Otherworld</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <?php
 if (isset($_SESSION["night"])) {
 	if ($_SESSION["night"]=="night") echo '<link rel="stylesheet" type="text/css" href="otherworld-night.css" />';
@@ -20,17 +24,14 @@ echo "<link rel='icon' type='image/x-icon' href='" . $gameRoot . "/favicon.ico'/
 ?>
 </head>
 <body>
-<div class='wrapper'>
-<div class='dark'>
+<nav class="navbar navbar-inverse">
+<div class='container-fluid'>
+<div class="navbar-header">
 <?php
-ptag ("a", "Otherworld", "href='index.php' class='light'");
-
-ptag ("p", "(Logged in as " . $_SESSION['logged_user'] . ".)", "class='inline_light'");
-/*
-echo "<ul class='right_no_marker'>\n";
-//ptag ("li", "<a href='index.php?page=login' class='light'>logout</a>", "class='inline_li'");
-echo "</ul>\n<br />";
-*/
-echo "</div></div>\n";
-
+ptag ("a", "Otherworld", "href='index.php' class='nawbar-brand'");
+echo "</div>";
+echo "<ul class='nav navbar-nav navbar-right'>";
+echo "<li><p class='navbar-text'>(Logged in as " . $_SESSION['logged_user'] . ".)</p>";
+echo "</ul></div></nav>\n";
 ?>
+<div class='container-fluid'>

@@ -26,14 +26,16 @@ else {
 	
 	if ($watcherRole>1) {
 		include_once "header2.inc.php";
-		ptag("p", "Disclaimer: You are a watcher, so you can't carry out actions. You only see what the character sees.");
+		echo "<div class='alert alert-info'>";
+		echo "<strong>Disclaimer:</strong> You are a watcher, so you can't carry out actions. You only see what the character sees.";
+		echo "</div>";
 	}
 	
 	//user is authorized to view this character
 	
 	if ($bodyId == -1) {
 		include_once "header2.inc.php";
-		echo "This character doesn't have a body so it cannot be played.";
+		displayBodywarning();
 	}
 	else {
 		$targets = array (

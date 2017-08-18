@@ -1,4 +1,4 @@
-<?
+<?php
 //registration
 $privateRoot = "../_private";
 

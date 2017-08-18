@@ -30,7 +30,7 @@ else {
 		$bodyId = $curChar->getBasicData();
 		if ($bodyId == -1) {
 			include_once "header2.inc.php";
-			echo "This character doesn't have a body so it cannot be played.";
+			displayBodywarning();
 		}
 		else {			
 			if ($watcherRole>1) {
@@ -55,7 +55,9 @@ else {
 						echo "<form method='get' action='index.php' class='narrow'>";
 						para("This material can be used as tinder or kindling.");
 						para("You need a fire bow in order to start a fire.");
-						para("Important disclaimer: Once you ignite this, you need to put it inside a container such as a fire pit fairly swiftly, or otherwise it can and will ignite other things in your inventory. Seriously, don't play with this, your stuff will go up in flames. You have been warned.");
+						echo "<div class='alert alert-warning'>";
+						echo "<strong>Important disclaimer:</strong> Once you ignite this, you need to put it inside a container such as a fire pit fairly swiftly, or otherwise it can and will ignite other things in your inventory. Seriously, don't play with this, your stuff will go up in flames. You have been warned.";
+						echo "</div>";
 						ptag("input", "", "type='hidden' name='page' value='startFire2'");
 						ptag("input", "", "type='hidden' name='charid' value='$charcheck'");
 						ptag("input", "", "type='hidden' name='sel' value='".$_GET["sel"] ."'");

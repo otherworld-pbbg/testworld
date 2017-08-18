@@ -26,7 +26,7 @@ else {
 		//user is authorized to view this character
 		$bodyId = $curChar->getBasicData();
 		include_once "header2.inc.php";
-		if ($bodyId == -1) echo "This character doesn't have a body so it cannot be played.";
+		if ($bodyId == -1) displayBodywarning();
 		else {
 			ptag("h2" , "Scene creator");
 			echo "<form action='index.php?page=createscene' method='post' class='narrow' autocomplete='off' id='sceneform'>";

@@ -28,7 +28,7 @@ else {
 		include_once "header2.inc.php";
 		//user is authorized to view this character
 		$bodyId = $curChar->getBasicData();
-		if ($bodyId == -1) echo "This character doesn't have a body so it cannot be played.";
+		if ($bodyId == -1) displayBodywarning();
 		else {
 			if (!isset($_GET["scene"])) header('Location: index.php?page=viewchar&charid=' . $charcheck . '&userid=' . $currentUser . '&tab=1');
 			$sceneid = $mysqli->real_escape_string($_GET['scene']);

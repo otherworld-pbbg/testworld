@@ -11,6 +11,12 @@ function para($str, $silent="")
 	return $txt;
 }
 
+function displayBodywarning() {
+	echo '<div class="alert alert-danger">';
+	echo "This character doesn't have a body, so it cannot be played.";
+	echo "</div>";
+}
+
 function ptag($tagname, $contents="", $attr="", $silent="")
 {
 	//prints html tag with opening and closing tags,

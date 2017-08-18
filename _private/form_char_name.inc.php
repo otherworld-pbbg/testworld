@@ -24,7 +24,9 @@ else {
 	
 	if ($watcherRole>1) {
 		include_once "header2.inc.php";
-		ptag("p", "Disclaimer: You are a watcher, so you can't carry out actions. You only see what the character sees.");
+		echo "<div class='alert alert-info'>";
+		echo "<strong>Disclaimer:</strong> You are a watcher, so you can't carry out actions. You only see what the character sees.";
+		echo "</div>";
 	}
 	
 	if ($watcherRole<1) header('Location: index.php?page=direwolf&userid=' . $currentUser);
@@ -33,7 +35,7 @@ else {
 		$bodyId = $curChar->getBasicData();
 		if ($bodyId == -1) {
 			include_once "header2.inc.php";
-			echo "This character doesn't have a body so it cannot be played.";
+			displayBodywarning();
 		}
 		else {
 			if (!isset($_GET['ocharid'])) header('Location: index.php?page=viewchar&charid=' . $charcheck . '&userid=' . $currentUser . '&tab=5');

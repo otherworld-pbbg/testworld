@@ -24,7 +24,7 @@ else
 			$bodyId = $curChar->getBasicData();
 			if ($bodyId == -1) {
 				include_once "header2.inc.php";
-				echo "This character doesn't have a body so it cannot be played.";
+				displayBodywarning();
 				echo "<p class='right'>";
 				para("<a href='index.php?page=clist&userid=$currentUser' class='clist'>[Return to Character List]</a>");
 			}

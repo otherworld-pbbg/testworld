@@ -32,7 +32,7 @@ else {
 		$bodyId = $curChar->getBasicData();
 		if ($bodyId == -1) {
 			include_once "header2.inc.php";
-			echo "This character doesn't have a body so it cannot be played.";
+			displayBodywarning();
 		}
 		if (isset($_POST['counter'])) {
 			$counter = $_POST['counter'];

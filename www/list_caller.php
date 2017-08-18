@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("../_private/class_build_menu2.inc.php");
 include_once("../_private/conn.inc.php");
 

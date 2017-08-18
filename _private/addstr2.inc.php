@@ -38,7 +38,7 @@ else
 		
 		ptag("h2", "Add strings to project types");
 		
-		echo "<form action='index.php' class='medium' method='get'>";
+		echo "<form action='index.php' method='get'>";
 		
 		ptag("input" , "", "type='hidden' name='page' value='addstr2'");
 		
@@ -48,11 +48,11 @@ else
 			$cur = new ProjectType($mysqli, $pete["pid"]);
 			
 			$infoArr = $cur->getResStrings();
-			
-			echo "<p>";
+			echo "<div class='form-group'>";
 			ptag("input", "", "type='radio' value='" . $pete["pid"] . "' id='pt-" . $pete["pid"] . "' name='pt_sel'");
-			echo $pete["name"] . " (" . $pete["pid"] . ")</p>";
+			ptag("label", $pete["name"] . " (" . $pete["pid"] . ")", "for='pt-" . $pete["pid"] . "'");
 			if ($pete["hidden"]==1) para("HIDDEN");
+			echo "</div>";
 			ptag("h4", "Resources under the old system:");
 			$cur->printResources();
 			ptag("h4", "Tool pools:");

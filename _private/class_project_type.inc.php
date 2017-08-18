@@ -188,7 +188,7 @@ class ProjectType {
 		$result = $this->mysqli->query($sql);
 		if (mysqli_num_rows($result)) {
 			while ($row = mysqli_fetch_row($result)) {
-				if (is_array($needFuel)) {
+				if (is_array($needsFuel)) {
 					if (in_array($row[0], $needsFuel)) $thisNeeds = true;
 					else $thisNeeds = false;
 				}

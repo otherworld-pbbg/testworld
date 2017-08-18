@@ -36,7 +36,7 @@ else {
 		$bodyId = $curChar->getBasicData();
 		if ($bodyId == -1) {
 			include_once "header2.inc.php";
-			echo "This character doesn't have a body so it cannot be played.";
+			displayBodywarning();
 		}
 		else {			
 			if ($watcherRole>1) {
@@ -127,7 +127,7 @@ else {
 							
 							$multiplier = round(pow($targetObject->weight+400, 0.3));
 							
-							echo "<form action='index.php?page=dismember' method='post' id='butcherform' name='butcherform' class='medium'>";
+							echo "<form action='index.php?page=dismember' method='post' id='butcherform' name='butcherform'>";
 							
 							para("Base AP cost: 10");
 							para("Removing certain parts costs extra");

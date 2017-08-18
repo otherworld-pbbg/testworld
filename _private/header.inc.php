@@ -1,24 +1,38 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>Otherworld</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="otherworld.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<?php
+if (isset($_SESSION["night"])) {
+	if ($_SESSION["night"]=="night") echo '<link rel="stylesheet" type="text/css" href="otherworld-night.css" />';
+	else echo '<link rel="stylesheet" type="text/css" href="otherworld.css" />';
+}
+else echo '<link rel="stylesheet" type="text/css" href="otherworld.css" />';
+?>
 <link rel="stylesheet" type="text/css" href="aciTree/css/aciTree.css">
 <script type="text/javascript" src="aciTree/js/jquery.min.js"></script>
 <script type="text/javascript" src="aciTree/js/jquery.aciPlugin.min.js"></script>
 <script type="text/javascript" src="aciTree/js/jquery.aciTree.min.js"></script>
 <script type="text/javascript" src="jscolor.js"></script>
+<?php
+echo "<link rel='icon' type='image/x-icon' href='" . $gameRoot . "/favicon.ico'/>"
+?>
 </head>
 <body>
-<div class='wrapper'>
-<div class='dark'>
+<nav class="navbar navbar-inverse">
+<div class='container-fluid'>
+<div class="navbar-header">
 <?php
-ptag ("a", "Otherworld", "href='index.php' class='light'");
-
-echo "<ul class='right_no_marker'>\n";
-ptag ("li", "<a href='index.php?page=register' class='light'>Register</a>", "class='inline_li'");
-ptag ("li", "<a href='index.php?page=login' class='light'>Login</a>", "class='inline_li'");
-echo "</ul>\n<br /></div></div>\n";
+ptag ("a", "Otherworld", "href='index.php' class='nawbar-brand'");
+echo "</div>";
+echo '<ul class="nav navbar-nav navbar-right">';
+ptag ("li", "<a href='index.php?page=register' class='light'><span class='glyphicon glyphicon-user'></span>Register</a>", "class='inline_li'");
+ptag ("li", "<a href='index.php?page=login' class='light'><span class='glyphicon glyphicon-log-in'></span> Login</a>", "class='inline_li'");
+echo "</ul>\n</div></nav>\n";
 ?>
+<div class='container-fluid'>

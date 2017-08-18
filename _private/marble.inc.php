@@ -37,7 +37,9 @@ else {
 	
 	if ($watcherRole>1) {
 		include_once "header2.inc.php";
-		ptag("p", "Disclaimer: You are a watcher, so you can't carry out actions. You only see what the character sees.");
+		echo "<div class='alert alert-info'>";
+		echo "<strong>Disclaimer:</strong> You are a watcher, so you can't carry out actions. You only see what the character sees.";
+		echo "</div>";
 	}
 	
 	
@@ -46,7 +48,7 @@ else {
 	
 	if ($bodyId == -1) {
 		include_once "header2.inc.php";
-		echo "This character doesn't have a body so it cannot be played.";
+		displayBodywarning();
 	}
 	else {
 		$pos = $curChar->getPosition();
@@ -80,12 +82,10 @@ else {
 		}
 		
 		include_once "header2.inc.php";//This can only be called after the cookies are set
-		para("Test value: " . $curChar->getRestAP());
 		
-		echo "<div class='displayarea'>\n";
 		if ($bodyObj->type==10) {
 			if ($watcherRole>1) {
-				echo "<div class='notice'>\n";
+				echo "<div class='alert alert-info'>\n";
 				ptag("h3", "Notice:", "");
 				para("This character is dead, so you can only see the ongoing scenes.");
 				para("Once you are done reading, click below to resign as a watcher.");
@@ -93,7 +93,7 @@ else {
 				echo "</div>\n";
 			}
 			else {
-				echo "<div class='notice'>\n";
+				echo "<div class='alert alert-info'>\n";
 				ptag("h3", "Notice:", "");
 				para("This character is dead, so you're only allowed to wrap up scenes that are ongoing in your past. In those cases, your character is not allowed to know that they're going to die or how because from their perspective, it hasn't happened yet.");
 				para("Once you've got your character's affairs in order, click the link below to resign from playing this character.");
@@ -103,14 +103,14 @@ else {
 		}
 		
 		echo "</div>\n";
-		echo "<div class='bar'>\n";
-		echo "<div class='left_header'>\n";
+		echo "<div class='row'>\n";
+		echo "<div class='col-lg-2'>\n";
 		ptag("h4", "Current character:");
 		para("<a href='index.php?page=formCharName&charid=$charcheck&userid=$currentUser&ocharid=" . $charcheck . "' class='clist'>" . $curChar->cname . "</a>");
 		$ageArr = $curChar->getAge();
 		para("Age: ".$ageArr[0]." years, ".$ageArr[1]." months");
 		para ($curChar->getAgeSex());
-		echo "</div>\n<div class='icon_header'>\n";
+		echo "</div>\n<div class='col-lg-1'>\n";
 		$blood_per = $bodyObj->getBloodPercentage();
 		if ($blood_per<80) ptag("img", "", "src='". getGameRoot() . "/graphics/icon_wounded.png' alt='seriously wounded'");
 		else if ($blood_per<95) ptag("img", "", "src='". getGameRoot() . "/graphics/icon_so-so.png' alt='somewhat wounded'");
@@ -118,7 +118,7 @@ else {
 		
 		ptag("img", "", "src='" . getGameRoot() . "/graphics/icon_satiated.png' alt='satiated'");//this is currently static
 		echo "</div>\n";
-		echo "<div class='loc_header'>\n";
+		echo "<div class='col-lg-2'>\n";
 		ptag("h4", "Current location:");
 		para($currentLocation->x . ", " . $currentLocation->y);
 		$locnameArr = $curChar->getLocationName($currentLocation->x, $currentLocation->y);
@@ -132,7 +132,7 @@ else {
 				else para("Inside");
 			}
 		echo "</div>\n";
-		echo "<div class='time_header'>\n";
+		echo "<div class='col-lg-2'>\n";
 		ptag("h4", "Time and date:");
 		
 		
@@ -140,7 +140,7 @@ else {
 		
 		para($curTime->getSeason($pos->y) . " / " . $timeofday);
 		echo "</div>\n";
-		echo "<div class='info_header'>\n";
+		echo "<div class='col-lg-5'>\n";
 		$curAP = $curChar->getAP();
 		para("AP: $curAP");
 		$weather = $curTime->getWeather($currentLocation->x, $currentLocation->y);
@@ -156,27 +156,30 @@ else {
 		else para("Feels: " . $curTime->describeDewpoint($weather["dew"]));
 		echo "</div>\n";
 		echo "<p class='right'><a href='index.php?page=direwolf&userid=$currentUser' class='clist'>[Return to character list]</a></p>";
-		echo "</div>\n";
 		
-		echo "<div class='displayarea'>\n";
-		echo "<h3 class='dark'>";
+		echo "<div class='navbar navbar-inverse'>\n";
+		echo "<div class='container-fluid'>";
+		echo "<ul class='nav navbar-nav'>";
+		echo "<li>";
 		ptag("a", "Timeline", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=5' class='light'");
-		echo " | ";
+		echo "</li><li>";
 		ptag("a", "Activities", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=2' class='light'");
-		echo " | ";
+		echo "</li><li>";
 		ptag("a", "Environment", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=3' class='light'");
-		echo " | ";
+		echo "</li><li>";
 		ptag("a", "Items & Resources", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=4' class='light'");
-		echo " | ";
+		echo "</li><li>";
 		ptag("a", "Scenes", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=1' class='light'");
-		echo " | ";
+		echo "</li><li>";
 		ptag("a", "Groups", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=11' class='light'");
-		echo " | ";
+		echo "</li><li>";
 		ptag("a", "Travel log", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=12' class='light'");
-		echo "</h3>";
+		echo "</li>";
+		echo "</ul>";
+		echo "</div>";
 		echo "</div>\n";
 		
-		echo "<div class='displayarea'>\n";
+		echo "<div class='container-fluid'>\n";
 		
 		if (isset($_GET['tab']))
 		{
@@ -188,14 +191,14 @@ else {
 		
 		if ($tab==1) {
 			include_once $privateRoot . "/class_scene.inc.php";;
-			echo "<div class='bar'>\n";
+			echo "<div class='row'>\n";
 			if ($bodyObj->type==2)
 			{
 				echo "<p class='right'>";
 				ptag("a", "[Create new scene]", "href='index.php?page=scenecreator&charid=$charcheck&userid=$currentUser' class='clist'");
 				echo "</p>";
 			}
-			echo "<div class='left_panel'>\n";
+			echo "<div class='col-lg-6'>\n";
 			ptag("h1", "Public scenes");
 			$scenes = $curChar->getScenesNearby(1);//this needs to be changed so that instead of current physical location it uses the charloctime table
 			if ($scenes==-1) para("None at this area.");
@@ -278,7 +281,7 @@ else {
 					}
 				}
 			}
-			echo "</div><div class='right_panel'>\n";
+			echo "</div><div class='col-lg-6'>\n";
 			ptag("h1", "Private scenes");
 			$scenes2 = $curChar->getScenesNearby(2);
 			if ($scenes2==-1) para("None at this area.");
@@ -380,7 +383,7 @@ else {
 			echo "</div>\n</div>\n";
 		}
 		if ($tab==2) {
-			echo "<div class='bar'>\n";
+			echo "<div class='row'>\n";
 			
 			if (isset($_GET['errormessage'])) {
 				if ($_GET['errormessage']=='1') para("You tried to fight when you're not actually engaged in any combat.");
@@ -512,7 +515,7 @@ else {
 			echo "</div>\n";
 		}
 		if ($tab==3) {
-			echo "<div class='bar'>\n";
+			echo "<div class='row'>\n";
 			
 			$curChar->updateCharLocTime($currentLocation->x, $currentLocation->y, $lx, $ly, $curChar->building, 2, 0);
 			ptag("h1", "Environment");
@@ -553,7 +556,9 @@ else {
 				
 				echo "<form action='index.php?page=explore' method='post' class='narrow' id='exploreform'>";
 				para("This location hasn't been explored. Exploring it costs 50 AP. Would you like to unlock it?");
-				ptag("p", "Disclaimer: It's not mandatory to explore a location if you're just passing through, but if you're going to drop items, clear away underbrush, cut down trees, or build dwellings or other structures, in those cases the local map needs to be unlocked first.", "class='disclaimer'");
+				echo '<div class="alert alert-info">';
+				echo "<strong>Disclaimer:</strong> It's not mandatory to explore a location if you're just passing through, but if you're going to drop items, clear away underbrush, cut down trees, or build dwellings or other structures, in those cases the local map needs to be unlocked first.";
+				echo "</div>";
 				ptag("input" , "", "type='hidden' name='charid' value='$charcheck'");
 				ptag("input" , "", "type='hidden' name='userid' value='$currentUser'");
 				echo "<p class='right'>";
@@ -832,7 +837,7 @@ else {
 			echo "</div>\n";
 		}
 		if ($tab==4) {
-			echo "<div class='bar'>\n";
+			echo "<div class='row'>\n";
 			if (isset($_GET['message'])) {
 				if ($_GET['message']=='1') para("Object was given successfully.");
 				else if ($_GET['message']=='2') para("This message isn't currently in use.");
@@ -995,7 +1000,7 @@ else {
 			echo "</div>\n";
 		}
 		if ($tab==5) {
-			echo "<div class='bar'>\n";
+			echo "<div class='row'>\n";
 			ptag("h1", "Timeline");
 			
 			echo "<div id='ediv' class='eventlog'>";
@@ -1055,12 +1060,12 @@ else {
 			echo "</div>\n";
 		}
 		if ($tab==6) {
-			echo "<div class='bar'>\n";
+			echo "<div class='row'>\n";
 			ptag("h1", "Character profile");
 			echo "</div>\n";
 		}
 		if ($tab==7) {
-			echo "<div class='bar'>\n";
+			echo "<div class='row'>\n";
 			
 			ptag("h1", "Memorized resource spots");
 			para("You can memorize up to 100 spots. If you exceed this, you will start forgetting the old ones. You can always choose to forget a spot, but you can only visit them if you're in the same location.");
@@ -1070,14 +1075,19 @@ else {
 			$elsewhere = $curChar->getMemorizedList(false);
 			$i=0;
 			
-			echo "<form action='index.php?page=forgetResource' method='post' class='medium'>";
+			echo "<form action='index.php?page=forgetResource' method='post' class='form-horizontal'>";
 			if ($here==-1) para("There are no memorized spots in this location.");
 			else {
 				ptag("h2", "In this location");
 				for ($i=0;$i<count($here);$i++) {
 					$num = $i + 1;
 					$vlink = "index.php?page=forage2&charid=" . $charcheck . "&userid=" . $currentUser . "&source=" . $here[$i]["uid"];
-					para("<input type='radio' name='spot' value='". $here[$i]["uid"] ."' /> " . $num . ". " . $here[$i]["name"] . " - <a href='$vlink' class='clist'>[Visit]</a>");
+					echo "<div class='form-group'>";
+					echo "<div class='col-sm-2'>";
+					echo "<input type='radio' name='spot' value='". $here[$i]["uid"] ."' id='rad-$i' />";
+					echo "</div>";
+					ptag("label", $num . ". " . $here[$i]["name"] . " - <a href='$vlink' class='clist'>[Visit]</a>", "for='rad-$i' class='col-lg-10'");
+					echo "</div>";
 				}
 			}
 			if ($elsewhere==-2) para("There are no memorized spots in other locations.");
@@ -1087,7 +1097,12 @@ else {
 					$lname = $curChar->getLocationName($elsewhere[$j]["x"], $elsewhere[$j]["y"]);
 					$link = "index.php?page=formLocName&charid=$charcheck&userid=$currentUser&x=" . $elsewhere[$j]["x"] . "&y=" . $elsewhere[$j]["y"];
 					$num2 = $i+$j+1;
-					para("<input type='radio' name='spot' value='". $elsewhere[$j]["uid"] ."' /> " . $num2 . ". " .  $elsewhere[$j]["name"] . " - <a href='$link' class='clist'>" . $lname["name"] . "</a>");
+					echo "<div class='form-group'>";
+					echo "<div class='col-sm-2'>";
+					echo "<input type='radio' name='spot' value='". $elsewhere[$j]["uid"] ."' id='rad2-$j' /> ";
+					echo "</div>";
+					ptag("label", $num2 . ". " .  $elsewhere[$j]["name"] . " - <a href='$link' class='clist'>" . $lname["name"] . "</a>", "for='rad2-$j' class='control-albel col-lg-10'");
+					echo "</div>";
 				}
 			}
 			ptag("input" , "", "type='hidden' name='charid' value='$charcheck'");
@@ -1100,7 +1115,7 @@ else {
 		
 		if ($tab==8) {
 			ptag("h1", "Manufacturing options");
-	echo "<div class='bar'>";		
+	echo "<div class='row'>";		
 ?>
 <div id="tree" class="aciTree">
 </div>
@@ -1147,7 +1162,7 @@ else {
 			ptag("h1", "Recent travels");
 			$link = $gameRoot . "/show_travel.php?charid=" .$charcheck. "&userid=$currentUser";
 			
-			echo "<div class='bar'>";
+			echo "<div class='row'>";
 			echo "<img src='$link' alt='Automatically generated image'>";
 			echo "</div>";
 		}
@@ -1421,7 +1436,7 @@ else {
 			if ($localCheck == -1) para("You are in water. Hopefully you're in a boat.");//in the future this will actually check if you're in a boat
 			else {
 				ptag("h1", "Local groups");
-				echo "<div class='notice'>\n";
+				echo "<div class='alert alert-info'>\n";
 				ptag("h3", "Notice:", "");
 				para("This feature is under construction. You can still play with it for the parts that have been implemented.");
 				echo "</div>";
@@ -1431,7 +1446,7 @@ else {
 			}
 		}
 		if ($tab==12) {
-			echo "<div class='bar'>\n";
+			echo "<div class='row'>\n";
 			ptag("h1", "Travel log");
 			if (!$curChar->analyzeTravels()) para("Your travel log is empty");//Otherwise it just prints the table
 			echo "</div>";

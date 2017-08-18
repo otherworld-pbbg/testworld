@@ -1,4 +1,4 @@
-<?
+<?php
 
 $arr = array();
 

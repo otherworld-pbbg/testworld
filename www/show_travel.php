@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 include_once("../_private/class_character.inc.php");
 include_once("../_private/conn.inc.php");

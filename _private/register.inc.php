@@ -79,10 +79,12 @@ if ($displayForm)
 	echo "</p>\n<p>";
 	ptag("input", "", "type='submit' id='submit_btn' name='submit_btn' value='Register'");
 	echo "</p>";
+	echo '<div class="alert alert-info">';
 	para("Disclaimers:"); 
 	para("1) Usernames shouldn't use any special characters (underscores are allowed though).");
 	para("2) Passwords are case sensitive, usernames are not.");
 	para("3) You are responsible for all activities that happen on your account, so if you pick an easy password and someone guesses it, you can be held responsible for anything they do on your account. It's recommended that the password is at least 7 characters and contains at least one letter and number. It's up to you if you comply or not.");
+	echo "</div>";
 	echo "</form>";
 }
 

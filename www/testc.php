@@ -1,4 +1,4 @@
-<?
+<?php
 include_once "../_private/generic.inc.php";
 include_once "../_private/header.inc.php";
 

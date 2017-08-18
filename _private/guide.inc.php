@@ -19,7 +19,9 @@ else
 	
 	para("When you are placed into the world, the location is random and it is very unlikely that there is anyone else there. Other people will show up on the Timeline page if there are any. I recommend that you unlock the location if it's not already unlocked. If it is unlocked, this means someone else has already been there, which means you are near other players.");
 	
-	para("Disclaimer: Don't attack animals yet. At this stage, it's more likely they kill you than you kill them. First aid isn't yet implemented, so any wounds you get will be with you for a long time.");
+	echo '<div class="alert alert-warning">';
+	echo "<strong>Disclaimer:</strong> Don't attack animals yet. At this stage, it's more likely they kill you than you kill them. First aid isn't yet implemented, so any wounds you get will be with you for a long time.";
+	echo "</div>";
 	
 	para("Pay attention to the list of resources on the Environment and Activities pages. They aren't 100% the same but each resource on the Environment page should correspond to at least one on the Activities page, unless a deposit has been exhausted. Some resources have different names like 'random deciduous trees' vs 'junkwood'. If you see that there is a resource without a clear match, report it as it could be a bug.");
 	

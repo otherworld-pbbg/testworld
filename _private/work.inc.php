@@ -31,7 +31,7 @@ else {
 		$bodyId = $curChar->getBasicData();
 		if ($bodyId == -1) {
 			include_once "header2.inc.php";
-			echo "This character doesn't have a body so it cannot be played.";
+			displayBodywarning();
 		}
 		else {			
 			if ($watcherRole>1) {
@@ -57,7 +57,7 @@ else {
 						$ok = true;
 						echo "<div class='displayarea'>";
 						
-						echo "<form class='medium'>";
+						echo "<form>";
 						ptag("h2", "Available tools");
 						if ($usedPools==-1) para("This doesn't require any pooled tools.");
 						else foreach($usedPools as $slot) {

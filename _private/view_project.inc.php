@@ -30,7 +30,7 @@ else {
 		$bodyId = $curChar->getBasicData();
 		if ($bodyId == -1) {
 			include_once "header2.inc.php";
-			echo "This character doesn't have a body so it cannot be played.";
+			displayBodywarning();
 		}
 		else {			
 			if ($watcherRole>1) {
@@ -68,7 +68,7 @@ else {
 							$entry->printInfo();
 							$readiness = $entry->getReadiness();
 							if ($readiness) {
-								echo "<form action='index.php' class='medium'>";
+								echo "<form action='index.php'>";
 								para("This project has all the resources and components it needs, so you can work on it assuming you have the necessary tools.");
 								echo "<p class='right'>";
 								ptag("input", "", "type='submit' value='Proceed'");

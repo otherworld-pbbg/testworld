@@ -30,7 +30,7 @@ else {
 		$bodyId = $curChar->getBasicData();
 		if ($bodyId == -1) {
 			include_once "header2.inc.php";
-			echo "This character doesn't have a body so it cannot be played.";
+			displayBodywarning();
 		}
 		else {	
 			$combat = $curChar->checkCurrentCombat();
@@ -39,7 +39,9 @@ else {
 			}
 			if ($watcherRole>1) {
 				include_once "header2.inc.php";
-				para("Disclaimer: You're a watcher, so you cannot affect the outcome of the fight, you can just see the events.");
+				echo "<div class='alert alert-info'>";
+				echo "<strong>Disclaimer:</strong> You're a watcher, so you cannot affect the outcome of the fight, you can just see the events.";
+				echo "</div>";
 			}
 			include_once "header2.inc.php";
 			echo "<div class='bar'>\n";

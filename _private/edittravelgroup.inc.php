@@ -31,7 +31,7 @@ else {
 			$bodyId = $curChar->getBasicData();
 			if ($bodyId == -1) {
 				include_once "header2.inc.php";
-				echo "This character doesn't have a body so it cannot be played.";
+				displayBodywarning();
 			}
 			else {
 				if (!isset($_POST['join'])||!isset($_POST['command'])) header('Location: index.php?page=viewchar&charid=' . $charcheck . '&userid=' . $currentUser . '&tab=11');

@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("../_private/class_build_menu2.inc.php");
 
 //$mysqli = new mysqli("localhost", "countd6_other", "bluegoo52", "countd6_ogreworld");

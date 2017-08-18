@@ -29,7 +29,7 @@ else {
 	else {
 		//user is authorized to view this character
 		$bodyId = $curChar->getBasicData();
-		if ($bodyId == -1) echo "This character doesn't have a body so it cannot be played.";
+		if ($bodyId == -1) displayBodywarning();
 		else {			
 			if ($watcherRole>1) {
 				include_once "header2.inc.php";
