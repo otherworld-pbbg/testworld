@@ -547,7 +547,7 @@ class Time {
 		$currentLocation = new GlobalMap($this->mysqli, $x, $y);
 		$terrains = $currentLocation->getTerrains($dbonly);
 		if ($dbonly) $water = 50;
-		else $currentLocation->getLevel("water");
+		else $water = $currentLocation->getLevel("water");
 		
 		$index = round(($y+5000)/1000);
 		$cycle = $this->year%7;

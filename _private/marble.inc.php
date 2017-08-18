@@ -157,27 +157,27 @@ else {
 		echo "</div>\n";
 		echo "<p class='right'><a href='index.php?page=direwolf&userid=$currentUser' class='clist'>[Return to character list]</a></p>";
 		
-		echo "<div class='navbar navbar-inverse'>\n";
+		echo "<nav class='navbar navbar-inverse'>\n";
 		echo "<div class='container-fluid'>";
 		echo "<ul class='nav navbar-nav'>";
 		echo "<li>";
-		ptag("a", "Timeline", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=5' class='light'");
+		ptag("a", "Timeline", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=5'");
 		echo "</li><li>";
-		ptag("a", "Activities", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=2' class='light'");
+		ptag("a", "Activities", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=2'");
 		echo "</li><li>";
-		ptag("a", "Environment", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=3' class='light'");
+		ptag("a", "Environment", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=3'");
 		echo "</li><li>";
-		ptag("a", "Items & Resources", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=4' class='light'");
+		ptag("a", "Items & Resources", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=4'");
 		echo "</li><li>";
-		ptag("a", "Scenes", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=1' class='light'");
+		ptag("a", "Scenes", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=1'");
 		echo "</li><li>";
-		ptag("a", "Groups", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=11' class='light'");
+		ptag("a", "Groups", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=11'");
 		echo "</li><li>";
-		ptag("a", "Travel log", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=12' class='light'");
+		ptag("a", "Travel log", "href='index.php?page=viewchar&charid=$charcheck&userid=$currentUser&tab=12'");
 		echo "</li>";
 		echo "</ul>";
 		echo "</div>";
-		echo "</div>\n";
+		echo "</nav>\n";
 		
 		echo "<div class='container-fluid'>\n";
 		
