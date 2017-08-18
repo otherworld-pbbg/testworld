@@ -31,8 +31,8 @@ echo "<link rel='icon' type='image/x-icon' href='" . $gameRoot . "/favicon.ico'/
 ptag ("a", "Otherworld", "href='index.php' class='navbar-brand'");
 echo "</div>";
 echo '<ul class="nav navbar-nav navbar-right">';
-ptag ("li", "<a href='index.php?page=register' class='light'><span class='glyphicon glyphicon-user'></span>Register</a>", "class='inline_li'");
-ptag ("li", "<a href='index.php?page=login' class='light'><span class='glyphicon glyphicon-log-in'></span> Login</a>", "class='inline_li'");
+ptag ("li", "<a href='index.php?page=register'><span class='glyphicon glyphicon-user'></span> Register</a>");
+ptag ("li", "<a href='index.php?page=login'><span class='glyphicon glyphicon-log-in'></span> Login</a>");
 echo "</ul>\n</div></nav>\n";
 ?>
 <div class='container-fluid'>
