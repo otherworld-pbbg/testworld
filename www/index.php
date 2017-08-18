@@ -1,6 +1,6 @@
 <?php
 session_start();
-$gameRoot = "http://otherworld.loc:1234";// online it would be different
+$gameRoot = "http://otherworld.loc";// online it would be different
 $privateRoot = "../_private";
 
 include_once $privateRoot . "/abbr.inc.php";//abbreviations: para($str), ptag($tagname, $contents, [$attr])
