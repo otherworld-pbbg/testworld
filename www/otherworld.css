@@ -642,7 +642,7 @@ span.infobox{
     color: #717171;
     font-size: 13px;
     height: 130px;
-    max-width: 220px;
+    width: 220px;
     letter-spacing: 1px;
     line-height: 20px;
     position: relative;

@@ -134,3 +134,7 @@ www/root.inc.php
 www/root.inc.php
 .gitignore~
 *.marks
+www/graphics/local/altitude_2260-1275.png
+www/graphics/local/plants_2260-1275.png
+www/graphics/local/row_2260-1275.png
+www/graphics/local/soil_2260-1275.png
