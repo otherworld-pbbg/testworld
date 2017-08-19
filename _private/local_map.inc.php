@@ -967,7 +967,7 @@ Class LocalMap {
 		if ($arr) {
 			para("Displaying (" . $minx*10 . "," . $miny*10 . ") to (" . $maxx*10 . "," . $maxy*10 . ").");
 			for ($k=0;$k<count($arr);$k++) {
-				if ($arr[$k]["x"]<=$minx) echo "<div class='row'>";
+				if ($arr[$k]["x"]<=$minx) echo "<div class='row_local'>";
 				$this->printSquare_sm($arr[$k]);
 				if ($arr[$k]["x"]>=$maxx) echo "</div>";
 			}
@@ -1180,7 +1180,7 @@ Class LocalMap {
 		
 		if ($arr) {
 			for ($k=0;$k<count($arr);$k++) {
-				if ($arr[$k]["x"]<=$minx) echo "<div class='row'>";
+				if ($arr[$k]["x"]<=$minx) echo "<div class='row_local'>";
 				$this->printSquare($arr[$k], $buildings, $paths, $type, $ppl, $isnight);
 				if ($arr[$k]["x"]>=$maxx) echo "</div>";
 			}

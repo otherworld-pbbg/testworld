@@ -348,7 +348,7 @@ div.ppl_list
 	float:right;
 }
 
-div.row {
+div.row_local {
 	clear:both;
 }
 
@@ -412,7 +412,7 @@ div.localmap {
 	overflow: auto;
 	white-space: nowrap;
 	position: relative;
-	min-width:1400px;
+	min-width:1300px;
 }
 
 a:link.clist
