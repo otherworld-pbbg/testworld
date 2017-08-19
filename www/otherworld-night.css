@@ -135,7 +135,7 @@ p.longtext
 	font-family:Verdana, sans-serif;
 	border:0px;
 	padding:5px 25px 5px 25px;
-	width:800px;
+	max-width:800px;
 	margin:4px 20px 4px 20px;
 	clear:both;
 }
@@ -329,70 +329,22 @@ div.infobox
 	margin-right:20px;
 	float:left;
 	background-color:#505570;
-	width: 300px;
+	max-width: 300px;
 	padding-bottom:15px;
 	display:block;
 }
 
-div.left_header
-{
-	width:300px;
-	float:left;
-}
-
-div.icon_header
-{
-	width:100px;
-	height:90px;
-	float:left;
-	
-	padding-top:20px;
-}
-
-div.loc_header
-{
-	width:270px;
-	float:left;
-	
-}
-
-div.time_header
-{
-	width:270px;
-	float:left;
-	
-}
-
-div.info_header
-{
-	width:270px;
-	float:left;
-	
-}
-
 div.event_list
 {
-	width:1020px;
+	max-width:1020px;
 	float:left;
 }
 
 div.ppl_list
 {
-	width:280px;
+	max-width:280px;
 	position:absolute;
 	margin-left:1020px;
-	float:right;
-}
-
-div.left_panel {
-	width:600px;
-	float:left;
-}
-
-div.right_panel {
-	width:600px;
-	position:absolute;
-	margin-left:600px;
 	float:right;
 }
 
@@ -587,7 +539,7 @@ input[type="checkbox"].fieldmap {
 }
 
 form.narrow {
-	width:600px;
+	max-width:600px;
 	margin:10px 10px 10px 35px;
 	padding:10px 10px 10px 10px;
 	border:5px outset #223366;
@@ -602,22 +554,13 @@ div.comment
 	margin-bottom:5px;
 	padding:15px;
 	background-color:#505570;
-	width: 900px;
+	max-width: 900px;
 	border:3px double #223366;
 	clear:both;
 }
 
-form.medium {
-	width:800px;
-	margin:35px;
-	padding:10px 10px 10px 10px;
-	border:5px outset #223366;
-	background-color:#505570;
-	float: left;
-}
-
 form.compass {
-	width:600px;
+	max-width:600px;
 	margin:10px 10px 10px 45px;
 	padding:25px 15px 15px 25px;
 	border:5px outset #223366;
@@ -625,7 +568,7 @@ form.compass {
 }
 
 div.infobox2 {
-	width:800px;
+	max-width:800px;
 	margin:35px 35px 35px 50px;
 	padding:20px 10px 40px 20px;
 	border:5px outset #223366;
@@ -700,7 +643,7 @@ span.infobox{
     color: #717171;
     font-size: 13px;
     height: 130px;
-    width: 220px;
+    max-width: 220px;
     letter-spacing: 1px;
     line-height: 20px;
     position: relative;
@@ -787,7 +730,7 @@ ul.infolist {
 	padding:5px 10px 10px 10px;
 	margin:5px 30px 10px 50px;
 	clear:both;
-	width:600px;
+	max-width:600px;
 }
 
 li.infolist {
@@ -807,4 +750,15 @@ div.eventlog
 	margin-bottom:20px;
 	clear:both;
 	overflow:auto;
+}
+
+input[type="button"], input[type="submit"]
+{
+	color:white!important;
+	background-color:#556688!important;
+	text-shadow: 0px 0px 0px #556688!important;
+}
+
+select {
+  color: black;
 }
