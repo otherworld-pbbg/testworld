@@ -102,7 +102,7 @@ else {
 			}
 		}
 		
-		echo "</div>\n";
+		
 		echo "<div class='row'>\n";
 		echo "<div class='col-lg-2'>\n";
 		ptag("h4", "Current character:");
@@ -154,6 +154,8 @@ else {
 			else para("It's raining but warm.");
 		}
 		else para("Feels: " . $curTime->describeDewpoint($weather["dew"]));
+		echo "</div>\n";
+		echo "</div>\n";
 		echo "</div>\n";
 		echo "<div class='container-fluid'>\n";
 		echo "<p class='right'><a href='index.php?page=direwolf&userid=$currentUser' class='clist'>[Return to character list]</a></p>";
