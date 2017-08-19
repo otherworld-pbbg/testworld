@@ -761,3 +761,8 @@ input[type="button"], input[type="submit"]
 select {
   color: black;
 }
+
+.affix {
+      top: 0;
+      width: 100%;
+  }

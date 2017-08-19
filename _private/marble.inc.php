@@ -157,7 +157,7 @@ else {
 		echo "</div>\n";
 		echo "<p class='right'><a href='index.php?page=direwolf&userid=$currentUser' class='clist'>[Return to character list]</a></p>";
 		
-		echo "<nav class='navbar navbar-inverse'>\n";
+		echo "<nav class='navbar navbar-inverse' data-spy='affix' data-offset-top='200'>\n";
 		echo "<div class='container-fluid'>";
 		echo "<ul class='nav navbar-nav'>";
 		echo "<li>";
