@@ -32,7 +32,13 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["submit_b
 				header('Location: index.php?page=direwolf&userid='. $info->uid);
 				$displayForm = false;
 			}
-			else para("Wrong password!");
+			else {
+				include_once "header.inc.php";
+				echo "<div class='alert alert-warning'>";
+				para("Wrong password!");
+				para("If you have a valid email account associated with your Otherworld account, you can go to <a href='index.php?page=reset'>this page</a> to have your password reset. However, if your account was created before we started requiring a valid email, you need to contact admin for a manual reset. After you get to your account, be sure to update your email address if it's not already up to date, so that if you forget your password again, you can reset it any time.");
+				echo "</div>";
+			}
 		}
 	}
 	else {
@@ -44,7 +50,7 @@ if ($displayForm)
 {
 	include_once "header.inc.php";
 	echo "<div class='alert alert-info'>";
-	para("Notice to all users: Since I accidentally posted our hashing safeword on Github, we had to change it, which means that nobody's passwords work anymore. You will have to contact the developer for a new password. Also this way we will see which ones of the testers are still active.");
+	para("Notice to all users: Since I accidentally posted our hashing safeword on Github, we had to change it, which means that old passwords don't work anymore. You will have to contact the developer for a new password. Also this way we will see which ones of the testers are still active.");
 	echo "</div>";
 	echo "<form action='index.php?page=login' method='post' class='narrow'>";
 	echo "<p>";
