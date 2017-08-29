@@ -6,19 +6,19 @@ function applyStamp($image, $stamp, $x, $y) {
 }
 
 function snake($x, $y, $angle) {
-	$dist = 30;
+	$dist = 20;
 	
 	$xshift = $dist*cos(deg2rad($angle));
 	$yshift = $dist*sin(deg2rad($angle));
 	
 	$magnitude = rand(0,5);
 	$array = array(
-		array(0,1),
-		array(2,5),
+		array(0,5),
 		array(6,15),
 		array(16,30),
 		array(31,50),
-		array(51,100)
+		array(51,75),
+		array(76,100)
 		);
 	$achange = rand($array[$magnitude][0],$array[$magnitude][1]);
 	if (rand(0,1)==1) $achange = -$achange;
@@ -71,12 +71,16 @@ $grasscount = rand(1,10);
 for ($j = 0; $j<$grasscount; $j++) {
 	$prevx = rand(0,1000);
 	$prevy = rand(0,700);
-	$preva = rand(0,360);
+	$preva = rand(0,364);
 	$snakelength = rand(10,200);
 	
 	for ($i = 0; $i<$snakelength; $i++) {
+		$cur = $sands[rand(0,2)];
+		imagesavealpha($cur, true);
+		$transparency = imagecolorallocatealpha($cur, 0, 0, 0, 127);
 		$new = snake($prevx, $prevy, $preva);
-		$im = applyStamp($im, $sands[rand(0,2)], $new["x"], $new["y"]);
+		$cur = imagerotate($cur, -$new["a"], $transparency);
+		$im = applyStamp($im, $cur, $new["x"], $new["y"]);
 		$prevx = $new["x"];
 		$prevy = $new["y"];
 		$preva = $new["a"];
