@@ -70,9 +70,9 @@ class Character {
 	
 	public function createBody($ageOffset, $x, $y, $datetime, $minute, $lx=0, $ly=0, $building=0) {
 		//preset 19 - baby, 26 - toddler, 28 - child, 25 - preteen, 23 - adolescent, 21-adult
-		$calcArr = calculateBody($ageOffset);
-		$preset = $calcArr->preset;
-		$weight = $calcArr->weight;
+		$calcArr = $this->calculateBody($ageOffset);
+		$preset = $calcArr["preset"];
+		$weight = $calcArr["weight"];
 		
 		$sql1 = "SELECT `objectFK` FROM `chars` WHERE `uid`=$this->uid LIMIT 1";
 		$res = $this->mysqli->query($sql1);//check if it already has a body

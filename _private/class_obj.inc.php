@@ -840,6 +840,7 @@ class Obj
 		$max = round($this->weight/10);
 		$curBlood = $this->calculateBlood();
 		
+		if ($max==0) return -1;//error
 		return round($curBlood/$max*100);
 	}
 	

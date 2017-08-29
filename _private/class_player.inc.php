@@ -78,7 +78,6 @@ class Player {
 		else {
 			$body = new Obj($this->mysqli, $res);
 			$body->getBasicData();
-			$body->calculateBlood();
 			$new->changeStatus(1);
 			return $new->uid;
 		}
