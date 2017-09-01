@@ -6348,4 +6348,33 @@ function isUsername($element)
 {
 	return !preg_match ("/[^A-z0-9_\-]/", $element);
 }
+
+function countAvgColor($im, $startx, $starty, $endx, $endy) {
+	$rTotal = 0;
+	$gTotal = 0;
+	$bTotal = 0;
+	$total = 0;
+	
+	if ($endx<imagesx($im)) $endx = imagesx($im);
+	if ($endy<imagesy($im)) $endy = imagesy($im);
+	for ($y=$starty; $y<$endy; $y++) {
+		for ($x = $startx; $x<$endx; $x++) {
+			$rgb = imagecolorat($im, $x, $y);
+			$r = ($rgb >> 16) & 0xFF;
+			$g = ($rgb >> 8) & 0xFF;
+			$b = $rgb & 0xFF;
+			
+			$rTotal += $r;
+			$gTotal += $g;
+			$bTotal += $b;
+			$total++;
+		}
+	}
+	
+	return array(
+		"r" => round($rTotal/$total),
+		"g" => round($gTotal/$total),
+		"b" => round($bTotal/$total)
+		);
+}
 ?>

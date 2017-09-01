@@ -180,18 +180,18 @@ function selectStamp($vege, $row) {
 		$rock1 = 10;
 	}
 	
-	for ($i = 0;$i<$tree1;$i++) $array[] = 0;
-	for ($i = 0;$i<$bush1;$i++) $array[] = 1;
-	for ($i = 0;$i<$bush2;$i++) $array[] = 2;
-	for ($i = 0;$i<$bush3;$i++) $array[] = 3;
-	for ($i = 0;$i<$rock1;$i++) $array[] = 4;
-	for ($i = 0;$i<$rock2;$i++) $array[] = 5;
-	for ($i = 0;$i<$rock3;$i++) $array[] = 6;
-	for ($i = 0;$i<$rock4;$i++) $array[] = 7;
-	for ($i = 0;$i<$rock5;$i++) $array[] = 8;
-	for ($i = 0;$i<$rock6;$i++) $array[] = 9;
+	for ($i = 0;$i<$tree1;$i++) $array[] = "tree1";
+	for ($i = 0;$i<$bush1;$i++) $array[] = "bush1";
+	for ($i = 0;$i<$bush2;$i++) $array[] = "bush2";
+	for ($i = 0;$i<$bush3;$i++) $array[] = "bush3";
+	for ($i = 0;$i<$rock1;$i++) $array[] = "rock1";
+	for ($i = 0;$i<$rock2;$i++) $array[] = "rock2";
+	for ($i = 0;$i<$rock3;$i++) $array[] = "rock3";
+	for ($i = 0;$i<$rock4;$i++) $array[] = "rock4";
+	for ($i = 0;$i<$rock5;$i++) $array[] = "rock5";
+	for ($i = 0;$i<$rock6;$i++) $array[] = "rock6";
 	
-	if (empty($array)) $array[] = 16;
+	if (empty($array)) $array[] = "rockmoss1";
 	
 	return $array[rand(0, sizeof($array)-1)];
 }
@@ -227,45 +227,53 @@ $sands = array($ter1, $ter12, $ter13);
 $grasses = array($ter2, $ter22, $ter23);
 $mosses = array($ter4, $ter42, $ter43);
 
-$stamp1 = imagecreatefrompng('graphics/tree1.png');
-$stamp2 = imagecreatefrompng('graphics/bush1.png');
-$stamp3 = imagecreatefrompng('graphics/bush2.png');
-$stamp4 = imagecreatefrompng('graphics/bush3.png');
-$stamp5 = imagecreatefrompng('graphics/rock1.png');
-$stamp6 = imagecreatefrompng('graphics/rock2.png');
-$stamp7 = imagecreatefrompng('graphics/rock3.png');
-$stamp8 = imagecreatefrompng('graphics/rock4.png');
-$stamp9 = imagecreatefrompng('graphics/rock5.png');
-$stamp10 = imagecreatefrompng('graphics/rock6.png');
-$stamp11 = imagecreatefrompng('graphics/rockmoss1.png');
-$stamp12 = imagecreatefrompng('graphics/rockmoss2.png');
-$stamp13 = imagecreatefrompng('graphics/rockmoss3.png');
-$stamp14 = imagecreatefrompng('graphics/rockmoss4.png');
-$stamp15 = imagecreatefrompng('graphics/rockmoss5.png');
-$stamp16 = imagecreatefrompng('graphics/rockmoss6.png');
-$stamp17 = imagecreatefrompng('graphics/rockwater1.png');
-$stamp18 = imagecreatefrompng('graphics/rockwater2.png');
-$stamp19 = imagecreatefrompng('graphics/rockwater3.png');
-$stamp20 = imagecreatefrompng('graphics/rockwater4.png');
-$stamp21 = imagecreatefrompng('graphics/rockwater5.png');
-$stamp22 = imagecreatefrompng('graphics/rockwater6.png');
-$stamp23 = imagecreatefrompng('graphics/rockgrass1.png');
-$stamp24 = imagecreatefrompng('graphics/rockgrass2.png');
-$stamp25 = imagecreatefrompng('graphics/rockgrass3.png');
-$stamp26 = imagecreatefrompng('graphics/rockgrass4.png');
-$stamp27 = imagecreatefrompng('graphics/rockgrass5.png');
-$stamp28 = imagecreatefrompng('graphics/rockgrass6.png');
-$stamps = array($stamp1, $stamp2, $stamp3, $stamp4, $stamp5, $stamp6, $stamp7, $stamp8, $stamp9, $stamp10, $stamp11, $stamp12, $stamp13, $stamp14, $stamp15, $stamp16, $stamp17, $stamp18, $stamp19, $stamp20, $stamp21, $stamp22, $stamp23, $stamp24, $stamp25, $stamp26, $stamp27, $stamp28);
+$stamp_images = array(
+	array("name" => "tree1", "x1" => 20, "y1" => 80, "x2" => 70, "y2" => 100 ),
+	array("name" => "bush1", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 ),
+	array("name" => "bush2", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 ),
+	array("name" => "bush3", "x1" => 0, "y1" => 80, "x2" => 45, "y2" => 100 ),
+	array("name" => "rock1", "x1" => 0, "y1" => 80, "x2" => 25, "y2" => 100 ),
+	array("name" => "rock2", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 ),
+	array("name" => "rock3", "x1" => 0, "y1" => 80, "x2" => 45, "y2" => 100 ),
+	array("name" => "rock4", "x1" => 0, "y1" => 80, "x2" => 45, "y2" => 100 ),
+	array("name" => "rock5", "x1" => 0, "y1" => 80, "x2" => 90, "y2" => 100 ),
+	array("name" => "rock6", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 ),
+	array("name" => "rockmoss1", "x1" => 0, "y1" => 80, "x2" => 25, "y2" => 100 ),
+	array("name" => "rockmoss2", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 ),
+	array("name" => "rockmoss3", "x1" => 0, "y1" => 80, "x2" => 45, "y2" => 100 ),
+	array("name" => "rockmoss4", "x1" => 0, "y1" => 80, "x2" => 45, "y2" => 100 ),
+	array("name" => "rockmoss5", "x1" => 0, "y1" => 80, "x2" => 90, "y2" => 100 ),
+	array("name" => "rockmoss6", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 ),
+	array("name" => "rockwater1", "x1" => 0, "y1" => 80, "x2" => 25, "y2" => 100 ),
+	array("name" => "rockwater2", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 ),
+	array("name" => "rockwater3", "x1" => 0, "y1" => 80, "x2" => 45, "y2" => 100 ),
+	array("name" => "rockwater4", "x1" => 0, "y1" => 80, "x2" => 45, "y2" => 100 ),
+	array("name" => "rockwater5", "x1" => 0, "y1" => 80, "x2" => 90, "y2" => 100 ),
+	array("name" => "rockwater6", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 ),
+	array("name" => "rockgrass1", "x1" => 0, "y1" => 80, "x2" => 25, "y2" => 100 ),
+	array("name" => "rockgrass2", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 ),
+	array("name" => "rockgrass3", "x1" => 0, "y1" => 80, "x2" => 45, "y2" => 100 ),
+	array("name" => "rockgrass4", "x1" => 0, "y1" => 80, "x2" => 45, "y2" => 100 ),
+	array("name" => "rockgrass5", "x1" => 0, "y1" => 80, "x2" => 90, "y2" => 100 ),
+	array("name" => "rockgrass6", "x1" => 0, "y1" => 80, "x2" => 40, "y2" => 100 )
+	);
+
+for ($i = 0; $i< sizeof($stamp_images)-1; $i++) {
+	$stamps[$stamp_images[$i]["name"]] = imagecreatefrompng("graphics/". $stamp_images[$i]["name"] . ".png");
+}
 
 
-$im = imagecreatetruecolor(1000,700);
+$bottom = imagecreatetruecolor(1000,700);
+$top = imagecreatetruecolor(1000,700);
+$transparency = imagecolorallocatealpha($top, 0, 0, 0, 127);
+imagefill($top, 0, 0, $transparency);
 
 $spacing = rand(100,900);
 
 
 for ($row = -20; $row<=680; $row+=70) {
 		for ($i = -20; $i<1000; $i+=70) {
-			$im = applyStamp($im, $ters[1], $i, $row);
+			$bottom = applyStamp($bottom, $ters[1], $i, $row);
 		}
 }
 
@@ -290,24 +298,32 @@ for ($j = 0; $j<$grasscount; $j++) {
 	for ($i = 0; $i<$snakelength; $i++) {
 		$cur = $cur2[rand(0,2)];
 		imagesavealpha($cur, true);
-		$transparency = imagecolorallocatealpha($cur, 0, 0, 0, 127);
 		$new = snake($prevx, $prevy, $preva);
-		if ($rotate) $cur = imagerotate($cur, -$new["a"], $transparency);
-		$im = applyStamp($im, $cur, $new["x"], $new["y"]);
+		if ($rotate) {
+			$transparency = imagecolorallocatealpha($cur, 0, 0, 0, 127);
+			$cur = imagerotate($cur, -$new["a"], $transparency);
+		}
+		$bottom = applyStamp($bottom, $cur, $new["x"], $new["y"]);
 		$prevx = $new["x"];
 		$prevy = $new["y"];
 		$preva = $new["a"];
 	}
 }
 
-for ($row = rand(0,$spacing/4); $row<600; $row+=rand(20,$spacing/4)) {
-		for ($i = rand(0,$spacing); $i<900; $i+=rand(20,$spacing)) {
-			$im = applyStamp($im, $stamps[selectStamp($vegeLevel, $rowLevel)], $i, $row);
+$newmin=20;
+for ($row = rand(0,$spacing/4); $row<600; $row+=rand(20,max($newmin,$spacing/4))) {
+		for ($i = rand(0,$spacing); $i<900; $i+=rand($newmin,$spacing)) {
+			$stampname = selectStamp($vegeLevel, $rowLevel);
+			$entry = searchSingle($stamp_images, "name", $stampname);
+			$top = applyStamp($top, $stamps[$stampname], $i, $row);
+			$newmin = $entry["x2"];
 		}
 }
 
+applyStamp($bottom, $top, 0, 0);
+
 // Output and free memory
 header('Content-type: image/png');
-imagepng($im);
-imagedestroy($im);
+imagepng($bottom);
+imagedestroy($bottom);
 ?>
