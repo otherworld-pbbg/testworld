@@ -53,7 +53,31 @@ $stamp1 = imagecreatefrompng('graphics/tree1.png');
 $stamp2 = imagecreatefrompng('graphics/bush1.png');
 $stamp3 = imagecreatefrompng('graphics/bush2.png');
 $stamp4 = imagecreatefrompng('graphics/bush3.png');
-$stamps = array($stamp1, $stamp2, $stamp3, $stamp4);
+$stamp5 = imagecreatefrompng('graphics/rock1.png');
+$stamp6 = imagecreatefrompng('graphics/rock2.png');
+$stamp7 = imagecreatefrompng('graphics/rock3.png');
+$stamp8 = imagecreatefrompng('graphics/rock4.png');
+$stamp9 = imagecreatefrompng('graphics/rock5.png');
+$stamp10 = imagecreatefrompng('graphics/rock6.png');
+$stamp11 = imagecreatefrompng('graphics/rockmoss1.png');
+$stamp12 = imagecreatefrompng('graphics/rockmoss2.png');
+$stamp13 = imagecreatefrompng('graphics/rockmoss3.png');
+$stamp14 = imagecreatefrompng('graphics/rockmoss4.png');
+$stamp15 = imagecreatefrompng('graphics/rockmoss5.png');
+$stamp16 = imagecreatefrompng('graphics/rockmoss6.png');
+$stamp17 = imagecreatefrompng('graphics/rockwater1.png');
+$stamp18 = imagecreatefrompng('graphics/rockwater2.png');
+$stamp19 = imagecreatefrompng('graphics/rockwater3.png');
+$stamp20 = imagecreatefrompng('graphics/rockwater4.png');
+$stamp21 = imagecreatefrompng('graphics/rockwater5.png');
+$stamp22 = imagecreatefrompng('graphics/rockwater6.png');
+$stamp23 = imagecreatefrompng('graphics/rockgrass1.png');
+$stamp24 = imagecreatefrompng('graphics/rockgrass2.png');
+$stamp25 = imagecreatefrompng('graphics/rockgrass3.png');
+$stamp26 = imagecreatefrompng('graphics/rockgrass4.png');
+$stamp27 = imagecreatefrompng('graphics/rockgrass5.png');
+$stamp28 = imagecreatefrompng('graphics/rockgrass6.png');
+$stamps = array($stamp1, $stamp2, $stamp3, $stamp4, $stamp5, $stamp6, $stamp7, $stamp8, $stamp9, $stamp10, $stamp11, $stamp12, $stamp13, $stamp14, $stamp15, $stamp16, $stamp17, $stamp18, $stamp19, $stamp20, $stamp21, $stamp22, $stamp23, $stamp24, $stamp25, $stamp26, $stamp27, $stamp28);
 
 
 $im = imagecreatetruecolor(1000,700);
@@ -89,7 +113,7 @@ for ($j = 0; $j<$grasscount; $j++) {
 
 for ($row = 0; $row<600; $row+=20) {
 		for ($i = rand(0,$density); $i<900; $i+=rand(20,$density)) {
-			$im = applyStamp($im, $stamps[rand(0,3)], $i, $row);
+			$im = applyStamp($im, $stamps[rand(0,27)], $i, $row);
 		}
 }
 
