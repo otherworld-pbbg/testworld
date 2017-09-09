@@ -257,12 +257,17 @@ $ter6 = imagecreatefrompng('graphics/bedrock1.png');
 $ter62 = imagecreatefrompng('graphics/bedrock2.png');
 $ter63 = imagecreatefrompng('graphics/bedrock3.png');
 
+$ter7 = imagecreatefrompng('graphics/fern1.png');
+$ter72 = imagecreatefrompng('graphics/fern2.png');
+$ter73 = imagecreatefrompng('graphics/fern3.png');
+
 $ters = array($ter1, $ter2, $ter3, $ter6);
 $sands = array($ter1, $ter12, $ter13);
 $grasses = array($ter2, $ter22, $ter23);
 $mosses = array($ter4, $ter42, $ter43);
 $unders = array($ter5, $ter52, $ter53);
 $bedrocks = array($ter6, $ter62, $ter63);
+$ferns = array($ter7, $ter72, $ter73);
 
 $stamp_images = array(
 	array("name" => "tree1", "x1" => 20, "y1" => 80, "x2" => 70, "y2" => 100 ),
@@ -299,29 +304,35 @@ for ($i = 0; $i< sizeof($stamp_images); $i++) {
 	$stamps[$stamp_images[$i]["name"]] = imagecreatefrompng("graphics/". $stamp_images[$i]["name"] . ".png");
 }
 
+$width = isset($_GET['w']) ? $_GET['w'] : 1000;
+$height = isset($_GET['h']) ? $_GET['h'] : 700;
 
-$bottom = imagecreatetruecolor(1000,700);
-$top = imagecreatetruecolor(1000,700);
+$width = setBint($width, 300, 3000, 1000);
+$height = setBint($height, 300, 2100, 700);
+
+$bottom = imagecreatetruecolor($width,$height);
+$top = imagecreatetruecolor($width,$height);
 $transparency = imagecolorallocatealpha($top, 0, 0, 0, 127);
 imagefill($top, 0, 0, $transparency);
 
-for ($row = -20; $row<=680; $row+=70) {
-		for ($i = -20; $i<1000; $i+=70) {
-			$bottom = applyStamp($bottom, $ters[3], $i, $row);
+$bg = rand(0,3);
+for ($row = -20; $row<=$height-20; $row+=70) {
+		for ($i = -20; $i<$width; $i+=70) {
+			$bottom = applyStamp($bottom, $ters[$bg], $i, $row);
 		}
 }
 
-$chance = rand(10,70);
+$chance = rand(10,60);
 $topstamps = array();
-$snakescount = rand(2,10);
+$snakescount = rand(max(5,round($width/3000)),max(10,round($width/300)));
 
 for ($j = 0; $j<$snakescount; $j++) {
-	$prevx = rand(0,1000);
-	$prevy = rand(0,700);
+	$prevx = rand(0,$width);
+	$prevy = rand(0,$height);
 	$preva = rand(0,364);
 	$snakelength = rand(10,200);
 	
-	$type = rand(0,4);
+	$type = rand(0,5);
 	if ($type==1) {
 		$cur2 = $unders;
 		$rotate = false;
@@ -341,6 +352,11 @@ for ($j = 0; $j<$snakescount; $j++) {
 		$cur2 = $bedrocks;
 		$rotate = false;
 		$utype = "rock";
+	}
+	else if ($type==5) {
+		$cur2 = $ferns;
+		$rotate = false;
+		$utype = "fern";
 	}
 	else {
 		$cur2 = $sands;

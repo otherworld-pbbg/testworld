@@ -6377,4 +6377,18 @@ function countAvgColor($im, $startx, $starty, $endx, $endy) {
 		"b" => round($bTotal/$total)
 		);
 }
+
+function setBetween($val, $min, $max, $default) {
+	if (!is_numeric($val)) return $default;
+	if ($val<$min) return $min;
+	if ($val>$max) return $max;
+	return $val;
+}
+
+function setBint($val, $min, $max, $default) {
+	if (!is_numeric($val)) return $default;
+	if ($val<$min) return $min;
+	if ($val>$max) return $max;
+	return round($val);
+}
 ?>
