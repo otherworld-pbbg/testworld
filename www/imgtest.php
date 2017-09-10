@@ -261,6 +261,10 @@ $ter7 = imagecreatefrompng('graphics/fern1.png');
 $ter72 = imagecreatefrompng('graphics/fern2.png');
 $ter73 = imagecreatefrompng('graphics/fern3.png');
 
+$ter8 = imagecreatefrompng('graphics/leaves1.png');
+$ter82 = imagecreatefrompng('graphics/leaves2.png');
+$ter83 = imagecreatefrompng('graphics/leaves3.png');
+
 $ters = array($ter1, $ter2, $ter3, $ter6);
 $sands = array($ter1, $ter12, $ter13);
 $grasses = array($ter2, $ter22, $ter23);
@@ -268,6 +272,7 @@ $mosses = array($ter4, $ter42, $ter43);
 $unders = array($ter5, $ter52, $ter53);
 $bedrocks = array($ter6, $ter62, $ter63);
 $ferns = array($ter7, $ter72, $ter73);
+$leaves = array($ter8, $ter82, $ter83);
 
 $stamp_images = array(
 	array("name" => "tree1", "x1" => 20, "y1" => 80, "x2" => 70, "y2" => 100 ),
@@ -324,7 +329,7 @@ for ($row = -20; $row<=$height-20; $row+=70) {
 
 $chance = rand(10,60);
 $topstamps = array();
-$snakescount = rand(max(5,round($width/3000)),max(10,round($width/300)));
+$snakescount = rand(max(5,round($width/3000)),max(10,round($width/30)));
 
 for ($j = 0; $j<$snakescount; $j++) {
 	$prevx = rand(0,$width);
@@ -332,7 +337,7 @@ for ($j = 0; $j<$snakescount; $j++) {
 	$preva = rand(0,364);
 	$snakelength = rand(10,200);
 	
-	$type = rand(0,5);
+	$type = rand(0,6);
 	if ($type==1) {
 		$cur2 = $unders;
 		$rotate = false;
@@ -358,6 +363,11 @@ for ($j = 0; $j<$snakescount; $j++) {
 		$rotate = false;
 		$utype = "fern";
 	}
+	else if ($type==6) {
+		$cur2 = $leaves;
+		$rotate = false;
+		$utype = "leaves";
+	}
 	else {
 		$cur2 = $sands;
 		$rotate = false;
@@ -382,7 +392,7 @@ for ($j = 0; $j<$snakescount; $j++) {
 			$a = round($new["x"]/30);
 			$b = round($new["y"]/30);
 			$name = "x" . $a . "_" . $b;
-			$topstamps[$name] = array("name" => $stampname, "x" => $new["x"], "y" => $new["y"]);		
+			$topstamps[$name] = array("name" => $stampname, "x" => $new["x"], "y" => $new["y"]-50);		
 		}
 	}
 }
