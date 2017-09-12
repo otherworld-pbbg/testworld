@@ -170,9 +170,15 @@ if (isset($_GET["seed"])) {
 else $seed = rand(1,2000);
 
 if (isset($_GET["smooth"])) {
-	$smooth = setBint($_GET["smooth"], 2, 1000, rand(10,90));
+	$smooth = setBint($_GET["smooth"], 2, 99, rand(10,90));
 }
 else $smooth = rand(10,90);
+
+if (isset($_GET["lift"])) {
+	$tilt = $_GET["lift"];
+	if ($tilt!="n"&&$tilt!="s"&&$tilt!="e"&&$tilt!="w"&&$tilt!="ne"&&$tilt!="nw"&&$tilt!="se"&&$tilt!="sw") $tilt = NULL;
+}
+else $tilt = NULL;
 
 $bob = new Perlin($seed);
 $bill = new Perlin($seed+1);
@@ -190,6 +196,26 @@ for($y=0; $y<$gridsize; $y+=1) {
 		$num3 = $peter->noise($x,$y,0,$smooth);
 		
 		$raw = ($num/2)+.5;
+		if ($tilt=="n"||$tilt=="ne"||$tilt=="nw") {
+			if ($y<($gridsize/2)) {
+				$raw += (($gridsize/2)-$y)/$gridsize;
+			}
+		}
+		if ($tilt=="s"||$tilt=="se"||$tilt=="sw") {
+			if ($y>($gridsize/2)) {
+				$raw += ($y-($gridsize/2))/$gridsize;
+			}
+		}
+		if ($tilt=="w"||$tilt=="nw"||$tilt=="sw") {
+			if ($x<($gridsize/2)) {
+				$raw += (($gridsize/2)-$x)/$gridsize;
+			}
+		}
+		if ($tilt=="e"||$tilt=="ne"||$tilt=="se") {
+			if ($x>($gridsize/2)) {
+				$raw += ($x-($gridsize/2))/$gridsize;
+			}
+		}
 		$raw = round($raw*12)/12;
 		
 		$raw2 = ($num2/2)+.5;
@@ -208,6 +234,8 @@ for($y=0; $y<$gridsize; $y+=1) {
 		if ($raw < 0) $raw = 0;
 		if ($raw2 < 0) $raw2 = 0;
 		if ($raw3 < 0) $raw3 = 0;
+		
+		if ($raw > 1) $raw = 1;
 		
 		$num = dechex( $raw*255 );
 		$num2 = dechex( $raw2*255 );
