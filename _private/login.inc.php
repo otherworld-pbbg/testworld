@@ -62,7 +62,7 @@ if ($displayForm)
 {
 	include_once "header.inc.php";
 	echo "<div class='alert alert-info'>";
-	para("Notice to all users: Since I accidentally posted our hashing safeword on Github, we had to change it, which means that old passwords don't work anymore. You will have to contact the developer for a new password. Also this way we will see which ones of the testers are still active.");
+	para("If your password doesn't work even though you're sure you wrote it correctly and you don't have an email address on file, contact admin for a password reset. There's been several changes to hashing, so the oldest passwords no longer work.");
 	echo "</div>";
 	echo "<form action='index.php?page=login' method='post' class='narrow'>";
 	echo "<p>";
