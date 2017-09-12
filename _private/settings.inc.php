@@ -15,23 +15,22 @@ else
 	
 	if (isset($_POST["password"])&&isset($_POST["email"])&&isset($_POST["submit_btn"]))
 	{
-		include_once "hashing.inc.php";
-		$passhash = myHash($_POST["password"]);
-		if ($passhash!=$player->passhash) {
-			header('Location: index.php?page=login');
+		if (password_verify($_POST["password"], $player->passhash2)) {
+			
+			$email = $mysqli->real_escape_string($_POST["email"]);
+			$check2 = generateActivationCode($mysqli, $_SESSION['logged_user'], $email, $player->passhash2, 2, $player->uid);
+			if ($check2==1) {
+				include_once "header2.inc.php";
+				para("Activation code was sent to the email you provided. Follow the instructions in the email. If the email doesn't come through, you can have it resent. It might go in the spam folder, so check there first.");
+			}
+			else if ($check2==-1) {
+				para("A pending change was generated successfully but it failed to send you an activation code. Make sure you use a valid email address.");
+			}
+			else {
+				para("Generating an email change failed. Try again and make sure your email is valid.");
+			}
 		}
-		$email = $mysqli->real_escape_string($_POST["email"]);
-		$check2 = generateActivationCode($mysqli, $_SESSION['logged_user'], $email, $passhash, 2, $player->uid);
-		if ($check2==1) {
-			include_once "header2.inc.php";
-			para("Activation code was sent to the email you provided. Follow the instructions in the email. If the email doesn't come through, you can have it resent. It might go in the spam folder, so check there first.");
-		}
-		else if ($check2==-1) {
-			para("A pending change was generated successfully but it failed to send you an activation code. Make sure you use a valid email address.");
-		}
-		else {
-			para("Generating an email change failed. Try again and make sure your email is valid.");
-		}
+		else header('Location: index.php?page=login');
 	}
 	
 	include_once "header2.inc.php";
@@ -49,10 +48,12 @@ else
 	echo "</p>\n<p>";
 	ptag("input", "", "type='submit' id='submit_btn' name='submit_btn' value='Send activation code'");
 	echo "</p>";
-	para("You need to actually have access to the email address you're entering here. If it belongs to someone else, they can enter the activation code but still won't be able to log into your account because they don't know your password.");
+	para("You need to actually have access to the email address you're entering here. If it belongs to someone else, they can enter the activation code and reset the password to override it with their own, effectively taking over your account.");
 	echo "</form>";
 	
 	para("If you want to reset your password, go to index.php?page=reset");
+	
+	echo "<p class='right'><a href='index.php?page=direwolf&userid=$currentUser' class='clist'>[Return to character list]</a></p>";
 	echo "</div>";
 }
 ?>

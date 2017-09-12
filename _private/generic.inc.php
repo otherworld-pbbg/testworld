@@ -6181,7 +6181,7 @@ function checkFreeUsername($mysqli, $teststring) {
 }
 
 function getExistingAccount($mysqli, $username) {
-	$res = $mysqli->query("SELECT `uid`, `passhash`, `email`, `joined` FROM users WHERE `username` like '$username' LIMIT 1");
+	$res = $mysqli->query("SELECT `uid`, `passhash`, `passhash2`, `email`, `joined` FROM users WHERE `username` like '$username' LIMIT 1");
 	if (!$res) {
 		 return -2;
 	}		
@@ -6203,7 +6203,7 @@ function generateActivationCode($mysqli, $username, $email, $passhash, $type=1, 
 	}
 	if ($type==2) {
 		$info = getExistingAccount($mysqli, $username);
-		if ($info->passhash!=$passhash) return -3;//Wrong password
+		if ($info->passhash2!=$passhash) return -3;//Wrong password
 	}
 	
 	$sql = "INSERT INTO `pending_users` (`username`, `passhash`, `email`, `joined`, `activation`, `type`, `userid`) VALUES ('$username', '$passhash', '$email', CURRENT_TIMESTAMP(), '$activation', '$type', $userid)";
@@ -6296,7 +6296,7 @@ function activateAccount($mysqli, $username, $activation) {
 	$res = $mysqli->query($sql);
 	if (mysqli_num_rows($res)) {
 		$row = mysqli_fetch_object($res);
-		$sql2 = "INSERT INTO `users` (`username`, `passhash`, `email`, `joined`) VALUES ('$row->username', '$row->passhash', '$row->email', CURRENT_TIMESTAMP())";
+		$sql2 = "INSERT INTO `users` (`username`, `passhash2`, `email`, `joined`) VALUES ('$row->username', '$row->passhash2', '$row->email', CURRENT_TIMESTAMP())";
 		$mysqli->query($sql2);
 		$result = $mysqli->insert_id;
 		if ($result) {

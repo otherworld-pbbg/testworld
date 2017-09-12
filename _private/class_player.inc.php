@@ -9,6 +9,7 @@ class Player {
 	public $email = "";
 	public $joined;
 	public $passhash = "";
+	public $passhash2 = "";
 	
 	public function __construct($mysqli, $uid=0) {
 		$this->mysqli = $mysqli;
@@ -18,7 +19,7 @@ class Player {
 	}
 	
 	function getInfo() {
-		$sql = "SELECT `username`, `email`, `joined`, `passhash` FROM `users` WHERE `uid`=$this->uid LIMIT 1";
+		$sql = "SELECT `username`, `email`, `joined`, `passhash`, `passhash2` FROM `users` WHERE `uid`=$this->uid LIMIT 1";
 		$res = $this->mysqli->query($sql);
 		if (mysqli_num_rows($res)==1) {
 			$row = mysqli_fetch_row($res);
@@ -26,6 +27,7 @@ class Player {
 			$this->email = $row[1];
 			$this->joined = $row[2];
 			$this->passhash = $row[3];
+			$this->passhash2 = $row[4];
 			return true;
 		}
 		return false;

@@ -1,5 +1,6 @@
 <?php
 $privateRoot = "../_private";
+$gameRoot = "http://otherworld-pbbg.com";
 
 include_once "root.inc.php";
 include_once $privateRoot . "/conn.inc.php";

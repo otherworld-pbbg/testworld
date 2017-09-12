@@ -4,15 +4,15 @@
 
 <?php
 
-	include_once "../_private/createpass.inc.php";
+	include_once "../_private/generic.inc.php";
 	include_once "../_private/hashing.inc.php";
 	include_once "../_private/abbr.inc.php";
 	
 	if (isset($_POST["string"])) {
 		$str = $_POST["string"];
 	}
-	else $str = createPass();
-	$secure = myHash($str);
+	else $str = getRandomPhrase();
+	$secure =password_hash($str, PASSWORD_DEFAULT);
 	
 	para($str . " / " . $secure);
 	

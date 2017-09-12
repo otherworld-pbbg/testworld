@@ -759,6 +759,11 @@ input[type="button"], input[type="submit"]
 	text-shadow: 0px 0px 0px #556688!important;
 }
 
+input[type="text"]
+{
+	color:black!important;
+}
+
 select {
   color: black;
 }
@@ -767,3 +772,7 @@ select {
       top: 0;
       width: 100%;
   }
+  
+.aciTreeText {
+	color: #445599!important;
+}
