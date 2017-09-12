@@ -161,14 +161,23 @@ class Perlin {
    }
 }
 
+include_once "../_private/generic.inc.php";
 
 //This currently generates a color field that varies on all channels. Earlier it varied only on the red channel and the green channel was the opposite of the red channel, while blue was static.
-$seed = rand(1,2000);
+if (isset($_GET["seed"])) {
+	$seed = setBint($_GET["seed"], 0, 10000, rand(1,2000));
+}
+else $seed = rand(1,2000);
+
+if (isset($_GET["smooth"])) {
+	$smooth = setBint($_GET["smooth"], 2, 1000, rand(10,90));
+}
+else $smooth = rand(10,90);
+
 $bob = new Perlin($seed);
 $bill = new Perlin($seed+1);
 $peter = new Perlin($seed+2);
 
-$smooth = rand(10,99);
 $gridsize = 125;
 
 echo "smooth: " . $smooth . "<br>";
