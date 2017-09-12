@@ -245,7 +245,7 @@ for($y=0; $y<$gridsize; $y+=1) {
 		if (strlen($num2) < 2) $num2 = "0".$num2;
 		if (strlen($num3) < 2) $num3 = "0".$num3;
 		
-		echo "<div style='background-color:$num". $num2 . $num3 .";width:10px;display:inline-block'>a</div>";
+		echo "<div style='background-color:#$num". $num2 . $num3 .";width:10px;display:inline-block'>a</div>";
 	}
 	echo "<br>";
 }
