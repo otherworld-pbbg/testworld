@@ -38,7 +38,7 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["email"])
 		}
 		else {
 			include_once "hashing.inc.php";
-			$passhash = myHash($_POST["password"]);
+			$passhash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 			$email = $mysqli->real_escape_string($_POST["email"]);
 			$check2 = generateActivationCode($mysqli, $uname, $email, $passhash);
 			if ($check2==1) {
