@@ -31,6 +31,10 @@ class NPCgroup
 	public $selfesteem=0;
 	public $comfort=0;
 	public $nourishment=0;
+	public $hostility=500;
+	public $individualism=500;
+	public $tolerance=500;
+	public $freedom=500;
 
 	public function __construct($mysqli, $uid=0) {
 		
@@ -95,27 +99,31 @@ class NPCgroup
 			$this->ly = $row[3];
 		}
 		else return false;
-		$sql = "SELECT `attributeFK`, `value` FROM `o_attrs` WHERE `attributeFK` BETWEEN 75 AND 91 AND `objectFK`=$this->uid";
+		$sql = "SELECT `attributeFK`, `value` FROM `o_attrs` WHERE (`attributeFK` BETWEEN 75 AND 91 OR `attributeFK` BETWEEN 102 AND 105) AND `objectFK`=$this->uid";
 		$result = $this->mysqli->query($sql);
 		if (mysqli_num_rows($result)) {
 			while ($row = mysqli_fetch_row($result)) {
-				if ($row[0]==75) $this->adult_male = $row[1];
-				if ($row[0]==76) $this->adult_female = $row[1];
-				if ($row[0]==77) $this->adult_neuter = $row[1];
-				if ($row[0]==78) $this->wounded_male = $row[1];
-				if ($row[0]==79) $this->wounded_female = $row[1];
-				if ($row[0]==80) $this->wounded_neuter = $row[1];
-				if ($row[0]==81) $this->sick_male = $row[1];
-				if ($row[0]==82) $this->sick_female = $row[1];
-				if ($row[0]==83) $this->sick_neuter = $row[1];
-				if ($row[0]==84) $this->children = $row[1];
-				if ($row[0]==85) $this->disabled = $row[1];
-				if ($row[0]==86) $this->elderly = $row[1];
-				if ($row[0]==87) $this->mood = $row[1];
-				if ($row[0]==88) $this->morale = $row[1];
-				if ($row[0]==89) $this->selfesteem = $row[1];
-				if ($row[0]==90) $this->comfort = $row[1];
-				if ($row[0]==91) $this->nourishment = $row[1];
+				if ($row[0]==ATTR_FUNCTIONAL_ADULT_MALES) $this->adult_male = $row[1];
+				if ($row[0]==ATTR_FUNCTIONAL_ADULT_FEMALES) $this->adult_female = $row[1];
+				if ($row[0]==ATTR_FUNCTIONAL_ADULT_NEUTERS) $this->adult_neuter = $row[1];
+				if ($row[0]==ATTR_WOUNDED_ADULT_MALES) $this->wounded_male = $row[1];
+				if ($row[0]==ATTR_WOUNDED_ADULT_FEMALES) $this->wounded_female = $row[1];
+				if ($row[0]==ATTR_WOUNDED_ADULT_NEUTERS) $this->wounded_neuter = $row[1];
+				if ($row[0]==ATTR_SICK_ADULT_MALES) $this->sick_male = $row[1];
+				if ($row[0]==ATTR_SICK_ADULT_FEMALES) $this->sick_female = $row[1];
+				if ($row[0]==ATTR_SICK_ADULT_NEUTERS) $this->sick_neuter = $row[1];
+				if ($row[0]==ATTR_CHILDREN) $this->children = $row[1];
+				if ($row[0]==ATTR_PERMANENTLY_DISABLED_ADULTS) $this->disabled = $row[1];
+				if ($row[0]==ATTR_ELDERLY_PEOPLE) $this->elderly = $row[1];
+				if ($row[0]==ATTR_MOOD) $this->mood = $row[1];
+				if ($row[0]==ATTR_MORALE) $this->morale = $row[1];
+				if ($row[0]==ATTR_SELF_ESTEEM) $this->selfesteem = $row[1];
+				if ($row[0]==ATTR_COMFORT) $this->comfort = $row[1];
+				if ($row[0]==ATTR_NOURISHMENT) $this->nourishment = $row[1];
+				if ($row[0]==ATTR_HOSTILITY) $this->hostility = $row[1];
+				if ($row[0]==ATTR_INDIVIDUALISM) $this->individualism = $row[1];
+				if ($row[0]==ATTR_TOLERANCE) $this->tolerance = $row[1];
+				if ($row[0]==ATTR_FREEDOM) $this->freedom = $row[1];
 			}
 			return true;
 		}
@@ -168,6 +176,11 @@ class NPCgroup
 		$this->setAttribute(ATTR_COMFORT, $this->getWeighedRand());
 		$this->setAttribute(ATTR_NOURISHMENT, $this->getWeighedRand());
 		
+		$this->setAttribute(ATTR_HOSTILITY, $this->getWeighedRand());
+		$this->setAttribute(ATTR_INDIVIDUALISM, $this->getWeighedRand());
+		$this->setAttribute(ATTR_TOLERANCE, $this->getWeighedRand());
+		$this->setAttribute(ATTR_FREEDOM, $this->getWeighedRand());
+		
 		$this->loadData();
 		$this->generateName();
 	}
@@ -217,6 +230,11 @@ class NPCgroup
 		para("Self-esteem: " . $this->describeSelfEsteem() );
 		para("Nourishment: " . $this->describeNourishment() );
 		para("Comfort: " . $this->describeComfort() );
+		ptag("h3", "Moral compass");
+		para("Hostility: " . $this->describeHostility() );
+		para("Individualism: " . $this->describeIndividualism() );
+		para("Tolerance: " . $this->describeTolerance() );
+		para("Freedom: " . $this->describeFreedom() );
 		ptag("h3", "AP");
 		para("Daily AP per functional adult: " . $this->getAPperAdult());
 		para("Daily AP per semi-functional member: " . $this->getAPperHalf() . " (this means children, disabled and the elderly)");
@@ -813,6 +831,58 @@ class NPCgroup
 		if ($this->nourishment>200) return "<span class='level2'>malnourished</span>";
 		if ($this->nourishment>100) return "<span class='level1'>starving</span>";
 		return "<span class='level0'>almost dead</span>";
+	}
+	
+	public function describeHostility() {
+		if ($this->hostility>900) return "<span class='level9'>explosive</span>";
+		if ($this->hostility>800) return "<span class='level8'>very aggressive</span>";
+		if ($this->hostility>700) return "<span class='level7'>aggressive</span>";
+		if ($this->hostility>600) return "<span class='level6'>somewhat prone to hostility</span>";
+		if ($this->hostility>500) return "<span class='level5'>hostile if given a reason</span>";
+		if ($this->hostility>400) return "<span class='level4'>hostile if given a good reason</span>";
+		if ($this->hostility>300) return "<span class='level3'>somewhat peaceful</span>";
+		if ($this->hostility>200) return "<span class='level2'>mostly peaceful</span>";
+		if ($this->hostility>100) return "<span class='level1'>peaceful</span>";
+		return "<span class='level0'>pacifists</span>";
+	}
+	
+	public function describeIndividualism() {
+		if ($this->individualism>900) return "<span class='level9'>individuality means everything</span>";
+		if ($this->individualism>800) return "<span class='level8'>individualism is very important</span>";
+		if ($this->individualism>700) return "<span class='level7'>individualism is important</span>";
+		if ($this->individualism>600) return "<span class='level6'>group is still somewhat important but not as much as self-expression</span>";
+		if ($this->individualism>500) return "<span class='level5'>self-expression is slightly more valued than membership in the group</span>";
+		if ($this->individualism>400) return "<span class='level4'>membership in the group is slightly more valued than self-expression</span>";
+		if ($this->individualism>300) return "<span class='level3'>group membership is somewhat important but self-expression is tolerated up to a point</span>";
+		if ($this->individualism>200) return "<span class='level2'>group important, slight individualism allowed</span>";
+		if ($this->individualism>100) return "<span class='level1'>group very important, slight individualism allowed</span>";
+		return "<span class='level0'>group means everything, individualism is not tolerated</span>";
+	}
+	
+	public function describeTolerance() {
+		if ($this->tolerance>900) return "<span class='level9'>they see value in everybody regardless of ability or lifestyle</span>";
+		if ($this->tolerance>800) return "<span class='level8'>high tolerance for difference</span>";
+		if ($this->tolerance>700) return "<span class='level7'>semi-high tolderance for difference</span>";
+		if ($this->tolerance>600) return "<span class='level6'>moderate tolerance for difference</span>";
+		if ($this->tolerance>500) return "<span class='level5'>mainly hidden intolerance</span>";
+		if ($this->tolerance>400) return "<span class='level4'>difference is scorned upon but reactions are mild</span>";
+		if ($this->tolerance>300) return "<span class='level3'>close-minded and moderately vocal about it</span>";
+		if ($this->tolerance>200) return "<span class='level2'>notable scorn towards most deviations and handicaps</span>";
+		if ($this->tolerance>100) return "<span class='level1'>vocal intolerance concerning anything but the most trivial differences</span>";
+		return "<span class='level0'>you must fit the mold or you're eliminated</span>";
+	}
+	
+	public function describeFreedom() {
+		if ($this->freedom>900) return "<span class='level9'>they would rather be dead than slaves</span>";
+		if ($this->freedom>800) return "<span class='level8'>they might grudgingly follow orders if they really have to</span>";
+		if ($this->freedom>700) return "<span class='level7'>they can grudgingly follow orders as long as it's not opposed to their moral code</span>";
+		if ($this->freedom>600) return "<span class='level6'>they can grudgingly follow orders as long as it's nothing completely outrageous</span>";
+		if ($this->freedom>500) return "<span class='level5'>they can be threatened into following orders</span>";
+		if ($this->freedom>400) return "<span class='level4'>they can be coerced to accept orders</span>";
+		if ($this->freedom>300) return "<span class='level3'>they are happy to follow orders that don't go against their beliefs</span>";
+		if ($this->freedom>200) return "<span class='level2'>they are happy to follow orders</span>";
+		if ($this->freedom>100) return "<span class='level1'>they gain pleasure in following orders</span>";
+		return "<span class='level0'>they expect to be bossed around in every aspect of life</span>";
 	}
 	
 	public function getAPperAdult() {
