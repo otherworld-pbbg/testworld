@@ -16,5 +16,6 @@ include $privateRoot."/pages.inc.php";
 
 $mysqli->close();//closes database connection
 ?>
+</div>
 </body>
 </html>

@@ -11,6 +11,12 @@ function para($str, $silent="")
 	return $txt;
 }
 
+function errormsg($str) {
+	echo "<div class='alert alert-danger'>" . "\n";
+	echo "<strong>Error:</strong>" . $str . "\n";
+	echo "</div>" . "\n";
+}
+
 function displayBodywarning() {
 	echo '<div class="alert alert-danger">';
 	echo "This character doesn't have a body, so it cannot be played.";

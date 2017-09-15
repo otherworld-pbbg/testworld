@@ -82,6 +82,16 @@ else {
 			echo "</p>\n";
 			echo "</form>";
 			
+			ptag("h2", "Try to alter the group's moral compass");
+			echo "<form action='index.php' method='get' class='narrow'>";
+			ptag("input", "", "type='hidden' name='charid' value=$charcheck");
+			ptag("input", "", "type='hidden' name='page' value='talk'");
+			ptag("input", "", "type='hidden' name='group' value=" . $_GET["groupid"]);
+			echo "<p class='right'>";
+			ptag("input", "", "type='submit' value='Hold a speech'");
+			echo "</p>\n";
+			echo "</form>";
+			
 			ptag("h2", "Group stock");
 			$respect = $ng->getOpinion($curChar->bodyId, 1);
 			if ($respect=="NaN"||$respect<1) para("The group doesn't trust you enough to reveal its stock to you.");

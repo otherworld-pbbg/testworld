@@ -39,7 +39,8 @@ class NPCgroup
 	public function __construct($mysqli, $uid=0) {
 		
 		$this->mysqli = $mysqli;
-		$this->uid = $uid;
+		if (is_numeric($uid)) $this->uid = $uid;
+		else $this->uid = 0;
 		
 		if ($this->uid>0) $this->loadData();
 	}
@@ -1150,6 +1151,7 @@ class NPCgroup
 	
 	public function updateOpinion($target, $type, $change) {
 		//type 1 = respect
+		if ($change == 0) return -2;//No change
 		$sql = "UPDATE `group_opinions` SET `value`=`value`+$change WHERE `target_id`=$target AND `group_id`=$this->uid AND `type`=$type LIMIT 1";
 		$this->mysqli->query($sql);
 		if ($this->mysqli->affected_rows==0) {
@@ -1716,6 +1718,155 @@ class NPCgroup
 			"change1" => $change1,
 			"change2" => $change2
 			);
+	}
+	
+	public function talk($audience, $tone, $topic, $actor) {
+		$char = new Character($this->mysqli, $actor);
+		$influence = array(
+			array(ATTR_HOSTILITY, 1, ($this->hostility-500)/10, $this->hostility),
+			array(ATTR_HOSTILITY, -1, ($this->hostility-500)/10, $this->hostility),
+			array(ATTR_INDIVIDUALISM, 1, ($this->individualism-500)/10, $this->individualism),
+			array(ATTR_INDIVIDUALISM, -1, ($this->individualism-500)/10, $this->individualism),
+			array(ATTR_TOLERANCE, 1, ($this->tolerance-500)/10, $this->tolerance),
+			array(ATTR_TOLERANCE, -1, ($this->tolerance-500)/10, $this->tolerance),
+			array(ATTR_FREEDOM, 1, ($this->freedom-500)/10, $this->freedom),
+			array(ATTR_FREEDOM, -1, ($this->freedom-500)/10, $this->freedom)
+			);
+		
+		$alienate = array(
+			5,
+			5,
+			5,
+			15,
+			35,
+			60
+			);
+		
+		$agree = array(
+			70,
+			65,
+			50,
+			55,
+			60,
+			65
+			);
+		
+		$efficiency = array(
+			0.5,
+			0.6,
+			0.7,
+			0.8,
+			0.9,
+			1
+			);
+		
+		$max_shift = array(
+			10,
+			20,
+			40,
+			80,
+			400
+			);
+		
+		$losses = array(
+			5,
+			25,
+			50,
+			100,
+			500
+			);
+		
+		if ($topic % 2 == 0) {
+			$min = round(-25+$influence[$topic][2]);
+			$max = round(129+$influence[$topic][2]);
+		}
+		else {
+			$min = round(-25-$influence[$topic][2]);
+			$max = round(129-$influence[$topic][2]);			
+		}
+		$roll = rand($min,$max);
+		para("You rolled '$roll' on a range of " . $min . " to " . $max . ".");
+		if ($roll<$alienate[$tone]) {
+			//fail
+			para("The threshold was " .  $alienate[$tone] . " so you failed.");
+			$loss = round(-$losses[$audience]*$efficiency[$tone]);
+			$check = $this->updateOpinion($char->bodyId, 1, $loss);
+			if ($check == -1) para("The audience didn't like what you said, but due to a bug, you didn't lose any respect. This shouldn't be happening.");
+			else {
+				switch ($tone) {
+					case 0:
+						para("Someone in the audience says: 'I don't think I agree with what you're saying' and the others nod in agreement.");
+						break;
+					case 1:
+						para("Someone in the audience says: 'I think you're wrong, but I don't think that you truly believe in what you're saying either -- right?'");
+						break;
+					case 2:
+						para("Someone in the audience says: 'You must be joking. I can't believe you believe in this nonsense.");
+						break;
+					case 3:
+						para("Someone in the audience says: 'I can't believe you believe in this nonsense. You'd do yourself a service if you just shut up.' The others nod in agreement.");
+						break;
+					case 4:
+						para("Someone in the audience says: 'I think you're just trying to pick a fight. You don't know when to shut up, do you?'");
+						break;
+					default:
+						if ($this->hostility>700) para("There is a moment of silence. Then the audience erupts into booing. 'You're just looking for trouble, aren't you?' someone says in a menacing tone. 'You'd better get out of here before things start flying towards you. Consider this a warning.'");
+						if ($this->hostility>500) para("Members of the audience mutter to each other silently. Then someone speaks up: 'You'd better get off the stage before you're going to get hurt. We don't like that sort of opinions around here.'");
+						else para("There is a stunned silence in the crowd after you finish. Then someone clears their throat and says: 'I think you'd better just leave. We don't want any trouble around here.'");
+				}
+			}
+		}
+		else if ($roll>=$agree[$tone]) {
+			//success
+			para("The threshold was " .  $agree[$tone] . " so you succeeded.");
+			switch ($tone) {
+					case 0:
+						para("Someone in the audience says: 'You know what, I agree'. Another one mutters: 'Well said.'");
+						break;
+					case 1:
+						para("Someone in the audience says: 'I think you have a point there. You've given me something to think about.'");
+						break;
+					case 2:
+						para("Someone in the audience says: 'I'm glad you brought this up, actually. I think we should all think about the things you said.'");
+						break;
+					case 3:
+						para("Someone in the audience says: 'Well said. I think I see where you're coming from, and I agree.'");
+						break;
+					case 4:
+						para("There is a moment of silence. Then somebody starts clapping and others join in. 'It's about time that someone spoke of things with their right names! Way to go!'");
+						break;
+					default:
+						para("As soon as you're finished, the audience erupts into cheers. 'You're so right about what you said', someone exclaims.");
+				}
+				
+				$newVal = max(0, min(1000,$influence[$topic][3]+round($max_shift[$audience]*$influence[$topic][1]*$efficiency[$tone])));
+				$this->setAttribute($influence[$topic][0], $newVal);
+		}
+		else {
+			//indifferent
+			para("The threshold was " .  $agree[$tone] . " so you are met with indifference.");
+			
+			para("");
+			switch ($tone) {
+					case 0:
+						para("Someone in the audience says: 'It doesn't sound like you even believe in what you said yourself, so how can you expect us to have faith in it either?'");
+						break;
+					case 1:
+						para("Someone says: 'I don't think you thought this all the way through. I don't know why you're wasting our time with this.'");
+						break;
+					case 2:
+						para("Someone in the audience says: 'This is an interesting topic to think about, but I don't think talking about is going to change anything.'");
+						break;
+					case 3:
+						para("Someone in the audience says: 'I would like to think you're right, but something tells me you're not.'");
+						break;
+					case 4:
+						para("Someone in the audience says: 'Look, I can see that this thing matters a lot to you but you need to understand the rest of us don't feel the same about it.'");
+						break;
+					default:
+						para("Someone in the audience says: 'I don't know why you have to be foaming about this. You're just going to make someone upset.'");
+				}
+		}
 	}
 	
 	public function claimLeadership() {
