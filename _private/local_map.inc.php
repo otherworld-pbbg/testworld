@@ -284,6 +284,58 @@ Class LocalMap {
 		}
 	}
 	
+	function generate() {
+		$globalPosition = new GlobalMap($this->mysqli, $this->globalx, $this->globaly);	
+		$neighbors = $globalPosition->getNeighbors();
+		
+		$nPosition = new GlobalMap($this->mysqli, $neighbors["n"][0], $neighbors["n"][1]);
+		$ePosition = new GlobalMap($this->mysqli, $neighbors["e"][0], $neighbors["e"][1]);
+		$sPosition = new GlobalMap($this->mysqli, $neighbors["s"][0], $neighbors["s"][1]);
+		$wPosition = new GlobalMap($this->mysqli, $neighbors["w"][0], $neighbors["w"][1]);
+		
+		$water = $globalPosition->getLevel("water");
+		$nwater = $nPosition->getLevel("water");
+		$ewater = $ePosition->getLevel("water");
+		$swater = $sPosition->getLevel("water");
+		$wwater = $wPosition->getLevel("water");
+		
+		$altitude = $globalPosition->getLevel("altitude");
+		$n_alt = $nPosition->getLevel("altitude");
+		$e_alt = $ePosition->getLevel("altitude");
+		$s_alt = $sPosition->getLevel("altitude");
+		$w_alt = $wPosition->getLevel("altitude");
+		
+		$grass = $globalPosition->getLevel("grass");
+		$brush = $globalPosition->getLevel("brush");
+		$trees = $globalPosition->getLevel("trees");
+		
+		$rocky = $globalPosition->getLevel("rocky");
+		$organic = $globalPosition->getLevel("organic");
+		$water = $globalPosition->getLevel("water");
+		$sand = $globalPosition->getLevel("sand");
+		$silt = $globalPosition->getLevel("silt");
+		$clay = $globalPosition->getLevel("clay");
+		$terrains = $globalPosition->getTerrains();
+		
+		if ($clay>85) $dominant = "clay";
+		else if ($silt>$sand&&$silt>$clay) $dominant = "silt";
+		else if ($sand>$silt) $dominant = "sand";
+		else $dominant = "loam";
+		
+		$isForest = false;
+		$isSavanna = false;
+		$isJungle = false;
+		$isDesert = false;
+		$isMountain = false;
+		
+		if (searchSingle($terrains, 1, "deciduous")||searchSingle($terrains, 1, "taiga")) $isForest = true;
+		if (searchSingle($terrains, 1, "desert")) $isDesert = true;
+		if (searchSingle($terrains, 1, "rainforest")) $isJungle = true;
+		if (searchSingle($terrains, 1, "savanna")) $isSavanna = true;
+		if (searchSingle($terrains, 1, "mountains")) $isMountain = true;
+
+	}
+	
 	function loadcreate() {
 		$check=$this->checkIfExists();
 		if ($check==-2) {

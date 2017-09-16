@@ -377,7 +377,7 @@ for ($j = 0; $j<$snakescount; $j++) {
 	for ($i = 0; $i<$snakelength; $i++) {
 		$cur = $cur2[rand(0,2)];
 		imagesavealpha($cur, true);
-		$new = snake($prevx, $prevy, $preva, $utype);
+		$new = snake($prevx, $prevy, $preva);
 		if ($rotate) {
 			$transparency = imagecolorallocatealpha($cur, 0, 0, 0, 127);
 			$cur = imagerotate($cur, -$new["a"], $transparency);
