@@ -22,14 +22,19 @@ if (isset($_GET["smooth"])) {
 else $smooth = rand(10,90);
 
 if (isset($_GET["x"])) {
-	$xoff = setBint($_GET["x"], 0, 100000000, 0);
+	$xoff = setBint($_GET["x"], -10000, 10000, 0);
 }
 else $xoff = 0;
 
 if (isset($_GET["y"])) {
-	$yoff = setBint($_GET["y"], 0, 10000, 0);
+	$yoff = setBint($_GET["y"], -10000, 10000, 0);
 }
 else $yoff = 0;
+
+if (isset($_GET["water"])) {
+	$water = setBint($_GET["water"], 0, 90, 0);
+}
+else $water = 0;
 
 $bob = new Perlin($seed);
 $bill = new Perlin($seed+1);
@@ -49,13 +54,14 @@ $materials = array(
 	);
 
 $counter = 0;
-$ranges = array();
-
-for ($i = 0; $i<sizeof($materials); $i++) {
-	$counter += rand(5,25);
-	if ($i==sizeof($materials)-1) $ranges[] = 101;
-	else $ranges[] = $counter;
-}
+$ranges = array(
+	20,
+	40,
+	50,
+	60,
+	80,
+	100
+	);
 
 $material = $materials[rand(0,sizeof($materials)-1)];
 
@@ -77,13 +83,21 @@ for($y=0; $y<$gridsize; $y+=1) {
 		
 		$r2 = 0;
 		foreach ($ranges as $key => $r) {
-			if ($r>$raw2) {
+			if ($raw2<$r) {
 				$r2 = $key;
 				break;
 			}
 		}
 		
 		$material = $materials[$r2];
+		
+		if ($raw<$water/100) {
+			$raw = $water/100;
+			$material = "wat";
+		}
+		else if ($raw<($water+3)/100) {
+			$material = "san";
+		}
 		
 		$array[] = array(
 			"x" => $x,
@@ -103,7 +117,7 @@ $variation = 100;
 foreach ($array as $info) {
 	$d = round($info["raw"]*$variation-($variation*0.6));
 	
-	$bottom = applyStamp($bottom, 'graphics/' . $info["material"] . '1.png', $info["x"]*$space+($info["y"]*2)-60, round(50+$info["y"]*$space-($info["raw"]*$variation*2.5)-($info["x"]*2)), $d);
+	$bottom = applyStamp($bottom, 'graphics/' . $info["material"] . '1.png', $info["x"]*$space, round(50+$info["y"]*$space-($info["raw"]*$variation*2.5)), $d);
 	$prevy = $info["y"];
 }
 
