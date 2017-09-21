@@ -333,7 +333,29 @@ Class LocalMap {
 		if (searchSingle($terrains, 1, "rainforest")) $isJungle = true;
 		if (searchSingle($terrains, 1, "savanna")) $isSavanna = true;
 		if (searchSingle($terrains, 1, "mountains")) $isMountain = true;
-
+		
+		//Things that affect how the map is generated:
+		//seed
+		//tree level
+		//bush level
+		//grass level
+		//rock level
+		//organic level
+		//water level
+		//sand/silt/clay
+		//surrounding squares water and altitude
+		$seed1 = rand(1,10000);//altitude
+		$seed2 = rand(1,10000);//terrain materials
+	}
+	
+	function loadData() {
+		$sql = "SELECT `seed1`, `seed2`, `grass`, `bush`, `tree`, `rock`, `organic`, `water`, `sand`, `silt`, `clay`, `north`, `east`, `south`, `west`, `smooth` FROM `saved_locs` WHERE `global_x`=$this->globalx AND `global_y`=$this->globaly LIMIT 1";
+		$res = $this->mysqli->query($sql);
+		if ($res->num_rows==0) return false;//value doesn't exist
+		else {
+			$data = $res->fetch_object();
+			return $data;
+		}
 	}
 	
 	function loadcreate() {
