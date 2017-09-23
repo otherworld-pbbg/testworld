@@ -118,7 +118,7 @@ class Perlin {
 	}
 	
 	//This function I've added. It creates one dimension of noise.
-	function random1D($x) {
+	function random1D($x, $size=NULL) {
    	
 		if ($size === NULL) $size = $this->_default_size;
 		

@@ -6425,4 +6425,16 @@ function side($x, $y, $x1, $y1, $x2, $y2, $x3, $y3)
     }
     return ($s1 * $s2) >= 0;
 }
+
+function in_range($number, $min, $max, $inclusive = FALSE)
+{
+    if (is_int($number) && is_int($min) && is_int($max))
+    {
+        return $inclusive
+            ? ($number >= $min && $number <= $max)
+            : ($number > $min && $number < $max) ;
+    }
+
+    return FALSE;
+}
 ?>
