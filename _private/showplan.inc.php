@@ -45,9 +45,13 @@ if (isset($_GET["node"])) {
 			ptag("h3", "Add comment:");
 			echo "<form action='index.php?page=showplan&node=$p2' method='post' name='commentform' id='commentform'>";
 			echo "<div class='comment'>";
-			ptag("textarea", "", "form='commentform' cols='100' rows='4' name='comment'");
+			ptag("textarea", "", "form='commentform' cols='100' rows='4' name='comment' id='comment'");
+?>
+<script>
+	CKEDITOR.replace( 'comment' );
+</script>
+<?php
 			ptag("input", "", "type='submit' value='Comment'");
-			para("You can include HTML if necessary, but don't do anything stupid with it or I might have to disable it.");
 			echo "</div>";
 			echo "</form>";
 			}

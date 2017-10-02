@@ -28,6 +28,7 @@ else echo '<link rel="stylesheet" type="text/css" href="otherworld.css" />';
 <script type="text/javascript" src="aciTree/js/jquery.aciPlugin.min.js"></script>
 <script type="text/javascript" src="aciTree/js/jquery.aciTree.min.js"></script>
 <script type="text/javascript" src="jscolor.js"></script>
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 <?php
 echo "<link rel='icon' type='image/x-icon' href='" . $gameRoot . "/favicon.ico'/>"
 ?>
