@@ -99,6 +99,7 @@ ptag("h2", "Implemented so far");
 <li> The new way to start fires was implemented. The thing is currently you have to ignite your tinder or kindling in your hand, then put it in the fire pit or whatever before the temperature cron script is run the next time, or things in your inventory will start igniting. This is actually pretty hilarious, so I think I'm going to keep this.</li>
 <li> Switching to bootstrap for front end.</li>
 <li> Ability to affect NPC group moral compass through holding a speech.</li>
+<li> You can now use a RTF editor when entering comments, so you don't have to enter html for line breaks or other stuff like that.</li>
 </ol>
 <?php
 ptag("img", "", "src='". getGameRoot() . "/graphics/resource_presets.png' alt='mind map of new way to handle resources'");
