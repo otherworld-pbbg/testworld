@@ -99,12 +99,30 @@ if ($ok) {
 				
 				$raw2 = round($raw2*100);
 				
-				if ($raw2>90&&$data->organic>127) $base = "moss";
-				else if ($data->grass>$data->sand) $base = "grass";
-				else if ($data->rock>$data->grass) $base = "rock";
-				else if ($data->sand>$data->silt&&$data->grass>55) $base = "gsand";
-				else if ($data->sand>$data->silt) $base = "sand";
-				else $base = "floor";
+				if ($raw2>90&&$data->organic>127) {
+					$base = "moss";
+					$rough = 3;
+				}
+				else if ($data->grass>$data->sand) {
+					$base = "grass";
+					$rough =6;
+				}
+				else if ($data->rock>$data->grass) {
+					$base = "rock";
+					$rough =4;
+				}
+				else if ($data->sand>$data->silt&&$data->grass>55) {
+					$base = "gsand";
+					$rough = 5;
+				}
+				else if ($data->sand>$data->silt) {
+					$base = "sand";
+					$rough = 2;
+				}
+				else {
+					$base = "floor";
+					$rough = 1;
+				}
 				
 				if ($data->tree>55&&$raw2%3==0) {
 					if (pointInTriangle($data->tree, $raw2, 127, 40, 255, 50, 255, 80)) {
@@ -150,13 +168,15 @@ if ($ok) {
 				if ($raw<$data->water/255) {
 					$raw = $data->water/255;
 					$material = "tilewater";
+					$rough = 0;
 				}
 				
 				$row[$x] = array(
 					"x" => $x,
 					"y" => $y,
 					"raw" => $raw,
-					"material" => $material
+					"material" => $material,
+					"rough" => $rough
 					);
 			}
 			$array[] = $row;
