@@ -37,7 +37,6 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["email"])
 			para("A pending account already exists under this username. If this is yours and you don't have the activation code, have it resent. If it belongs to someone else, you need to pick some other username.");
 		}
 		else {
-			include_once "hashing.inc.php";
 			$passhash = password_hash($_POST["password"], PASSWORD_DEFAULT);
 			$email = $mysqli->real_escape_string($_POST["email"]);
 			$check2 = generateActivationCode($mysqli, $uname, $email, $passhash);

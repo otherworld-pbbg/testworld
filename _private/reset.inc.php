@@ -9,7 +9,6 @@ if (isset($_POST["username"])&&isset($_POST["email"])&&isset($_POST["submit_btn"
 		$uname = $mysqli->real_escape_string($_POST["username"]);//this isn't really necessary now
 		//because usernames don't allow special characters
 		
-		include_once "hashing.inc.php";
 		$email = $mysqli->real_escape_string($_POST["email"]);
 		
 		$info = getExistingAccount($mysqli, $uname);

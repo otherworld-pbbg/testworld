@@ -19,12 +19,8 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["submit_b
 		}
 		else
 		{
-			include_once "hashing.inc.php";
-			include_once "class_player.inc.php";	
-			$pw = myHash($_POST["password"]);
-			if ($info->passhash==$pw)
-			{
-				saveNewHash($mysqli, $_POST["password"], $info->uid);
+			include_once "class_player.inc.php";
+			if (password_verify($_POST["password"], $info->passhash2)) {
 				$_SESSION['logged_user'] = $_POST['username'];
 				$_SESSION['user_id'] = $info->uid;
 				$player = new Player($mysqli, $info->uid);
@@ -34,23 +30,13 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["submit_b
 				$displayForm = false;
 			}
 			else {
-				if (password_verify($_POST["password"], $info->passhash2)) {
-					$_SESSION['logged_user'] = $_POST['username'];
-					$_SESSION['user_id'] = $info->uid;
-					$player = new Player($mysqli, $info->uid);
-					$player->logLogin();
-					
-					header('Location: index.php?page=direwolf&userid='. $info->uid);
-					$displayForm = false;
-				}
-				else {
-					include_once "header.inc.php";
-					echo "<div class='alert alert-warning'>";
-					para("Wrong password!");
-					para("If you have a valid email account associated with your Otherworld account, you can go to <a href='index.php?page=reset'>this page</a> to have your password reset. However, if your account was created before we started requiring a valid email, you need to contact admin for a manual reset. After you get to your account, be sure to update your email address if it's not already up to date, so that if you forget your password again, you can reset it any time.");
-					echo "</div>";
-				}
+				include_once "header.inc.php";
+				echo "<div class='alert alert-warning'>";
+				para("Wrong password!");
+				para("If you have a valid email account associated with your Otherworld account, you can go to <a href='index.php?page=reset'>this page</a> to have your password reset. However, if your account was created before we started requiring a valid email, you need to contact admin for a manual reset. After you get to your account, be sure to update your email address if it's not already up to date, so that if you forget your password again, you can reset it any time. Basically if you haven't logged in since 2017-09-04, your password no longer works.");
+				echo "</div>";
 			}
+			
 		}
 	}
 	else {

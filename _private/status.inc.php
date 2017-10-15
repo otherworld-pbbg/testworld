@@ -100,9 +100,9 @@ ptag("h2", "Implemented so far");
 <li> Switching to bootstrap for front end.</li>
 <li> Ability to affect NPC group moral compass through holding a speech.</li>
 <li> You can now use a RTF editor when entering comments, so you don't have to enter html for line breaks or other stuff like that.</li>
+<li> Fixed bug that was failing to save password has when activating new accounts.</li>
 </ol>
 <?php
-ptag("img", "", "src='". getGameRoot() . "/graphics/resource_presets.png' alt='mind map of new way to handle resources'");
 ptag("h2", "Things I'm currently working on:");
 ?>
 <ul>

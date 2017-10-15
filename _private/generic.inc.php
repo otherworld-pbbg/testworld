@@ -6296,7 +6296,7 @@ function activateAccount($mysqli, $username, $activation) {
 	$res = $mysqli->query($sql);
 	if (mysqli_num_rows($res)) {
 		$row = mysqli_fetch_object($res);
-		$sql2 = "INSERT INTO `users` (`username`, `passhash2`, `email`, `joined`) VALUES ('$row->username', '$row->passhash2', '$row->email', CURRENT_TIMESTAMP())";
+		$sql2 = "INSERT INTO `users` (`username`, `passhash2`, `email`, `joined`) VALUES ('$row->username', '$row->passhash', '$row->email', CURRENT_TIMESTAMP())";
 		$mysqli->query($sql2);
 		$result = $mysqli->insert_id;
 		if ($result) {
@@ -6332,7 +6332,7 @@ function resetPassword($mysqli, $username, $activation, $passhash) {
 	$res = $mysqli->query($sql);
 	if (mysqli_num_rows($res)) {
 		$row = mysqli_fetch_object($res);
-		$sql2 = "UPDATE `users` SET `passhash`='$passhash' WHERE `uid`=$row->userid LIMIT 1";
+		$sql2 = "UPDATE `users` SET `passhash2`='$passhash' WHERE `uid`=$row->userid LIMIT 1";
 		$mysqli->query($sql2);
 		if ($mysqli->affected_rows==1) {
 			$r=queryDelete($mysqli, "pending_users", "`uid`=$row->uid", "`uid`", 1);

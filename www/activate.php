@@ -45,7 +45,7 @@ if (isset($_POST["username"])&&isset($_POST["activation"])&&isset($_POST["submit
 					$displayForm = false;
 				}
 			}
-			if ($check==1&&$type==2) {
+			else if ($check==1&&$type==2) {
 				$check2 = activateEmail($mysqli, $uname, $activation);
 				if ($check2==0) {
 					include_once $privateRoot . "/header.inc.php";
@@ -67,8 +67,7 @@ if (isset($_POST["username"])&&isset($_POST["activation"])&&isset($_POST["submit
 				}
 			}
 			else if ($check==1&&$type==3) {
-				include_once $privateRoot . "/hashing.inc.php";
-				$pw = myHash($_POST["password"]);
+				$pw = password_hash($_POST["password"], PASSWORD_DEFAULT);
 				$check2 = resetPassword($mysqli, $uname, $activation, $pw);
 				if ($check2==0) {
 					include_once $privateRoot . "/header.inc.php";
