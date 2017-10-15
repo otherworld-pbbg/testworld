@@ -6140,7 +6140,7 @@ function delimiter($allow=false) {
 		if ($rand2<10) return $rand2;
 	}
 	
-	$rand = rand(0,5);
+	$rand = rand(0,3);
 	switch ($rand) {
 	case 0:
 		return "_";
@@ -6152,14 +6152,10 @@ function delimiter($allow=false) {
 		return "+";
 		break;
 	case 3:
-		return "=";
-		break;
-	case 4:
-		return "/";
-		break;
-	case 5:
 		return ".";
 		break;
+	default:
+		return "_";
 	}
 	return "";
 }
@@ -6276,7 +6272,7 @@ function mailPasswordReset($mysqli, $email) {
 		$msg = "An account in Otherworld-PBBG.com linked to this email address requested for a password reset. Details are below.\n\n";
 		$msg .= "Username: " . $row->username . "\n";
 		$msg .= "Activation code: " . $row->activation . "\n\n";
-		$msg .= "Go to http://www.otherworld-pbbg.com/activate.php, paste your activation code in the box and provide a new password.\n\n";
+		$msg .= "Go to http://www.otherworld-pbbg.com/activate.php , paste your activation code in the box and provide a new password.\n\n";
 		$msg .= "Until you enter the correct code, the account will continue being accessible with the old password.\n\n";
 		$msg .= "The request was made on $row->joined server time. If you did not request this message, or requested it accidentally, you can just ignore it and the password reset request will be purged in 24 hours.\n\n";
 		$msg .= "(This is an automatically sent message. Don't reply to it because the reply address doesn't actually exist.)";
