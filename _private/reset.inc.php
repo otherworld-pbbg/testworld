@@ -50,6 +50,7 @@ if ($displayForm)
 	include_once "header.inc.php";
 	ptag("h1", "Reset your password");
 	para("You need to know both your username and the email address associated with the account, otherwise we cannot confirm that it's actually yours. You will be prompted for a new password after using the code that will be emailed to you.");
+	para("If you registered before a valid email address was required, you need to contact admin for a manual reset.");
 	echo "<form action='index.php?page=reset' method='post' class='narrow'>";
 	echo "<p>";
 	ptag("label", "Username: ", "for='username'");

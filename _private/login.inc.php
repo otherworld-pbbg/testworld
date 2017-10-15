@@ -47,9 +47,6 @@ if (isset($_POST["username"])&&isset($_POST["password"])&&isset($_POST["submit_b
 if ($displayForm)
 {
 	include_once "header.inc.php";
-	echo "<div class='alert alert-info'>";
-	para("If your password doesn't work even though you're sure you wrote it correctly and you don't have an email address on file, contact admin for a password reset. There's been several changes to hashing, so the oldest passwords no longer work.");
-	echo "</div>";
 	echo "<form action='index.php?page=login' method='post' class='narrow'>";
 	echo "<p>";
 	ptag("label", "Username: ", "for='username'");
@@ -62,6 +59,7 @@ if ($displayForm)
 	
 	ptag("input", "", "type='submit' id='submit_btn' name='submit_btn' value='Log in'");
 	echo "</p>";
+	echo "<a href='index.php?page=reset' class='smaller'>[Forgot password?]</a>";
 	echo "</form>";
 }
 
