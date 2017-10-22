@@ -16,29 +16,36 @@ else
 	echo "<div class='bar'>";
 	para("Note to testers: When reporting bugs, include the whole error message, address of the page where it appeared and description of what you did right before it happened.");
 	
-	echo "<h2>";
+	echo "<ul class='normal'>";
+	echo "<li>";
 	ptag ("a", "Read the guide", "href='index.php?page=guide' class='clist'");
-	echo "</h2>";
+	echo "</li>";
 	
-	echo "<h2>";
+	echo "<li>";
 	ptag ("a", "Known bugs", "href='index.php?page=bugs' class='clist'");
-	echo "</h2>";
+	echo "</li>";
 	
-	echo "<h2>";
+	echo "<li>";
 	ptag ("a", "Read plans and comment on them", "href='index.php?page=showplan' class='clist'");
-	echo "</h2>";
+	echo "</li>";
 	
-	echo "<h2>";
+	echo "<li>";
 	ptag ("a", "Statistics", "href='index.php?page=statistics' class='clist'");
-	echo "</h2>";
+	echo "</li>";
 	
-	echo "<h2>";
+	echo "<li>";
 	ptag ("a", "Start playing a new character", "href='index.php?page=newchar' class='clist'");
-	echo "</h2>";
+	echo "</li>";
 	
-	echo "<h2>";
+	echo "<li>";
 	ptag ("a", "Settings", "href='index.php?page=settings' class='clist'");
-	echo "</h2>";
+	echo "</li>";
+	
+	echo "<li>";
+	ptag ("a", "Propose a new culture", "href='index.php?page=newCulture' class='clist'");
+	echo "</li>";
+	echo "</ul>";
+	
 	$charArr = $player->getCharacters(1);
 	$charArr2 = $player->getCharacters(2);
 	ptag ("h2", "Played characters");

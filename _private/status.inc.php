@@ -101,6 +101,7 @@ ptag("h2", "Implemented so far");
 <li> Ability to affect NPC group moral compass through holding a speech.</li>
 <li> You can now use a RTF editor when entering comments, so you don't have to enter html for line breaks or other stuff like that.</li>
 <li> Fixed bug that was failing to save password has when activating new accounts.</li>
+<li> It's now possible to add, view and edit pending cultures. The ability to add pending characters is not yet implemented.</li>
 </ol>
 <?php
 ptag("h2", "Things I'm currently working on:");
