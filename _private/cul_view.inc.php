@@ -54,17 +54,8 @@ else
 			echo $frmStr;
 		}
 		else {
-			$lead = new Player($mysqli, $row->leader);
+			$lead = new Player($mysqli, $leader);
 			para("Created by: " . $lead->getUsername());
-		}
-		
-		if ($leader == $currentUser) {
-			
-		}
-		else {
-			echo "<div class='alert alert-danger'>";
-			para("You're not authorized to edit this culture.");
-			echo "</div>";
 		}
 	}
 	else {

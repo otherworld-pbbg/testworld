@@ -42,6 +42,10 @@ else
 	echo "</li>";
 	
 	echo "<li>";
+	ptag ("a", "View list of cultures", "href='index.php?page=listCultures' class='clist'");
+	echo "</li>";
+	
+	echo "<li>";
 	ptag ("a", "Propose a new culture", "href='index.php?page=newCulture' class='clist'");
 	echo "</li>";
 	echo "</ul>";

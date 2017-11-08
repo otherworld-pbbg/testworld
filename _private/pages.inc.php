@@ -15,7 +15,6 @@ $pages = array(
 "bodyparts" => "bodyparts.inc.php",
 "boot" => "boot.inc.php",
 "bugs" => "bugs.inc.php",
-"cancelGive" => "cancel_give.inc.php",
 "changeLocName" => "change_loc_name.inc.php",
 "changeCharName" => "change_char_name.inc.php",
 "chop" => "chop.inc.php",
