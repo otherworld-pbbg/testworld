@@ -79,6 +79,24 @@ function initStage(images, biome) {
 		  fill: '#3d5325'
 		});
     }
+    else if (biome=="tundra") {
+		var rect = new Konva.Rect({
+		  x: 0,
+		  y: 0,
+		  width: 1300,
+		  height: 1100,
+		  fill: '#1c160e'
+		});
+    }
+    else if (biome=="desert") {
+		var rect = new Konva.Rect({
+		  x: 0,
+		  y: 0,
+		  width: 1300,
+		  height: 1100,
+		  fill: '#914522'
+		});
+    }
     else {
 		var rect = new Konva.Rect({
 		  x: 0,

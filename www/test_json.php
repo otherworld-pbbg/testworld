@@ -16,10 +16,12 @@ function printJSON() {
 	$biome = array(
 		"rainforest",
 		"savanna",
-		"swamp"
+		"swamp",
+		"tundra",
+		"desert"
 		);
 	
-	$brand = rand(0,2);
+	$brand = rand(0,4);
 	
 	switch ($brand) {
 	case 0:
@@ -65,7 +67,35 @@ function printJSON() {
 		$tops = array(
 			"tree1",
 			"tree2",
+			"bush1",
+			"shrub",
+			"mangrove"
+		);
+		break;
+	case 3:
+		$grounds = array(
+			"shrubby1",
+			"shrubby2",
+			"shrubby3",
+			"shrubby4",
+			"rocky1",
+			"rocky2"
+		);
+	
+		$tops = array(
+			"tree1",
 			"bush1"
+		);
+		break;
+	case 4:
+		$grounds = array(
+			"sand",
+			"dune"
+		);
+	
+		$tops = array(
+			"bush1",
+			"bush2"
 		);
 		break;
 	}
