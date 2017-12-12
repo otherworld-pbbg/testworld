@@ -45,25 +45,6 @@ function years($hours) {
 	return round ($hours/4/288);
 }
 
-for ($i = 1; $i<49; $i++) {
-	$coords = countSpiral($i);
-	para ("$i: x: ".$coords["xchange"] . ", y: ". $coords["ychange"]);
-}
-for ($i = 0; $i<10; $i++) {
-	para(generatePseudoWord());
-}
-
-$fruit = new Resource($mysqli, 348);
-$ancestors = $fruit->getAncestors(350, array());
-print_r($ancestors);
-$hybrid = $fruit->getPossibleHybrids(350);
-print_r($hybrid);
-
-$y = rand(-5000,5000);
-para($y);
-$perk = $fruit->generatePerk($y);
-print_r($perk);
-
 $obj = new Obj($mysqli, 0);
 
 //category: 0 - tropical fruit, 1 - berry, 2 - root vegetable, 3 - flower, 4 - bean, 5 - citrus fruit, 6 - apple, 7 - drupes

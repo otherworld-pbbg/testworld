@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.rawgit.com/konvajs/konva/1.7.6/konva.min.js"></script>
+  <meta charset="utf-8">
+  <title>Scenery</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #F0F0F0;
+    }
+    .layer0 {
+    	z-index: 0;
+    	float: left;
+    }
+    .layer1 {
+    	z-index: 1;
+    	float: left;
+    }
+    .layer2 {
+    	z-index: 2;
+    	float: left;
+    }
+    .layer3 {
+    	z-index: 3;
+    	float: left;
+    }
+    .layer4 {
+    	z-index: 4;
+    	float: left;
+    }
+    .layer5 {
+    	z-index: 5;
+    	float: left;
+    }
+    
+    img {
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    }
+    
+    .clearboth {
+    	clear: both;
+    	position: relative;
+    	display:block;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+  <div id="container" class='clearboth'>
+  <img src="graphics/scenery/sky1.png" id="skyim" class="layer0">
+  <img src="graphics/scenery/blank.png" id="cloudim" class="layer1">
+  <img src="graphics/scenery/far_meadow.png" id="farim" class="layer2">
+  <img src="graphics/scenery/mid_meadow.png" id="midim" class="layer3">
+  <img src="graphics/scenery/near_meadow.png" id="nearim" class="layer4">
+  <img src="graphics/scenery/blank.png" id="frontim" class="layer5">
+  </div>
+<div id="sels" class='clearboth'>
+<select id="sel_near">
+<option value="1">Meadow</option>
+<option value="2">Rocky</option>
+<option value="3">Desert</option>
+</select>
+
+<select id="sel_mid">
+<option value="1">Meadow</option>
+<option value="2">Rocky</option>
+<option value="3">Desert</option>
+</select>
+
+<select id="sel_far">
+<option value="1">Meadow</option>
+<option value="2">Rocky</option>
+<option value="3">Desert</option>
+<option value="4">Hills</option>
+<option value="5">Mountains</option>
+</select>
+
+<select id="sel_sky">
+<option value="1">Day</option>
+<option value="2">Dusk</option>
+<option value="3">Dawn</option>
+<option value="4">Night</option>
+</select>
+
+<select id="sel_cloud">
+<option value="0">Clear sky</option>
+<option value="1">Streak clouds</option>
+<option value="2">Cumulus</option>
+<option value="3">Small clouds</option>
+<option value="4">Stormclouds</option>
+</select>
+
+<select id="sel_front">
+<option value="0">Clear front</option>
+<option value="1">Trees</option>
+<option value="2">Palm tree</option>
+</select>
+</div>
+
+<script>
+var ifolder = 'graphics/scenery/';
+
+var pictureList = [[
+"blank",
+"sky1",
+"sky2",
+"sky3",
+"sky4"
+],[
+"blank",
+"cloud1",
+"cloud2",
+"cloud3",
+"cloud4"
+],[
+"blank",
+"far_meadow",
+"far_rock",
+"far_sand",
+"far_hills",
+"far_mountains"
+],[
+"blank",
+"mid_meadow",
+"mid_rock",
+"mid_sand"
+],[
+"blank",
+"near_meadow",
+"near_rock",
+"near_sand"
+],[
+"blank",
+"front_trees",
+"front_palmtree",
+]];
+
+
+
+$('#sel_sky').change(function () {
+		
+    var val = parseInt($('select[id=sel_sky]').val());
+    $("#skyim").attr("src", ifolder + pictureList[0][val] + '.png');
+});
+
+$('#sel_cloud').change(function () {
+		
+    var val = parseInt($('select[id=sel_cloud]').val());
+    $("#cloudim").attr("src", ifolder + pictureList[1][val] + '.png'); 
+});
+
+$('#sel_far').change(function () {
+		
+    var val = parseInt($('select[id=sel_far]').val());
+    $("#farim").attr("src", ifolder + pictureList[2][val] + '.png'); 
+});
+
+$('#sel_mid').change(function () {
+		
+    var val = parseInt($('select[id=sel_mid]').val());
+    $("#midim").attr("src", ifolder + pictureList[3][val] + '.png'); 
+});
+
+$('#sel_near').change(function () {
+		
+    var val = parseInt($('select[id=sel_near]').val());
+    $("#nearim").attr("src", ifolder + pictureList[4][val] + '.png'); 
+});
+
+$('#sel_front').change(function () {
+		
+    var val = parseInt($('select[id=sel_front]').val());
+    $("#frontim").attr("src", ifolder + pictureList[5][val] + '.png'); 
+});
+
+</script>
+</body>
+</html>

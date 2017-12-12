@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>Points test</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1000" height="600"></canvas>
+<script>
+
+function generatePoints(cellsize, numInCell, rows, cols) {
+	p3 = [];
+	for (i=0; i<rows; i++) {
+		var p2 = [];
+		for (j=0; j<cols; j++) {
+			var p1 = [];
+			for (k=0; k<numInCell; k++) {
+				x = Math.random()*cellsize+(j*cellsize);
+				y = Math.random()*cellsize+(i*cellsize);
+				p1.push({x: x, y: y, c: 'green'});
+			}
+			p2.push(p1);
+		}
+		p3.push(p2);
+	}
+	return p3;
+}
+
+function compareCoords(x1, y1, x2, y2) {
+	return Math.sqrt( Math.pow((x2-x1),2) + Math.pow((y2-y1),2) );
+}
+
+var cellsize = 70;
+var rows = 20;
+var cols = 20;
+
+//urlParams = parseURLParams(window.location.href);
+
+var url = new URL(window.location.href);
+
+var space = url.searchParams.get("space");
+if (space == null||isNaN(space)) var minDist = 30;
+else var minDist = space;
+
+var num = url.searchParams.get("num");
+if (num == null||isNaN(num)) var numInCell = 4;
+else var numInCell = num;
+
+var hide = url.searchParams.get("hide");
+if (hide == "true") var hide2 = 1;
+else var hide2 = 0;
+
+points = generatePoints(cellsize, numInCell, rows, cols);
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+context.canvas.width  = window.innerWidth;
+context.canvas.height = window.innerHeight;
+var radius = 5;
+
+for (i=0; i<points.length; i++) {//row
+	context.beginPath();
+	context.moveTo(0,cellsize*i);
+	context.lineTo(cellsize*cols,cellsize*i);
+	context.strokeStyle= 'gray';
+	context.stroke();
+	var p2 = points[i];
+	if (i<points.length-1) var p2b = points[i+1];//the next row
+	for (j=0; j<p2.length; j++) {//column
+		context.beginPath();
+		context.moveTo(cellsize*j,0);
+		context.lineTo(cellsize*j,cellsize*rows);
+		context.strokeStyle= 'gray';
+		context.stroke();
+		var p1 = p2[j];
+		if (j<p2.length-1) var p1b = p2[j+1];//the next cell
+		for (k=0; k<p1.length; k++) {//point
+			var x1 = p1[k].x;
+			var y1 = p1[k].y;
+			
+			if (p1[k].c=='green') {
+				for (l = k+1; l<p1.length; l++) {//same cell
+					x2 = p1[l].x;
+					y2 = p1[l].y;
+					if (compareCoords(x1, y1, x2, y2)<minDist&&p1[l].c=='green') p1[l].c = 'red';
+					context.beginPath();
+					context.moveTo(x1,y1);
+					context.lineTo(x2,y2);
+					context.strokeStyle= p1[l].c;
+					context.stroke();	
+				}
+				if (j<p2.length-1) {
+					for (m=0; m<p1b.length; m++) {//next cell
+						x2 = p1b[m].x;
+						y2 = p1b[m].y;
+						if (compareCoords(x1, y1, x2, y2)<minDist&&p1b[m].c=='green') p1b[m].c = 'blue';
+						context.beginPath();
+						context.moveTo(x1,y1);
+						context.lineTo(x2,y2);
+						context.strokeStyle= p1b[m].c;
+						context.stroke();
+					}
+				}
+				if (i<points.length-1) {
+					for (n = j-1; n<j+2; n++) {//row below
+						if (n>=0&&n<cols) {
+							cell = p2b[n];
+							for (o = 0; o<cell.length; o++) {
+								x2 = cell[o].x;
+								y2 = cell[o].y;
+								if (compareCoords(x1, y1, x2, y2)<minDist&&cell[o].c=='green') cell[o].c = 'cyan';
+								context.beginPath();
+								context.moveTo(x1,y1);
+								context.lineTo(x2,y2);
+								context.strokeStyle= cell[o].c;
+								context.stroke();
+							}
+						}
+					}
+				}
+			}
+			
+			if (p1[k].c=='green'||!hide2) {
+				context.beginPath();
+				context.arc(x1, y1, radius, 0, 2 * Math.PI, false);
+				context.fillStyle = p1[k].c;
+				context.fill();
+				context.lineWidth = 1;
+				context.strokeStyle = '#003300';
+				context.stroke();
+			}
+		}
+	}
+}
+
+for (i=0; i<points.length; i++) {//row
+	var p2 = points[i];
+	if (i<points.length-1) var p2b = points[i+1];//the next row
+	for (j=0; j<p2.length; j++) {//column
+		var p1 = p2[j];
+		if (j<p2.length-1) var p1b = p2[j+1];//the next cell
+		for (k=0; k<p1.length; k++) {//point
+			var x1 = p1[k].x;
+			var y1 = p1[k].y;
+			
+			if (p1[k].c=='green') {
+				for (l = k+1; l<p1.length; l++) {//same cell
+					x2 = p1[l].x;
+					y2 = p1[l].y;
+					if (compareCoords(x1, y1, x2, y2)>=minDist&&p1[l].c=='green') {
+						context.beginPath();
+						context.moveTo(x1,y1);
+						context.lineTo(x2,y2);
+						context.lineWidth = 2;
+						context.strokeStyle= 'black';
+						context.stroke();	
+					}
+				}
+				if (j<p2.length-1) {
+					for (m=0; m<p1b.length; m++) {//next cell
+						x2 = p1b[m].x;
+						y2 = p1b[m].y;
+						if (compareCoords(x1, y1, x2, y2)>=minDist&&p1b[m].c=='green') {
+							context.beginPath();
+							context.moveTo(x1,y1);
+							context.lineTo(x2,y2);
+							context.lineWidth = 2;
+							context.strokeStyle= 'black';
+							context.stroke();
+						}
+					}
+				}
+				if (i<points.length-1) {
+					for (n = j-1; n<j+2; n++) {//row below
+						if (n>=0&&n<cols) {
+							cell = p2b[n];
+							for (o = 0; o<cell.length; o++) {
+								x2 = cell[o].x;
+								y2 = cell[o].y;
+								if (compareCoords(x1, y1, x2, y2)>=minDist&&cell[o].c=='green') {
+									context.beginPath();
+									context.moveTo(x1,y1);
+									context.lineTo(x2,y2);
+									context.lineWidth = 2;
+									context.strokeStyle= 'black';
+									context.stroke();
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			if (p1[k].c=='green'||!hide2) {
+				context.beginPath();
+				context.arc(x1, y1, radius, 0, 2 * Math.PI, false);
+				context.fillStyle = p1[k].c;
+				context.fill();
+				context.lineWidth = 1;
+				context.strokeStyle = '#003300';
+				context.stroke();
+			}
+		}
+	}
+}
+
+</script>
+</body>
+</html>
